@@ -1,7 +1,7 @@
 {include file="top" /}
 <!-- Left side column. contains the logo and sidebar -->
 {include file="left" /}
-<link rel="stylesheet" href="/public/static/select/css/LArea.css">
+
 <!-- Content Wrapper. Contains page content -->
 <style>
     .form-control{
@@ -14,6 +14,7 @@
 
 
 </style>
+<link rel="stylesheet" type="text/css" href="/public/static/select/MultiPicker/MultiPicker.css?rev=@@hash"/>
 <div class="content-wrapper">
 
     <div class="box box-info">
@@ -29,16 +30,16 @@
 
                     <div class="col-sm-10">
 
-                        <button type="button" class="btn btn-success btn-sm">出发地</button>
-                        <input type="text" class="form-control" id="inputEmail3" placeholder="请输入">
+                        <button type="button" id="startcitybutton" class="btn btn-success btn-sm">出发地</button>
+                        <input type="text" class="form-control" id="startcity" onchange="sends()" placeholder="请输入">
                     </div>
                 </div>
                 <div class="form-group">
 
 
                     <div class="col-sm-10">
-                        <button type="button" class="btn btn-success btn-sm">目的地</button>
-                        <input type="text" class="form-control" id="inputPassword3" placeholder="请输入">
+                        <button type="button" id="endcitybutton" class="btn btn-success btn-sm">目的地</button>
+                        <input type="text" class="form-control" id="endcity" placeholder="请输入">
                     </div>
                 </div>
 
@@ -55,20 +56,60 @@
             <!-- /.box-footer -->
         </form>
     </div>
-
-
-    <script src="/public/static/select/js/LArea.js"></script>
+    <div id="targetContainer"></div>
+    <div id="targetContainer2"></div>
+    <script src="/public/static/select/MultiPicker/city.js"></script>
+    <script src="/public/static/select/MultiPicker/MultiPicker.js"></script>
 
 <script>
-    var area = new LArea();
-    area.init({
-        'trigger': '#inputEmail3',//触发选择控件的文本框，同时选择完毕后name属性输出到该位置
-        'valueTo':'#value1',//选择完毕后id属性输出到该位置
-        'keys':{id:'id',name:'name'},//绑定数据源相关字段 id对应valueTo的value属性输出 name对应trigger的value属性输出
-        'type':1,//数据源类型
-        'data':LAreaData//数据源
+    //---------------------函数调用开始---------------------
+    new MultiPicker({
+        input: 'startcitybutton',//点击触发插件的input框的id
+        container: 'targetContainer',//插件插入的容器id
+        jsonData: $city,
+        success: function (arr) {
+       
+            var temp="";
+            for(x in arr){
+
+               if(arr[x].value!="请选择"){
+                   temp+=arr[x].value+"-"
+               }
+
+            }
+
+            temp=temp.substr(0, temp.length - 1);
+
+            document.getElementById('startcity').value = temp
+        }//回调
     });
+    //---------------------函数调用结束---------------------
+
+    new MultiPicker({
+        input: 'endcitybutton',//点击触发插件的input框的id
+        container: 'targetContainer2',//插件插入的容器id
+        jsonData: $city,
+        success: function (arr) {
+            var temp="";
+            for(x in arr){
+
+                if(arr[x].value!="请选择"){
+                    temp+=arr[x].value+"-"
+                }
+
+            }
+
+            temp=temp.substr(0, temp.length - 1);
+
+            document.getElementById('endcity').value = temp
+        }//回调
+    });
+
+
+
+
 </script>
+
 
 
 </div>
