@@ -14,5 +14,9 @@ class Index extends \think\Controller
     {
         return $this->fetch();
     }
+
+    public function test(){
+		    return $this->fetch();
+    }
 		
 }

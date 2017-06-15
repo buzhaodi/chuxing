@@ -6,10 +6,16 @@
 <style>
     .form-control{
         display: inline-block;
-        width: 60%;
+        width: 80%;
     }
     .btn{
         margin-top: -5px;
+    }
+    label{
+        position: relative;
+        top: -21px;
+        margin-right: 0.9em;
+        margin-left: 1em;
     }
 
 
@@ -26,21 +32,24 @@
         <form class="form-horizontal">
             <div class="box-body">
                 <div class="form-group">
-
-
-                    <div class="col-sm-10">
-
+                    <div class="col-sm-12">
                         <button type="button" id="startcitybutton" class="btn btn-success btn-sm">出发地</button>
-                        <input type="text" class="form-control" id="startcity" onchange="sends()" placeholder="请输入">
+                        <input type="text" class="form-control" id="startcity"  placeholder="请输入">
                     </div>
                 </div>
                 <div class="form-group">
-
-
-                    <div class="col-sm-10">
+                    <div class="col-sm-12">
                         <button type="button" id="endcitybutton" class="btn btn-success btn-sm">目的地</button>
                         <input type="text" class="form-control" id="endcity" placeholder="请输入">
                     </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-sm-1">
+                    <label for="line" class="control-label">地址:</label>
+                    <textarea  class="form-control" id="line" placeholder="请输入"></textarea>
+                    </div>
+
                 </div>
 
 
@@ -56,31 +65,33 @@
             <!-- /.box-footer -->
         </form>
     </div>
+
+
+    <div id="container"></div>
+    <div id="panel"></div>
+
     <div id="targetContainer"></div>
     <div id="targetContainer2"></div>
+    <div id="targetContainer3"></div>
+    <div id="targetContainer4"></div>
+
+
+    <script type="text/javascript" src="https://webapi.amap.com/maps?v=1.3&key=39ae003202ac27530ab1fb87d244af6d"></script>
     <script src="/public/static/select/MultiPicker/city.js"></script>
     <script src="/public/static/select/MultiPicker/MultiPicker.js"></script>
 
 <script>
-    //---------------------函数调用开始---------------------
+
+
+
     new MultiPicker({
         input: 'startcitybutton',//点击触发插件的input框的id
         container: 'targetContainer',//插件插入的容器id
         jsonData: $city,
         success: function (arr) {
-       
-            var temp="";
-            for(x in arr){
+            var temp=delarr(arr,"startcity")
 
-               if(arr[x].value!="请选择"){
-                   temp+=arr[x].value+"-"
-               }
 
-            }
-
-            temp=temp.substr(0, temp.length - 1);
-
-            document.getElementById('startcity').value = temp
         }//回调
     });
     //---------------------函数调用结束---------------------
@@ -90,20 +101,181 @@
         container: 'targetContainer2',//插件插入的容器id
         jsonData: $city,
         success: function (arr) {
-            var temp="";
-            for(x in arr){
+            var temp=delarr(arr,"endcity")
 
-                if(arr[x].value!="请选择"){
-                    temp+=arr[x].value+"-"
-                }
 
-            }
-
-            temp=temp.substr(0, temp.length - 1);
-
-            document.getElementById('endcity').value = temp
         }//回调
     });
+
+
+
+//处理地址
+
+
+    function delarr(arr,buttonid) {
+        var temp="";
+        var num=arr.length
+
+        if(num==3){
+           var p=["省","市",""]
+        }else{
+            var p=["市",""]
+        }
+
+        for(x in arr){
+
+
+            if(arr[x].value!="请选择"){
+                temp+=arr[x].value+p[x]+"-"
+            }
+
+        }
+
+        temp=temp.substr(0, temp.length - 1);
+
+        document.getElementById(buttonid).value = temp
+
+
+      var start=  $("#startcity").val()
+      var end=  $("#endcity").val()
+
+
+
+
+
+
+
+        if(start&&end){
+            start= start.split("-")
+            end= end.split("-")
+//            console.log(start)
+//            console.log(end)
+            var startnum=start.length
+            var endnum=start.length
+
+
+          if(startnum==3){
+                startnum=0
+              start=start[2]
+          }else {
+              startnum=0
+              start=start[1]
+          }
+
+            if(endnum==3){
+                endnum=0
+                end=end[2]
+            }else {
+                endnum=0
+                end=end[1]
+            }
+
+
+
+            $.ajax({
+                async: false,
+                type : "GET",
+                url :"http://restapi.amap.com/v3/config/district?keywords="+start+"&subdistrict="+startnum+"&key=1491272c53955352d608aff9136780c4",
+                complete: function(data){
+
+                },
+                success : function(data) {
+
+                    start=data.districts[0].center
+                }
+            });
+
+            $.ajax({
+                async: false,
+                type : "GET",
+                url :"http://restapi.amap.com/v3/config/district?keywords="+end+"&subdistrict="+endnum+"&key=1491272c53955352d608aff9136780c4",
+                complete: function(data){
+
+                },
+                success : function(data) {
+
+                    end=data.districts[0].center
+                }
+            });
+
+        console.log(start)
+        console.log(end)
+
+
+
+
+
+
+
+
+        }
+
+
+
+
+    }
+
+    var startcity=""
+    var endcity=""
+
+    var map = new AMap.Map("mapContainer", {
+        resizeEnable: true,
+        center: [116.397428, 39.90923],//地图中心点
+        zoom: 13,//地图显示的缩放级别
+        keyboardEnable: false
+    });
+    AMap.plugin(['AMap.Autocomplete','AMap.PlaceSearch'],function(){
+        var autoOptions = {
+            city: "", //城市，默认全国
+            input: "startcity"//使用联想输入的input的id
+        };
+        autocomplete= new AMap.Autocomplete(autoOptions);
+        var placeSearch = new AMap.PlaceSearch({
+            city:'',
+            map:map
+        })
+        AMap.event.addListener(autocomplete, "select", function(e){
+            //TODO 针对选中的poi实现自己的功能
+
+            startcity=e.poi.location.J+","+e.poi.location.N
+            console.log(startcity)
+
+        });
+    });
+
+
+    AMap.plugin(['AMap.Autocomplete','AMap.PlaceSearch'],function(){
+        var autoOptions = {
+            city: "", //城市，默认全国
+            input: "endcity"//使用联想输入的input的id
+        };
+        autocomplete= new AMap.Autocomplete(autoOptions);
+        var placeSearch = new AMap.PlaceSearch({
+            city:'',
+            map:map
+        })
+        AMap.event.addListener(autocomplete, "select", function(e){
+            //TODO 针对选中的poi实现自己的功能
+
+            endcity=e.poi.location.J+","+e.poi.location.N
+            console.log(endcity)
+
+        });
+
+    });
+
+
+    getline()
+
+    function getline(start,end) {
+        $.get("http://restapi.amap.com/v3/direction/driving?origin=116.481028,39.989643&destination=116.465302,40.004717&extensions=all&output=xml&key=1491272c53955352d608aff9136780c4",
+            function (data) {
+                data= xmltojson(data)
+            console.log(data)
+        })
+    }
+
+
 
 
 
