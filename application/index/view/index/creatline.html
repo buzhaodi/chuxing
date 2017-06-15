@@ -1,19 +1,29 @@
 {include file="top" /}
 <!-- Left side column. contains the logo and sidebar -->
 {include file="left" /}
-<link rel="stylesheet" href="/public/static/select/css/LArea.css">
+
 <!-- Content Wrapper. Contains page content -->
 <style>
     .form-control{
         display: inline-block;
-        width: 60%;
+        width: 80%;
     }
     .btn{
         margin-top: -5px;
     }
+    label{
+        position: relative;
+        top: -48px;
+        margin-right: 1.1em;
+        margin-left: 0.7em;
+    }
+    #line{
+        height: 100px;
+    }
 
 
 </style>
+<link rel="stylesheet" type="text/css" href="/public/static/select/MultiPicker/MultiPicker.css?rev=@@hash"/>
 <div class="content-wrapper">
 
     <div class="box box-info">
@@ -22,24 +32,28 @@
         </div>
         <!-- /.box-header -->
         <!-- form start -->
+
         <form class="form-horizontal">
             <div class="box-body">
                 <div class="form-group">
-
-
-                    <div class="col-sm-10">
-
-                        <button type="button" class="btn btn-success btn-sm">出发地</button>
-                        <input type="text" class="form-control" id="inputEmail3" placeholder="请输入">
+                    <div class="col-sm-12">
+                        <button type="button" id="startcitybutton" class="btn btn-success btn-sm">出发地</button>
+                        <input type="text" class="form-control" id="startcity"  placeholder="请输入">
                     </div>
                 </div>
                 <div class="form-group">
-
-
-                    <div class="col-sm-10">
-                        <button type="button" class="btn btn-success btn-sm">目的地</button>
-                        <input type="text" class="form-control" id="inputPassword3" placeholder="请输入">
+                    <div class="col-sm-12">
+                        <button type="button" id="endcitybutton" class="btn btn-success btn-sm">目的地</button>
+                        <input type="text" class="form-control" id="endcity" placeholder="请输入">
                     </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-sm-1">
+                    <label for="line" class="control-label">地址:</label>
+                    <textarea  class="form-control" id="line" placeholder="请输入"></textarea>
+                    </div>
+
                 </div>
 
 
@@ -54,21 +68,277 @@
             </div>
             <!-- /.box-footer -->
         </form>
+        <input hidden id="startline" >
+        <input hidden id="endline" >
     </div>
 
 
-    <script src="/public/static/select/js/LArea.js"></script>
+    <div id="container"></div>
+    <div id="panel"></div>
+
+    <div id="targetContainer"></div>
+    <div id="targetContainer2"></div>
+    <div id="targetContainer3"></div>
+    <div id="targetContainer4"></div>
+
+
+    <script type="text/javascript" src="https://webapi.amap.com/maps?v=1.3&key=39ae003202ac27530ab1fb87d244af6d"></script>
+    <script src="/public/static/select/MultiPicker/city.js"></script>
+    <script src="/public/static/select/MultiPicker/MultiPicker.js"></script>
 
 <script>
-    var area = new LArea();
-    area.init({
-        'trigger': '#inputEmail3',//触发选择控件的文本框，同时选择完毕后name属性输出到该位置
-        'valueTo':'#value1',//选择完毕后id属性输出到该位置
-        'keys':{id:'id',name:'name'},//绑定数据源相关字段 id对应valueTo的value属性输出 name对应trigger的value属性输出
-        'type':1,//数据源类型
-        'data':LAreaData//数据源
+
+
+
+    new MultiPicker({
+        input: 'startcitybutton',//点击触发插件的input框的id
+        container: 'targetContainer',//插件插入的容器id
+        jsonData: $city,
+        success: function (arr) {
+            var temp=delarr(arr,"startcity")
+
+
+        }//回调
     });
+    //---------------------函数调用结束---------------------
+
+    new MultiPicker({
+        input: 'endcitybutton',//点击触发插件的input框的id
+        container: 'targetContainer2',//插件插入的容器id
+        jsonData: $city,
+        success: function (arr) {
+            var temp=delarr(arr,"endcity")
+
+
+        }//回调
+    });
+
+
+
+//处理地址
+
+
+    function delarr(arr,buttonid) {
+        var temp="";
+        var num=arr.length
+
+        if(num==3){
+           var p=["省","市",""]
+        }else{
+            var p=["市",""]
+        }
+
+        for(x in arr){
+
+
+            if(arr[x].value!="请选择"){
+                temp+=arr[x].value+p[x]+"-"
+            }
+
+        }
+
+        temp=temp.substr(0, temp.length - 1);
+
+        document.getElementById(buttonid).value = temp
+
+
+      var start=  $("#startcity").val()
+      var end=  $("#endcity").val()
+
+
+
+
+
+
+
+        if(start&&end){
+            start= start.split("-")
+            end= end.split("-")
+//            console.log(start)
+//            console.log(end)
+            var startnum=start.length
+            var endnum=start.length
+
+
+          if(startnum==3){
+                startnum=0
+              start=start[2]
+          }else {
+              startnum=0
+              start=start[1]
+          }
+
+            if(endnum==3){
+                endnum=0
+                end=end[2]
+            }else {
+                endnum=0
+                end=end[1]
+            }
+
+
+
+            $.ajax({
+                async: false,
+                type : "GET",
+                url :"http://restapi.amap.com/v3/config/district?keywords="+start+"&subdistrict="+startnum+"&key=1491272c53955352d608aff9136780c4",
+                complete: function(data){
+
+                },
+                success : function(data) {
+
+                    start=data.districts[0].center
+                }
+            });
+
+            $.ajax({
+                async: false,
+                type : "GET",
+                url :"http://restapi.amap.com/v3/config/district?keywords="+end+"&subdistrict="+endnum+"&key=1491272c53955352d608aff9136780c4",
+                complete: function(data){
+
+                },
+                success : function(data) {
+
+                    end=data.districts[0].center
+                }
+            });
+
+        console.log(start)
+        console.log(end)
+
+
+            getline(start,end)
+
+
+
+
+
+
+
+        }
+
+
+
+
+    }
+
+    var startcity=""
+    var endcity=""
+
+    var map = new AMap.Map("mapContainer", {
+        resizeEnable: true,
+
+        zoom: 13,//地图显示的缩放级别
+        keyboardEnable: false
+    });
+
+
+
+    AMap.plugin(['AMap.Autocomplete','AMap.PlaceSearch'],function(){
+        var autoOptions = {
+            city: "", //城市，默认全国
+            input: "startcity"//使用联想输入的input的id
+        };
+        autocomplete= new AMap.Autocomplete(autoOptions);
+        AMap.event.addListener(autocomplete, "select", function(e){
+            //TODO 针对选中的poi实现自己的功能
+
+            startcity=e.poi.location.J+","+e.poi.location.N
+           $("#startline").val(startcity)
+//            console.log( $("#startline").val())
+            getlineforward()
+
+        });
+    });
+
+
+    AMap.plugin(['AMap.Autocomplete','AMap.PlaceSearch'],function(){
+        var auto = {
+            city: "", //城市，默认全国
+            input: "endcity"//使用联想输入的input的id
+        };
+        autocomplete= new AMap.Autocomplete(auto);
+
+        AMap.event.addListener(autocomplete, "select", function(e){
+            //TODO 针对选中的poi实现自己的功能
+//            console.log(e)
+            endcity=e.poi.location.J+","+e.poi.location.N
+            $("#endline").val(endcity)
+//            console.log(endcity)
+
+            getlineforward()
+        });
+
+    });
+
+
+    $("#endcity").change(function () {
+        getlineforward()
+    })
+    $("#startline").change(function () {
+        getlineforward()
+    })
+
+
+    function getlineforward() {
+        var start=$("#startline").val()
+        var end=$("#endline").val()
+
+        if(start!=""&&end!=""){
+            getline(start,end)
+        }
+
+    }
+
+
+    function getline(start,end) {
+        $.get("http://restapi.amap.com/v3/direction/driving?key=1491272c53955352d608aff9136780c4&origin="+start+"&destination="+end+"&extensions=base&strategy=0",
+            function (data) {
+
+
+                var temp=data.route.paths[0].steps
+
+
+                var mark="";
+
+                var temproad="";
+                for(var i=0;i<temp.length;i++){
+                    if(temp[i].road){
+                        if(temp[i].road.indexOf("入口")>0){
+
+                        }
+                        else if(temp[i].road.indexOf("出口")>0){
+
+                        }
+                        else {
+
+                               temproad+=temp[i].road+","
+
+
+
+                        }
+
+
+                    }
+
+
+                }
+
+                $("#line").val(temproad)
+
+                console.log(temproad)
+
+
+        })
+    }
+
+
+
+
+
 </script>
+
 
 
 </div>
