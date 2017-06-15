@@ -13,9 +13,12 @@
     }
     label{
         position: relative;
-        top: -21px;
-        margin-right: 0.9em;
-        margin-left: 1em;
+        top: -48px;
+        margin-right: 1.1em;
+        margin-left: 0.7em;
+    }
+    #line{
+        height: 100px;
     }
 
 
@@ -29,6 +32,7 @@
         </div>
         <!-- /.box-header -->
         <!-- form start -->
+
         <form class="form-horizontal">
             <div class="box-body">
                 <div class="form-group">
@@ -64,6 +68,8 @@
             </div>
             <!-- /.box-footer -->
         </form>
+        <input hidden id="startline" >
+        <input hidden id="endline" >
     </div>
 
 
@@ -202,6 +208,8 @@
         console.log(end)
 
 
+            getline(start,end)
+
 
 
 
@@ -220,61 +228,110 @@
 
     var map = new AMap.Map("mapContainer", {
         resizeEnable: true,
-        center: [116.397428, 39.90923],//地图中心点
+
         zoom: 13,//地图显示的缩放级别
         keyboardEnable: false
     });
+
+
+
     AMap.plugin(['AMap.Autocomplete','AMap.PlaceSearch'],function(){
         var autoOptions = {
             city: "", //城市，默认全国
             input: "startcity"//使用联想输入的input的id
         };
         autocomplete= new AMap.Autocomplete(autoOptions);
-        var placeSearch = new AMap.PlaceSearch({
-            city:'',
-            map:map
-        })
         AMap.event.addListener(autocomplete, "select", function(e){
             //TODO 针对选中的poi实现自己的功能
 
             startcity=e.poi.location.J+","+e.poi.location.N
-            console.log(startcity)
+           $("#startline").val(startcity)
+//            console.log( $("#startline").val())
+            getlineforward()
 
         });
     });
 
 
     AMap.plugin(['AMap.Autocomplete','AMap.PlaceSearch'],function(){
-        var autoOptions = {
+        var auto = {
             city: "", //城市，默认全国
             input: "endcity"//使用联想输入的input的id
         };
-        autocomplete= new AMap.Autocomplete(autoOptions);
-        var placeSearch = new AMap.PlaceSearch({
-            city:'',
-            map:map
-        })
+        autocomplete= new AMap.Autocomplete(auto);
+
         AMap.event.addListener(autocomplete, "select", function(e){
             //TODO 针对选中的poi实现自己的功能
-
+//            console.log(e)
             endcity=e.poi.location.J+","+e.poi.location.N
-            console.log(endcity)
+            $("#endline").val(endcity)
+//            console.log(endcity)
 
+            getlineforward()
         });
 
     });
 
 
-    getline()
+    $("#endcity").change(function () {
+        getlineforward()
+    })
+    $("#startline").change(function () {
+        getlineforward()
+    })
 
-    function getline(start,end) {
-        $.get("http://restapi.amap.com/v3/direction/driving?origin=116.481028,39.989643&destination=116.465302,40.004717&extensions=all&output=xml&key=1491272c53955352d608aff9136780c4",
-            function (data) {
-                
-            console.log(data)
-        })
+
+    function getlineforward() {
+        var start=$("#startline").val()
+        var end=$("#endline").val()
+
+        if(start!=""&&end!=""){
+            getline(start,end)
+        }
+
     }
 
+
+    function getline(start,end) {
+        $.get("http://restapi.amap.com/v3/direction/driving?key=1491272c53955352d608aff9136780c4&origin="+start+"&destination="+end+"&extensions=base&strategy=0",
+            function (data) {
+
+
+                var temp=data.route.paths[0].steps
+
+
+                var mark="";
+
+                var temproad="";
+                for(var i=0;i<temp.length;i++){
+                    if(temp[i].road){
+                        if(temp[i].road.indexOf("入口")>0){
+
+                        }
+                        else if(temp[i].road.indexOf("出口")>0){
+
+                        }
+                        else {
+
+                               temproad+=temp[i].road+","
+
+
+
+                        }
+
+
+                    }
+
+
+                }
+
+                $("#line").val(temproad)
+
+                console.log(temproad)
+
+
+        })
+    }
 
 
 

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="./public/static/jquery/jquery.min.js"></script>
+</head>
+<body>
+
+<div class="sss"></div>
+
+<script>
+
+
+    $.get("http://restapi.amap.com/v3/direction/driving?key=1491272c53955352d608aff9136780c4&origin=113.726008,34.767706&destination=113.324041,33.744625&originid=&destinationid=&extensions=base&strategy=0&waypoints=116.357483,39.907234&avoidpolygons=&avoidroad=",
+    function (data) {
+        console.log(data)
+
+        var temp=data.route.paths[0].steps
+
+        var temproad;
+        for(var i=0;i<temp.length;i++){
+            if(temproad!=temp[i].road){
+                if((temp[i].road.indexOf("出口")==-1)||(temp[i].road.indexOf("入口")==-1)){
+                    $(".sss").after(temp[i].road+",")
+                }
+
+                temproad=temp[i].road
+
+            }
+        }
+
+
+
+    })
+
+
+    function loadXml(str) {
+        if (str == null) {
+            return null;
+        }
+        var doc = str;
+        try{
+            doc = createXMLDOM();
+            doc.async = false;
+            doc.loadXML(str);
+        }catch(e){
+            doc = $.parseXML(str);
+        }
+        return doc;
+    }
+
+</script>
+</body>
+</html>
