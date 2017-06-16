@@ -8,5 +8,8 @@ class Seting extends \think\Controller
 		    {
 		    	return $this->fetch();
 		    }
-		
+
+        public function auth(){
+            return $this->fetch();
+        }
 }

@@ -1,0 +1,102 @@
+{include file="top" /}
+<!-- Left side column. contains the logo and sidebar -->
+
+
+<!-- Content Wrapper. Contains page content -->
+<style>
+  .form-control{
+    display: inline-block;
+    width: 70%;
+  }
+  .btn{
+    margin-top: -3px;
+  }
+  label{
+    position: relative;
+    top: -48px;
+    margin-right: 1.1em;
+    margin-left: 0.7em;
+  }
+  #line{
+    height: 100px;
+  }
+  p{
+    font-size: 1.1em;
+  }
+  .box.box-default {
+    border-top-color: #FFFFFF;
+  }
+  .collapsed-box{
+    margin: ;
+  }
+
+</style>
+<link rel="stylesheet" type="text/css" href="/public/static/select/MultiPicker/MultiPicker.css?rev=@@hash"/>
+
+
+
+<div class="content-wrapper">
+
+  <div class="box box-info">
+
+    <!-- /.box-header -->
+    <!-- form start -->
+    <div class="box box-default collapsed-box">
+
+      <div class="box-header with-border">
+        <div class="col-xs-4"><h3 class="box-title">发布认证</h3></div>
+
+        <!-- /.box-tools -->
+      </div>
+
+
+    </div>
+
+
+    <form class="form-horizontal">
+      <div class="form-group">
+        <div class="col-sm-12">
+          <button type="button"  style="margin-left: 12px" class="btn btn-default btn-sm">真实姓名</button>
+          <input type="text" class="form-control"  placeholder="请输入">
+        </div>
+      </div>
+
+        <div class="form-group">
+          <div class="col-sm-12">
+            <button type="button"  style="margin-left: 12px" class="btn btn-default btn-sm">身份证号</button>
+            <input type="text" class="form-control"  placeholder="请输入">
+          </div>
+        </div>
+    <center>
+    <input type="checkbox"><span>我已经同意<a href="http://www.baidu.com">出行小怪兽拼车声明</a>,保证录入信息真实性</span>
+    </center>
+
+
+      <div class="box-footer">
+        <button type="submit" class="btn btn-default">Cancel</button>
+        <button type="submit" class="btn btn-info pull-right">Sign in</button>
+      </div>
+
+      </div>
+      <!-- /.box-body -->
+
+      <!-- /.box-footer -->
+    </form>
+    <input hidden id="startline" >
+    <input hidden id="endline" >
+  </div>
+
+
+
+  <script>
+      //选择时间按钮
+
+
+
+  </script>
+
+
+
+</div>
+<!-- /.content-wrapper -->
+{include file="footer" /}
