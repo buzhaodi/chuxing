@@ -1,11 +1,21 @@
 {include file="top" /}
 <!-- Left side column. contains the logo and sidebar -->
+<link rel="stylesheet" type="text/css" href="/public/static/select/MultiPicker/MultiPicker.css?rev=@@hash"/>
 <style>
   h4{
     margin: 0;
   }
   p{
     margin: 0;
+  }
+  .form-control{
+    display: inline-block;
+    width: 40%;
+  }
+  .changcity{
+
+    margin: 0;
+    padding: 0;
   }
 </style>
 
@@ -14,14 +24,30 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Dashboard
-        <small>Control panel</small>
+        出行小怪兽
+        <small>拼车就这这么随意</small>
       </h1>
-      <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active">Dashboard</li>
-      </ol>
+
     </section>
+    <form>
+      <div class="box-body">
+        <div class="form-group">
+
+        </div>
+        <center>
+        <div class="form-group">
+          <div class="col-sm-12 changcity">
+            <button type="button" id="startcitybutton" class="btn btn-success btn-sm">出发地</button>
+
+            <input type="text"  style="display: none" class="form-control" id="startcity"  placeholder="请选择">
+            <p style="display: inline-block ;margin: 0;padding: 0">到</p>
+            <button type="button" id="endcitybutton" class="btn btn-success btn-sm">目的地</button>
+            <input type="text" style="display: none" class="form-control" id="endcity" placeholder="请选择">
+          </div>
+        </div>
+        </center>
+    </form>
+   
 
     <!-- Main content -->
     <section class="content">
@@ -95,6 +121,71 @@
     </section>
     <!-- /.content -->
   </div>
+<div id="targetContainer"></div>
+<div id="targetContainer2"></div>
+
+<script src="/public/static/select/MultiPicker/city.js"></script>
+<script src="/public/static/select/MultiPicker/time.js"></script>
+<script src="/public/static/select/MultiPicker/MultiPicker.js"></script>
+
+<script>
+
+    //开始城市按钮
+    new MultiPicker({
+        input: 'startcitybutton',//点击触发插件的input框的id
+        container: 'targetContainer',//插件插入的容器id
+        jsonData: $city,
+        success: function (arr) {
+         var temp=  delarr(arr,"startcity")
+            $("#startcitybutton").html(temp)
+
+
+        }//回调
+    });
+    //---------------------函数调用结束---------------------
+    //结束城市按钮
+    new MultiPicker({
+        input: 'endcitybutton',//点击触发插件的input框的id
+        container: 'targetContainer2',//插件插入的容器id
+        jsonData: $city,
+        success: function (arr) {
+            var temp= delarr(arr,"endcity")
+            $("#endcitybutton").html(temp)
+
+        }//回调
+    });
+    function delarr(arr,buttonid) {
+        var temp="";
+        var num=arr.length
+
+        if(num==3){
+            var p=["省","市",""]
+        }else{
+            var p=["市",""]
+        }
+
+        for(x in arr){
+
+
+            if(arr[x].value!="请选择"){
+                temp+=arr[x].value+p[x]+"-"
+            }
+
+        }
+
+        temp=temp.substr(0, temp.length - 1);
+
+        document.getElementById(buttonid).value = temp
+
+
+       return temp
+
+
+
+
+    }
+
+</script>
   <!-- /.content-wrapper -->
   {include file="footer" /}
 

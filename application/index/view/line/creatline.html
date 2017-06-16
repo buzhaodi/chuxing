@@ -162,7 +162,7 @@
     <script src="/public/static/select/MultiPicker/MultiPicker.js"></script>
 
 <script>
-
+//选择时间按钮
 
     new MultiPicker({
         input: 'time',//点击触发插件的input框的id
@@ -176,7 +176,7 @@
 
         }//回调
     });
-
+//选择时间
 
     new MultiPicker({
         input: 'timebutoon',//点击触发插件的input框的id
@@ -189,7 +189,7 @@
         }//回调
     });
 
-
+//处理时间函数
     function deltime(arr) {
         var temp="";
         for(var i=0;i<arr.length;i++){
@@ -212,7 +212,7 @@
     }
 
 
-
+//获得日期
     function GetDateStr(AddDayCount) {
         var dd = new Date();
         dd.setDate(dd.getDate()+AddDayCount);//获取AddDayCount天后的日期
@@ -223,7 +223,7 @@
     }
 
 
-
+//开始城市按钮
     new MultiPicker({
         input: 'startcitybutton',//点击触发插件的input框的id
         container: 'targetContainer',//插件插入的容器id
@@ -235,7 +235,7 @@
         }//回调
     });
     //---------------------函数调用结束---------------------
-
+//结束城市按钮
     new MultiPicker({
         input: 'endcitybutton',//点击触发插件的input框的id
         container: 'targetContainer2',//插件插入的容器id
