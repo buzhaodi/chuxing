@@ -313,7 +313,11 @@
                         }
                         else {
 
-                               temproad+=temp[i].road+","
+                            if(mark!=temp[i].road){
+                                temproad+=temp[i].road+","
+                                mark=temp[i].road
+                            }
+
 
 
 
