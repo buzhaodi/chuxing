@@ -1,15 +1,15 @@
 {include file="top" /}
 <!-- Left side column. contains the logo and sidebar -->
-{include file="left" /}
+
 
 <!-- Content Wrapper. Contains page content -->
 <style>
     .form-control{
         display: inline-block;
-        width: 80%;
+        width: 70%;
     }
     .btn{
-        margin-top: -5px;
+        margin-top: -3px;
     }
     label{
         position: relative;
@@ -20,18 +20,53 @@
     #line{
         height: 100px;
     }
-
+    p{
+        font-size: 1.1em;
+    }
+    .box.box-default {
+        border-top-color: #FFFFFF;
+    }
+    .collapsed-box{
+        margin: ;
+    }
 
 </style>
 <link rel="stylesheet" type="text/css" href="/public/static/select/MultiPicker/MultiPicker.css?rev=@@hash"/>
+
+
+
 <div class="content-wrapper">
 
     <div class="box box-info">
-        <div class="box-header with-border">
-            <h3 class="box-title">发布路线</h3>
-        </div>
+
         <!-- /.box-header -->
         <!-- form start -->
+        <div class="box box-default collapsed-box">
+
+            <div class="box-header with-border">
+                <div class="col-xs-4"><h3 class="box-title">发布路线</h3></div>
+                <div class="col-xs-4 col-xs-offset-4">  <h3 class="box-title">常用路线</h3></div>
+
+
+                <div class="box-tools pull-right">
+                    <button type="button" class="btn btn-box-tool" style="margin-top: 0" data-widget="collapse"><i class="fa fa-plus"></i>
+                    </button>
+                </div>
+                <!-- /.box-tools -->
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+               郑州-平顶山
+            </div>
+            <div class="box-body">
+                郑州-平顶山
+            </div>
+            <div class="box-body">
+                郑州-平顶山
+            </div>
+
+        </div>
+
 
         <form class="form-horizontal">
             <div class="box-body">
@@ -49,13 +84,49 @@
                 </div>
 
                 <div class="form-group">
-                    <div class="col-sm-1">
-                    <label for="line" class="control-label">地址:</label>
+                    <div class="col-sm-12">
+                        <button type="button" id="timebutoon" style="margin-left: 12px" class="btn btn-success btn-sm">时间</button>
+                        <input type="text" class="form-control" id="time" placeholder="请输入">
+                    </div>
+                </div>
+
+
+
+                <div class="form-group">
+                    <div class="col-sm-12">
+                    <label for="line" class="control-label">路线:</label>
                     <textarea  class="form-control" id="line" placeholder="请输入"></textarea>
                     </div>
 
                 </div>
 
+                <div class="col-sm-12">
+                    <p >路线不对?您可以直接修改 也可以<button type="button"  style="padding: 2px" class="btn btn-danger btn-sm">点我</button>重置</p>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-12">
+                        <button type="button"  style="margin-left: 12px" class="btn btn-default btn-sm">费用</button>
+                        <input type="text" class="form-control"  placeholder="请输入">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-12">
+                        <button type="button"  style="margin-left: 12px" class="btn btn-default btn-sm">车型</button>
+                        <input type="text" class="form-control"  placeholder="请输入">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-12">
+                        <button type="button"  style="margin-left: 12px" class="btn btn-default btn-sm">余座</button>
+                        <input type="text" class="form-control" placeholder="请输入">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-12">
+                        <button type="button" id="" style="margin-left: 12px" class="btn btn-default btn-sm">备注</button>
+                        <input type="text" class="form-control"  placeholder="请输入">
+                    </div>
+                </div>
 
 
 
@@ -82,14 +153,77 @@
     <div id="targetContainer4"></div>
 
 
+    <div id="targetContainer5"></div>
+    <div id="targetContainer6"></div>
+
     <script type="text/javascript" src="https://webapi.amap.com/maps?v=1.3&key=39ae003202ac27530ab1fb87d244af6d"></script>
     <script src="/public/static/select/MultiPicker/city.js"></script>
+    <script src="/public/static/select/MultiPicker/time.js"></script>
     <script src="/public/static/select/MultiPicker/MultiPicker.js"></script>
 
 <script>
+//选择时间按钮
+
+    new MultiPicker({
+        input: 'time',//点击触发插件的input框的id
+        container: 'targetContainer5',//插件插入的容器id
+        jsonData: $time,
+        success: function (arr) {
+         console.log(arr)
+
+           deltime(arr)
 
 
+        }//回调
+    });
+//选择时间
 
+    new MultiPicker({
+        input: 'timebutoon',//点击触发插件的input框的id
+        container: 'targetContainer6',//插件插入的容器id
+        jsonData: $time,
+        success: function (arr) {
+            deltime(arr)
+
+
+        }//回调
+    });
+
+//处理时间函数
+    function deltime(arr) {
+        var temp="";
+        for(var i=0;i<arr.length;i++){
+            if(arr[i].value=="今天"){
+                arr[i].value=GetDateStr(0)
+            }
+            if(arr[i].value=="明天"){
+                arr[i].value= GetDateStr(1)
+            }
+            if(arr[i].value=="后天"){
+                arr[i].value= GetDateStr(2)
+            }
+
+            temp+=arr[i].value +"-"
+        }
+        temp=temp.substr(0, temp.length - 1);
+
+
+        $("#time").val(temp)
+    }
+
+
+//获得日期
+    function GetDateStr(AddDayCount) {
+        var dd = new Date();
+        dd.setDate(dd.getDate()+AddDayCount);//获取AddDayCount天后的日期
+        var y = dd.getFullYear();
+        var m = dd.getMonth()+1;//获取当前月份的日期
+        var d = dd.getDate();
+        return y+"-"+m+"-"+d+"日";
+    }
+
+
+//开始城市按钮
     new MultiPicker({
         input: 'startcitybutton',//点击触发插件的input框的id
         container: 'targetContainer',//插件插入的容器id
@@ -101,7 +235,7 @@
         }//回调
     });
     //---------------------函数调用结束---------------------
-
+//结束城市按钮
     new MultiPicker({
         input: 'endcitybutton',//点击触发插件的input框的id
         container: 'targetContainer2',//插件插入的容器id
@@ -313,7 +447,11 @@
                         }
                         else {
 
-                               temproad+=temp[i].road+","
+                            if(mark!=temp[i].road){
+                                temproad+=temp[i].road+","
+                                mark=temp[i].road
+                            }
+
 
 
 
@@ -333,7 +471,9 @@
         })
     }
 
-
+$(".btn-danger").click(function () {
+    $("#line").val("")
+})
 
 
 
