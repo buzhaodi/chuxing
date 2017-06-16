@@ -20,6 +20,9 @@
     #line{
         height: 100px;
     }
+    p{
+        font-size: 1.1em;
+    }
 
 
 </style>
@@ -59,15 +62,37 @@
 
                 <div class="form-group">
                     <div class="col-sm-12">
-                    <label for="line" class="control-label">地址:</label>
+                    <label for="line" class="control-label">路线:</label>
                     <textarea  class="form-control" id="line" placeholder="请输入"></textarea>
                     </div>
 
                 </div>
+
+                <div class="col-sm-12">
+                    <p >路线不对?您可以直接修改 也可以<button type="button"  style="padding: 2px" class="btn btn-danger btn-sm">点我</button>重置</p>
+                </div>
                 <div class="form-group">
                     <div class="col-sm-12">
-                        <button type="button" id="" style="margin-left: 12px" class="btn btn-default btn-sm">车型</button>
-                        <input type="text" class="form-control" id="" placeholder="请输入">
+                        <button type="button"  style="margin-left: 12px" class="btn btn-default btn-sm">费用</button>
+                        <input type="text" class="form-control"  placeholder="请输入">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-12">
+                        <button type="button"  style="margin-left: 12px" class="btn btn-default btn-sm">车型</button>
+                        <input type="text" class="form-control"  placeholder="请输入">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-12">
+                        <button type="button"  style="margin-left: 12px" class="btn btn-default btn-sm">余座</button>
+                        <input type="text" class="form-control" placeholder="请输入">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-12">
+                        <button type="button" id="" style="margin-left: 12px" class="btn btn-default btn-sm">备注</button>
+                        <input type="text" class="form-control"  placeholder="请输入">
                     </div>
                 </div>
 
@@ -414,7 +439,9 @@
         })
     }
 
-
+$(".btn-danger").click(function () {
+    $("#line").val("")
+})
 
 
 
