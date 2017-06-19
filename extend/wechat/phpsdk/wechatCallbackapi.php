@@ -174,7 +174,12 @@ class wechatCallbackapi
         }
         else if (preg_match("/^1[34578]{1}\d{9}$/",$keyword)){
             //发送验证码
-            $content= sendTemplateSMS($keyword,"29760",$object->FromUserName);
+
+            $controller= new \app\index\controller\Wechat();
+
+            $content=$controller->sendsms($keyword,$object->FromUserName);
+
+
 
 
         }

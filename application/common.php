@@ -15,14 +15,10 @@
 
 //微信 回复手机号  发送验证码
 
-function sendTemplateSMS($to,$tempId,$openid)
+function sendTemplateSMS($to,$datas,$tempId)
 {
 
 
-
-
-
-    $datas[]=createRandomStr(4);
     // 初始化REST SDK
     $rest = new \rongyun\phpsdk\REST();
     // 发送模板短信
@@ -30,14 +26,14 @@ function sendTemplateSMS($to,$tempId,$openid)
     if($result == NULL ) {
 //        echo "result error!";
 
-        return "验证码发送失败,请稍后再试";
+        return false;
 
     }
     if($result->statusCode!=0) {
         return "error msg :" . $result->statusMsg;
 
     }else{
-        return "发送验验证码成功,请收到验证码以后 再次向输入框输入验证码".$openid;
+        return true;
     }
 }
 
