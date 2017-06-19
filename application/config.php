@@ -234,4 +234,26 @@ return [
         'var_page'  => 'page',
         'list_rows' => 15,
     ],
+
+    //微信token配置
+    'TOKEN'=>"weixin",
+
+
+    //短信配置
+    'ronglian'=>[
+        //主账号
+        'accountSid'=>'8a48b5514ebe1674014ec84f786f0ab7',
+        //主账号token
+        'accountToken'=>'6eaf6295db5b424c90a0b660a50833c5',
+        //应用Id
+        'appId'=>'aaf98f894ebe0e7e014ec85c6b560ae7',
+        //请求地址，格式如下，不需要写https://
+        'serverIP'=>'app.cloopen.com',
+        //请求端口
+        'serverPort'=>'8883',
+        //REST版本号
+        'softVersion'=>'2013-12-26'
+
+]
+
 ];

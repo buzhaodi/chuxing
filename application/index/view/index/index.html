@@ -17,6 +17,13 @@
     margin: 0;
     padding: 0;
   }
+  .btn-success{
+    height: 51px;
+    font-size: 2em;
+  }
+  .btn-warning{
+    font-size: 1.5em;
+  }
 </style>
 
   <!-- Content Wrapper. Contains page content -->
@@ -35,8 +42,9 @@
 
         </div>
         <center>
+
+        <div class="form-group" >
           <form action="{:url('index/line/creatline')}">
-        <div class="form-group" style="    margin-bottom: 0;">
           <div class="col-sm-12 changcity">
             <button type="button" id="startcitybutton" class="btn btn-success btn-sm">出发地</button>
 
@@ -48,17 +56,19 @@
             <button type="button" id="endcitybutton" class="btn btn-success btn-sm">目的地</button>
             <input type="text" style="display: none" class="form-control" id="endcity" placeholder="请选择">
           </div>
+            <center>
           <span style="position: relative;font-size: 0.1em;   top: -14px;">切换</span>
+            </center>
+          <div class="col-sm-12 ">
 
+            <button type="submit"  class="btn btn-block btn-warning btn-sm" style="width: 40%">查询路线</button>
+
+          </div>
+          </form>
 
 
         </div>
-            <div class="col-sm-6 ">
 
-              <button type="submit"  class="btn btn-block btn-warning btn-sm" style="width: 40%">查询路线</button>
-
-            </div>
-          </form>
         </center>
 
 
