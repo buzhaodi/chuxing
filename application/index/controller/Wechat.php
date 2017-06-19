@@ -153,6 +153,10 @@ class Wechat extends \think\Controller
 
       $data= db("user")->where("openid='{$openid}'")->find();
 
+      if(empty($data)){
+          $this->redirect(url("/index/emptytype/cantfoundid"));
+      }
+
         session('user', $data);
 
        $this->redirect($returnurl);

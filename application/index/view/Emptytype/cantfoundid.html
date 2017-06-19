@@ -1,0 +1,83 @@
+{include file="top" /}
+<!-- Left side column. contains the logo and sidebar -->
+
+
+<!-- Content Wrapper. Contains page content -->
+<style>
+  .form-control{
+    display: inline-block;
+    width: 70%;
+  }
+  .btn{
+    margin-top: -3px;
+  }
+  label{
+    position: relative;
+    top: -48px;
+    margin-right: 1.1em;
+    margin-left: 0.7em;
+  }
+  #line{
+    height: 100px;
+  }
+  p{
+    font-size: 1.1em;
+  }
+  .box.box-default {
+    border-top-color: #FFFFFF;
+  }
+  .collapsed-box{
+    margin: ;
+  }
+
+</style>
+
+
+
+
+<div class="content-wrapper">
+
+  <div class="box box-info">
+
+    <!-- /.box-header -->
+    <!-- form start -->
+    <div class="box box-default collapsed-box">
+
+      <div class="box-header with-border">
+        <div class="col-xs-4"><h3 class="box-title">您未注册</h3></div>
+
+        <!-- /.box-tools -->
+      </div>
+
+
+    </div>
+   <div>
+     关闭页面后请在输入框输入您的电话号码完成注册；
+
+
+
+   </div>
+
+
+
+
+
+
+      <div class="box-footer">
+
+        <button type="submit" onclick="WeixinJSBridge.call('closeWindow');" class="btn btn-info pull-right">关闭</button>
+      </div>
+
+  </div>
+
+
+</div>
+
+
+
+
+
+
+</div>
+<!-- /.content-wrapper -->
+{include file="footer" /}

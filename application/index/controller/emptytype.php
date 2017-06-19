@@ -1,10 +1,10 @@
 <?php
 namespace app\index\controller;
 
-class emptytype extends \think\Controller
+class Emptytype extends \think\Controller
 {
 
-		public function index()
+		public function cantfoundid()
 		    {
 		    	return $this->fetch();
 		    }
