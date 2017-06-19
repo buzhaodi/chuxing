@@ -27,10 +27,10 @@ class Wechat extends \think\Controller
 
 
     //订阅事件
-    public function subscribe(){
+    public function subscribe($openid){
 
-        return "欢迎关注出行小怪兽 如果您还没有绑定手机 请在下方发送信息处输入您的手机号以便继续使用";
-        $content .= (!empty($object->EventKey))?("\n来自二维码场景 ".str_replace("qrscene_","",$object->EventKey)):"";
+        return "欢迎关注".config("appname")." 如果您还没有绑定手机 请在下方发送信息处输入您的手机号以便继续使用";
+
     }
 
 

@@ -234,6 +234,8 @@ return [
         'var_page'  => 'page',
         'list_rows' => 15,
     ],
+    //
+    'appname'=>"出行小怪兽",
 
     //微信token配置
     'TOKEN'=>"weixin",
