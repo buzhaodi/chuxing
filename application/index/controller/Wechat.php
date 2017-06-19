@@ -26,17 +26,27 @@ class Wechat extends \think\Controller
     }
 
 
+    //订阅事件
+    public function subscribe(){
+
+        return "欢迎关注出行小怪兽 如果您还没有绑定手机 请在下方发送信息处输入您的手机号以便继续使用";
+        $content .= (!empty($object->EventKey))?("\n来自二维码场景 ".str_replace("qrscene_","",$object->EventKey)):"";
+    }
+
+
+
     //发送验证码方法  第一个参数 电话号 第二个参数 oppenid
     public function sendsms($tel,$oppenid){
 
         $datas[]=createRandomStr(4);
-       $res= sendTemplateSMS($tel,$datas,"29760");
+        $res= sendTemplateSMS($tel,$datas,"29760");
        if($res){
            return "验证码发送成功";
        }else{
            return "验证码发送失败";
        }
     }
+
 
 
 

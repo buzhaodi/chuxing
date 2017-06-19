@@ -48,11 +48,7 @@ class wechatCallbackapi
                     $result = $this->receiveEvent($postObj);
                     break;
                 case "text":
-                    if (strstr($postObj->Content, "第三方")){
-                        $result = $this->relayPart3("http://www.fangbei.org/test.php".'?'.$_SERVER['QUERY_STRING'], $postStr);
-                    }else{
                         $result = $this->receiveText($postObj);
-                    }
                     break;
                 case "image":
                     $result = $this->receiveImage($postObj);
@@ -88,8 +84,10 @@ class wechatCallbackapi
         switch ($object->Event)
         {
             case "subscribe":
-                $content = "欢迎关注出行小怪兽 如果您还没有绑定手机 请在下方发送信息处输入您的手机号以便继续使用";
-                $content .= (!empty($object->EventKey))?("\n来自二维码场景 ".str_replace("qrscene_","",$object->EventKey)):"";
+
+                $controller= new \app\index\controller\Wechat();
+                $content=$controller->subscribe($object->FromUserName);
+
                 break;
             case "unsubscribe":
                 $content = "取消关注";
@@ -176,7 +174,6 @@ class wechatCallbackapi
             //发送验证码
 
             $controller= new \app\index\controller\Wechat();
-
             $content=$controller->sendsms($keyword,$object->FromUserName);
 
 
