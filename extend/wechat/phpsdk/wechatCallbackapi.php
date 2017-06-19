@@ -175,6 +175,12 @@ class wechatCallbackapi
             $controller= new \app\index\controller\Wechat();
             $content=$controller->sendsms($keyword,$object->FromUserName);
         }
+        else if (preg_match( "/^\d{4}$/",$keyword)){
+            //发送验证码
+            $controller= new \app\index\controller\Wechat();
+            $content=$controller->checkvalidate($keyword,$object->FromUserName);
+        }
+
         else if (strstr($keyword, "单图文")){
             $content = array();
             $content[] = array("Title"=>"单图文标题",  "Description"=>"单图文内容", "PicUrl"=>"http://discuz.comli.com/weixin/weather/icon/cartoon.jpg", "Url" =>"http://m.cnblogs.com/?u=txw1958");

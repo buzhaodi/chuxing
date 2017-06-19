@@ -8,9 +8,11 @@ class Index extends \think\Controller
 		    {
 
 //          短信发送示例
-//		        $datas=["45611"];
+//		       $datas[]=createRandomStr(4);
+//               $datas[]="5分钟";
 //
-//                sendTemplateSMS("13393758290",$datas,"29760");
+//                sendTemplateSMS("13393758290",$datas,"183859");
+
 
 
 

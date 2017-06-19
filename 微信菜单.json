@@ -1,0 +1,34 @@
+{
+    "button": [
+        {
+            "type": "view", 
+            "name": "我要拼车", 
+            "url": "http://xiaoguaishou.yunshanjs.com/"
+        }, 
+        {
+            "type": "view", 
+            "name": "车主发布", 
+            "url": "http://xiaoguaishou.yunshanjs.com/index/line/creatline"
+        }, 
+        {
+            "name": "个人中心", 
+            "sub_button": [
+                {
+                    "type": "view", 
+                    "name": "个人中心", 
+                    "url": "http://xiaoguaishou.yunshanjs.com/index/seting"
+                }, 
+                {
+                    "type": "view", 
+                    "name": "注册页面", 
+                    "url": "http://xiaoguaishou.yunshanjs.com/index/wechat/reg"
+                }, 
+                {
+                    "type": "click", 
+                    "name": "赞一下我们", 
+                    "key": "V1001_GOOD"
+                }
+            ]
+        }
+    ]
+}

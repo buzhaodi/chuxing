@@ -239,6 +239,10 @@ return [
 
     //微信token配置
     'TOKEN'=>"weixin",
+    'weixintoken'=>[
+        "appID"=>'wx21f2030593cdd398',
+        "appsecret"=>'71d7e4712b5abe3a2daee08839e6e0f4'
+    ],
 
 
     //短信配置
@@ -248,7 +252,7 @@ return [
         //主账号token
         'accountToken'=>'6eaf6295db5b424c90a0b660a50833c5',
         //应用Id
-        'appId'=>'aaf98f894ebe0e7e014ec85c6b560ae7',
+        'appId'=>'8a48b55151a86b280151a9063ec501f2',
         //请求地址，格式如下，不需要写https://
         'serverIP'=>'app.cloopen.com',
         //请求端口

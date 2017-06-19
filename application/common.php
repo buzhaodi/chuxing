@@ -37,6 +37,43 @@ function sendTemplateSMS($to,$datas,$tempId)
     }
 }
 
+//获得微信的accesstoken
+function getaccess_token(){
+    $token=db("weixintoken")->find(1);
+    if($token){
+        if(time()-$token["time"]>7200||$token['token']==""){
+            $token_access_url = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=" . config("weixintoken")['appID'] . "&secret=" . config("weixintoken")['appsecret'];
+            $res = file_get_contents($token_access_url); //获取文件内容或获取网络请求的内容
+            $result = json_decode($res, true); //接受一个 JSON 格式的字符串并且把它转换为 PHP 变量
+            $access_token = $result['access_token'];
+
+            $data["token"]=$access_token;
+            $data["time"]=time();
+            $data["id"]="1";
+
+            db("weixintoken")->update($data);
+        }
+        else{
+            $access_token=$token['token'];
+        }
+    }
+
+    return $access_token;
+}
+
+//获取用户详情
+function getweixinuser($openid){
+
+
+
+    $token_access_url ="https://api.weixin.qq.com/cgi-bin/user/info?access_token=".getaccess_token()."&openid=".$openid."&lang=zh_CN ";
+    $res = file_get_contents($token_access_url); //获取文件内容或获取网络请求的内容
+
+    $result = json_decode($res, true); //接受一个 JSON 格式的字符串并且把它转换为 PHP 变量
+
+    return $result;
+}
+
 
 
 //创建随机数字

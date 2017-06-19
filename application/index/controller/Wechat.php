@@ -25,6 +25,12 @@ class Wechat extends \think\Controller
 
     }
 
+    //注册页面
+    public function reg(){
+
+        return $this->fetch();
+    }
+
 
     //订阅事件
     public function subscribe($openid){
@@ -38,13 +44,98 @@ class Wechat extends \think\Controller
     //发送验证码方法  第一个参数 电话号 第二个参数 oppenid
     public function sendsms($tel,$oppenid){
 
-        $datas[]=createRandomStr(4);
-        $res= sendTemplateSMS($tel,$datas,"29760");
-       if($res){
-           return "验证码发送成功";
-       }else{
-           return "验证码发送失败";
+
+
+            $test=db("validate")->where("oppenid='{$oppenid}'")->find();
+
+            if(!$test||time()-$test["time"]>120){
+                        $datas[]=createRandomStr(4);
+                        $datas[]="5分钟";
+                        $res= sendTemplateSMS($tel,$datas,"183859");
+
+
+                        $data['tel']=$tel;
+                        $data['oppenid']=$oppenid;
+                        $data['validate']=$datas[0];
+                        $data['time']=time();
+
+                        if($test['id'])
+                        {
+                            $data['id']=$test['id'];
+                            db("validate")->update($data);
+                        }else{
+                            db("validate")->insert($data);
+                        }
+
+
+                       if($res){
+                         if(strpos($res,"error") !== false){
+                                return $res;
+                         }
+                         else{
+                             return "验证码发送成功,请在收到验证码后发送给我们";
+                         }
+
+
+
+                       }else{
+                           return "验证码发送失败";
+                       }
+            }
+            else{
+                return "您获取验证码过于频繁 请2分钟后重试";
+            }
+
+
+
+
+
+    }
+
+    public function checkvalidate($validate,$oppenid){
+        //获得用户信息
+       $res= db("validate")->where("oppenid='{$oppenid}'")->find();
+
+//       if($res['validate']==$validate&&time()-$res['time']<240){
+     if($res['validate']==$validate){
+           $data=getweixinuser($oppenid);
+
+           $data["sex"] ==1 ? $data["sex"]="男":$data["sex"]="女";
+            $data["tel"]=$res['tel'];
+         //去除一些没用的
+         unset($data['subscribe']);
+         unset($data['language']);
+         unset($data['country']);
+         unset($data['remark']);
+         unset($data['groupid']);
+         unset($data['tagid_list']);
+
+        $vali=  db("user")->where("openid='{$oppenid}'")->find();
+
+        if($vali){
+            return "您已经通过了验证 无需再次验证了!";
+
+        }
+        else{
+            $finlly=  db("user")->insert($data);
+            if($finlly){
+                return "验证成功,赶紧去拼车吧!";
+            }
+            else{
+                return "可能有点小差错 请输入在线客服解决";
+            }
+        }
+
+
+
        }
+
+       else {
+           return "验证失败,您的验证码有误或超出5分钟未验证";
+       }
+
+
+
     }
 
 
