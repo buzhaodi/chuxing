@@ -1,12 +1,13 @@
 <?php
 namespace app\index\controller;
 
-class Index extends \think\Controller
+class Index extends Publiccon
 {
 
 		public function index()
 		    {
-
+//           $url= getcodeurl("http://xiaoguaishou.yunshanjs.com");
+//           dump($url) ;
 //          短信发送示例
 //		       $datas[]=createRandomStr(4);
 //               $datas[]="5分钟";
@@ -24,6 +25,11 @@ class Index extends \think\Controller
 
     public function test(){
 		    return $this->fetch();
+    }
+
+    public function signout(){
+        session("user",null);
+        echo "<script>document.location=document.referrer</script>";
     }
 		
 }

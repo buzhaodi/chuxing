@@ -7,6 +7,7 @@
  */
 
 namespace app\index\controller;
+use think\Session;
 
 class Wechat extends \think\Controller
 {
@@ -135,14 +136,36 @@ class Wechat extends \think\Controller
        }
 
 
-
+        $s="https://open.weixin.qq.com/connect/oauth2/authorize?appid=APPID&redirect_uri=REDIRECT_URI&response_type=code&scope=SCOPE&state=STATE#wechat_redirect ";
     }
 
 
 
 
+    public function redirect_uri(){
+        $code=input()['code'];
+        $returnurl=input()['state'];
+
+       $url= getoppenid($code);
+        $res = file_get_contents($url); //获取文件内容或获取网络请求的内容
+        $result = json_decode($res, true); //接受一个 JSON 格式的字符串并且把它转换为 PHP 变量
+       $openid=$result['openid'];
+
+      $data= db("user")->where("openid='{$openid}'")->find();
+
+        session('user', $data);
+
+       $this->redirect($returnurl);
 
 
+
+
+    }
+
+
+    public function getoppenid(){
+        $url="http://".$_SERVER["HTTP_HOST"]."/index/wechat/";
+    }
 }
 
 

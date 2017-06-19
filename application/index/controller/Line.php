@@ -1,7 +1,7 @@
 <?php
 namespace app\index\controller;
 
-class Line extends \think\Controller
+class Line extends Publiccon
 {
 
 

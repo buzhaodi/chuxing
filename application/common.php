@@ -75,6 +75,24 @@ function getweixinuser($openid){
 }
 
 
+//获得oppenid 的code //两个参数 第一个跳转处理页面  第二个跳转回当前页
+function getcodeurl($url,$returnurl){
+    $url= urlencode($url);
+    $url="https://open.weixin.qq.com/connect/oauth2/authorize?appid=".config("weixintoken")['appID']."&redirect_uri=".$url."&response_type=code&scope=snsapi_base&state=".$returnurl."#wechat_redirect";
+    return $url;
+}
+
+//获得oppenid
+function getoppenid($code){
+
+    $url="https://api.weixin.qq.com/sns/oauth2/access_token?appid=".config("weixintoken")['appID']."&secret=".config("weixintoken")['appsecret']."&code=".$code."&grant_type=authorization_code";
+    return $url;
+}
+
+
+
+
+
 
 //创建随机数字
 function createRandomStr($length){
