@@ -88,7 +88,7 @@ class wechatCallbackapi
         switch ($object->Event)
         {
             case "subscribe":
-                $content = "欢迎关注方倍工作室 ";
+                $content = "欢迎关注出行小怪兽 如果您还没有绑定手机 请在下方发送信息处输入您的手机号以便继续使用";
                 $content .= (!empty($object->EventKey))?("\n来自二维码场景 ".str_replace("qrscene_","",$object->EventKey)):"";
                 break;
             case "unsubscribe":
@@ -174,7 +174,9 @@ class wechatCallbackapi
         }
         else if (preg_match("/^1[34578]{1}\d{9}$/",$keyword)){
             //发送验证码
-            $content = sendtelsms();
+            $content= sendTemplateSMS($keyword,"29760",$object->FromUserName);
+
+
         }
         else if (strstr($keyword, "单图文")){
             $content = array();
