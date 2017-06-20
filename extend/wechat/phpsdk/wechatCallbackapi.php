@@ -170,13 +170,15 @@ class wechatCallbackapi
         if (strstr($keyword, "文本")){
             $content = "这是个文本消息";
         }
+        //发送手机号
         else if (preg_match("/^1[34578]{1}\d{9}$/",$keyword)){
-            //发送验证码
+
             $controller= new \app\index\controller\Wechat();
             $content=$controller->sendsms($keyword,$object->FromUserName);
         }
+        //发送验证码
         else if (preg_match( "/^\d{4}$/",$keyword)){
-            //发送验证码
+
             $controller= new \app\index\controller\Wechat();
             $content=$controller->checkvalidate($keyword,$object->FromUserName);
         }

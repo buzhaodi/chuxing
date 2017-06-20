@@ -26,9 +26,7 @@
     .box.box-default {
         border-top-color: #FFFFFF;
     }
-    .collapsed-box{
-        margin: ;
-    }
+
 
 </style>
 <link rel="stylesheet" type="text/css" href="/public/static/select/MultiPicker/MultiPicker.css?rev=@@hash"/>
@@ -68,37 +66,43 @@
         </div>
 
 
-        <form class="form-horizontal">
+        <form class="form-horizontal" id="road">
             <div class="box-body">
                 <div class="form-group">
                     <div class="col-sm-12">
                         <button type="button" id="startcitybutton" class="btn btn-success btn-sm">出发地</button>
-                        <input type="text" class="form-control" id="startcity"  placeholder="请输入">
+                        <input type="text" name="start" class="form-control" id="startcity"  placeholder="请输入">
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="col-sm-12">
                         <button type="button" id="endcitybutton" class="btn btn-success btn-sm">目的地</button>
-                        <input type="text" class="form-control" id="endcity" placeholder="请输入">
+                        <input type="text" name="to" class="form-control" id="endcity" placeholder="请输入">
                     </div>
                 </div>
 
                 <div class="form-group">
                     <div class="col-sm-12">
                         <button type="button" id="timebutoon" style="margin-left: 12px" class="btn btn-success btn-sm">时间</button>
-                        <input type="text" class="form-control" id="time" placeholder="请输入">
+                        <input type="text" name="time" class="form-control" id="time" placeholder="请输入">
                     </div>
                 </div>
 
-
-
+<center>
+    <div  class="row" style="margin-bottom: 10px">
+                <button type="button" data-fangan="0" style="padding: 2px" class="btn btn-info btn-sm fangan">时间最短</button>
+                <button type="button" data-fangan="9" style="padding: 2px" class="btn btn-info btn-sm fangan" >不走高速</button>
+                <button type="button" data-fangan="2" style="padding: 2px" class="btn btn-info btn-sm fangan">距离最短</button>
+    </div>
+</center>
                 <div class="form-group">
                     <div class="col-sm-12">
                     <label for="line" class="control-label">路线:</label>
-                    <textarea  class="form-control" id="line" placeholder="请输入"></textarea>
+                    <textarea  class="form-control" name="road" id="line" placeholder="请输入"></textarea>
                     </div>
 
                 </div>
+                <input type="hidden" name="distance" id="distance">
 
                 <div class="col-sm-12">
                     <p >路线不对?您可以直接修改 也可以<button type="button"  style="padding: 2px" class="btn btn-danger btn-sm">点我</button>重置</p>
@@ -106,27 +110,29 @@
                 <div class="form-group">
                     <div class="col-sm-12">
                         <button type="button"  style="margin-left: 12px" class="btn btn-default btn-sm">费用</button>
-                        <input type="text" class="form-control"  placeholder="请输入">
+                        <input type="text" name="money" class="form-control"  placeholder="请输入">
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="col-sm-12">
                         <button type="button"  style="margin-left: 12px" class="btn btn-default btn-sm">车型</button>
-                        <input type="text" class="form-control"  placeholder="请输入">
+                        <input type="text" name="car" class="form-control"  placeholder="请输入">
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="col-sm-12">
                         <button type="button"  style="margin-left: 12px" class="btn btn-default btn-sm">余座</button>
-                        <input type="text" class="form-control" placeholder="请输入">
+                        <input type="text" name="seat"   id="seatinput" class="form-control" placeholder="请输入">
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="col-sm-12">
                         <button type="button" id="" style="margin-left: 12px" class="btn btn-default btn-sm">备注</button>
-                        <input type="text" class="form-control"  placeholder="请输入">
+                        <input type="text" name="remark" class="form-control"  placeholder="请输入">
                     </div>
                 </div>
+                <input type="hidden" name="startcity" id="fromstartcity">
+                <input type="hidden" name="endcity" id="fromendcity">
 
 
 
@@ -134,8 +140,8 @@
             </div>
             <!-- /.box-body -->
             <div class="box-footer">
-                <button type="submit" class="btn btn-default">Cancel</button>
-                <button type="submit" class="btn btn-info pull-right">Sign in</button>
+                <button type="button" class="btn btn-default">取消</button>
+                <button type="button" id="tijiao" class="btn btn-info pull-right">提交</button>
             </div>
             <!-- /.box-footer -->
         </form>
@@ -155,13 +161,31 @@
 
     <div id="targetContainer5"></div>
     <div id="targetContainer6"></div>
+    <div id="targetContainer8"></div>
 
     <script type="text/javascript" src="https://webapi.amap.com/maps?v=1.3&key=39ae003202ac27530ab1fb87d244af6d"></script>
     <script src="/public/static/select/MultiPicker/city.js"></script>
     <script src="/public/static/select/MultiPicker/time.js"></script>
+    <script src="/public/static/select/MultiPicker/site.js"></script>
     <script src="/public/static/select/MultiPicker/MultiPicker.js"></script>
 
 <script>
+    //选择座位
+    new MultiPicker({
+        input: 'seatinput',//点击触发插件的input框的id
+        container: 'targetContainer8',//插件插入的容器id
+        jsonData: $site,
+        success: function (arr) {
+            console.log(arr)
+
+          $("#seatinput").val(arr[0].value)
+
+
+        }
+        //回调
+    });
+
+
 //选择时间按钮
 
     new MultiPicker({
@@ -229,7 +253,8 @@
         container: 'targetContainer',//插件插入的容器id
         jsonData: $city,
         success: function (arr) {
-            var temp=delarr(arr,"startcity")
+
+       var temp=delarr(arr,"startcity")
 
 
         }//回调
@@ -274,6 +299,13 @@
         temp=temp.substr(0, temp.length - 1);
 
         document.getElementById(buttonid).value = temp
+        if(buttonid=="startcity"){
+            $("#fromstartcity").val(temp)
+        }
+        else if(buttonid=="endcity"){
+
+            $("#fromendcity").val(temp)
+        }
 
 
       var start=  $("#startcity").val()
@@ -340,7 +372,8 @@
 
         console.log(start)
         console.log(end)
-
+        $("#startline").val(start)
+        $("#endline").val(end)
 
             getline(start,end)
 
@@ -377,6 +410,8 @@
         autocomplete= new AMap.Autocomplete(autoOptions);
         AMap.event.addListener(autocomplete, "select", function(e){
             //TODO 针对选中的poi实现自己的功能
+            var temp= e.poi.district
+            $("#fromstartcity").val(temp)
 
             startcity=e.poi.location.J+","+e.poi.location.N
            $("#startline").val(startcity)
@@ -396,7 +431,9 @@
 
         AMap.event.addListener(autocomplete, "select", function(e){
             //TODO 针对选中的poi实现自己的功能
-//            console.log(e)
+
+            var temp= e.poi.district
+            $("#fromendcity").val(temp)
             endcity=e.poi.location.J+","+e.poi.location.N
             $("#endline").val(endcity)
 //            console.log(endcity)
@@ -420,18 +457,35 @@
         var end=$("#endline").val()
 
         if(start!=""&&end!=""){
-            getline(start,end)
+            getline(start,end,0)
         }
 
     }
 
+    $(".fangan").click(function () {
+     var  strategy=$(this).data("fangan")
 
-    function getline(start,end) {
-        $.get("http://restapi.amap.com/v3/direction/driving?key=1491272c53955352d608aff9136780c4&origin="+start+"&destination="+end+"&extensions=base&strategy=0",
+        var start=$("#startline").val()
+        var end=$("#endline").val()
+
+        if(start!=""&&end!=""){
+            getline(start,end,strategy)
+        }
+
+    })
+
+
+    function getline(start,end,strategy) {
+
+        $.get("http://restapi.amap.com/v3/direction/driving?key=1491272c53955352d608aff9136780c4&origin="+start+"&destination="+end+"&extensions=base&strategy="+strategy,
             function (data) {
-
+                console.log(data)
 
                 var temp=data.route.paths[0].steps
+
+
+
+                $("#distance").val(data.route.paths[0].distance)
 
 
                 var mark="";
@@ -465,7 +519,6 @@
 
                 $("#line").val(temproad)
 
-                console.log(temproad)
 
 
         })
@@ -475,7 +528,27 @@ $(".btn-danger").click(function () {
     $("#line").val("")
 })
 
+$("#tijiao").click(function () {
 
+
+
+
+    $.ajax({
+        cache: true,
+        type: "POST",
+        url:"{:url('/index/line/creatline')}",
+        data:$('#road').serialize(),
+        async: false,
+        error: function(request) {
+            alert("Connection error");
+        },
+        success: function(data) {
+            $("#commonLayout_appcreshi").parent().html(data);
+        }
+    });
+
+
+})
 
 </script>
 

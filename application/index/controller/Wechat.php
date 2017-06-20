@@ -49,7 +49,7 @@ class Wechat extends \think\Controller
 
             $test=db("validate")->where("oppenid='{$oppenid}'")->find();
 
-            if(!$test||time()-$test["time"]>120){
+            if(!$test||time()-$test["time"]>300){
                         $datas[]=createRandomStr(4);
                         $datas[]="5分钟";
                         $res= sendTemplateSMS($tel,$datas,"183859");
@@ -84,7 +84,7 @@ class Wechat extends \think\Controller
                        }
             }
             else{
-                return "您获取验证码过于频繁 请2分钟后重试";
+                return "您获取验证码过于频繁 请5分钟后重试";
             }
 
 
