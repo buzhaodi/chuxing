@@ -9,55 +9,63 @@ class Line extends Publiccon
     public function creatline()
     {
         $data=input();
+
         if(!empty($data)){
+            $data=array_filter($data);
 
-
-          $temp=  $this->chai($data['startcity']);
-          //拆分出发地三级
+        if(!empty($data['startcity'])){
+            $data['startcity']=str_replace("-","",$data['startcity']);
+            $temp=  $this->chai($data['startcity']);
+            //拆分出发地三级
             unset($data['startcity']);
             $data['startprovince']=$temp['province'];
             $data['startcity']=$temp['city'];
             $data['startcounty']=$temp['county'];
+        }
+        if(!empty($data['endcity'])){
+            $data['endcity']=str_replace("-","",$data['endcity']);
             //拆分到达地三级
             $temp=  $this->chai($data['endcity']);
             unset($data['endcity']);
             $data['toprovince']=$temp['province'];
             $data['tocity']=$temp['city'];
             $data['tocounty']=$temp['county'];
+        }
+
+
             //替换出发地
-            $data['placeofdeparture']=$data['start'];
+            $data['placeofdeparture']=empty($data['start'])?"":$data['start'];
             unset($data['start']);
             //替换目的地
-            $data['destination']=$data['to'];
+
+            $data['destination']=    empty($data['to'])?"":$data['to'];
             unset($data['to']);
 
+
             //修改时间
-            $temp=explode("日", $data['time']);
-            $temp[1]=str_replace("-","",$temp[1]);
-            $temp[1]=str_replace("点",":",$temp[1]);
-            $temp[1]=str_replace("分","",$temp[1]);
-            $temp[1]=explode(":",$temp[1]);
+            if(!empty($data['time'])){
+                $temp=explode("日", $data['time']);
+                $temp[1]=str_replace("-","",$temp[1]);
+                $temp[1]=str_replace("点",":",$temp[1]);
+                $temp[1]=str_replace("分","",$temp[1]);
+                $temp[1]=explode(":",$temp[1]);
 
-            foreach ($temp[1] as $k=>$v){
-                if(strlen($v)==1){
-                    $temp[1][$k]="0".$v;
+                foreach ($temp[1] as $k=>$v){
+                    if(strlen($v)==1){
+                        $temp[1][$k]="0".$v;
+                    }
                 }
+                $temp[1]=implode(":",$temp[1]);
+
+                $data['time']=$temp[0]." ".$temp[1];
+                $data['time']=strtotime($data['time']);
+
+                if( $data['time']-time()<600){
+                    return json(['status'=>"error","msg"=>"亲 您晚也要提前十分钟发布 改下时间吧"]);
+                }
+
             }
-            $temp[1]=implode(":",$temp[1]);
-
-
-
-
-            $data['time']=$temp[0]." ".$temp[1];
-            $data['time']=strtotime($data['time']);
-
-            $data['preson']="ddd";
-
-
-            dump($data);
-
-
-          
+            $data['preson']=session("user")['id']?session("user")['id']:"";
 
 
 
@@ -65,6 +73,24 @@ class Line extends Publiccon
 
 
 
+//            dump($data);
+
+
+
+
+
+
+            $validate = validate('Schedule');
+
+            if(!$validate->check($data)){
+               return json(['status'=>"error","msg"=>$validate->getError()]);
+            }
+            else{
+            $res=db("schedule")->insert($data);
+            if($res){
+                return json(['status'=>"success","msg"=>"发布成了别"]);
+            }
+            }
 
 
 
@@ -72,17 +98,13 @@ class Line extends Publiccon
 
 
 
-//
-//            $data = [
-//                'name'=>'thinkphp1112的萨芬撒地方的萨hinkphp1112的萨芬撒地方的萨hinkphp1112的萨芬撒地方的萨hinkphp1112的萨芬撒地方的萨芬',
-//                'email'=>'thinkphp@qq.com'
-//            ];
-//
-//            $validate = validate('User');
-//
-//            if(!$validate->check($data)){
-//                dump($validate->getError());
-//            }
+
+
+
+
+
+
+
 
 
 
