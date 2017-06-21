@@ -4,25 +4,30 @@
 
 <!-- Content Wrapper. Contains page content -->
 <style>
-    .form-control{
+    .form-control {
         display: inline-block;
         width: 70%;
     }
-    .btn{
+
+    .btn {
         margin-top: -3px;
     }
-    label{
+
+    label {
         position: relative;
         top: -48px;
         margin-right: 1.1em;
         margin-left: 0.7em;
     }
-    #line{
+
+    #line {
         height: 100px;
     }
-    p{
+
+    p {
         font-size: 1.1em;
     }
+
     .box.box-default {
         border-top-color: #FFFFFF;
     }
@@ -30,7 +35,6 @@
 
 </style>
 <link rel="stylesheet" type="text/css" href="/public/static/select/MultiPicker/MultiPicker.css?rev=@@hash"/>
-
 
 
 <div class="content-wrapper">
@@ -43,18 +47,19 @@
 
             <div class="box-header with-border">
                 <div class="col-xs-4"><h3 class="box-title">发布路线</h3></div>
-                <div class="col-xs-4 col-xs-offset-4">  <h3 class="box-title">常用路线</h3></div>
+                <div class="col-xs-4 col-xs-offset-4"><h3 class="box-title">常用路线</h3></div>
 
 
                 <div class="box-tools pull-right">
-                    <button type="button" class="btn btn-box-tool" style="margin-top: 0" data-widget="collapse"><i class="fa fa-plus"></i>
+                    <button type="button" class="btn btn-box-tool" style="margin-top: 0" data-widget="collapse"><i
+                            class="fa fa-plus"></i>
                     </button>
                 </div>
                 <!-- /.box-tools -->
             </div>
             <!-- /.box-header -->
             <div class="box-body">
-               郑州-平顶山
+                郑州-平顶山
             </div>
             <div class="box-body">
                 郑州-平顶山
@@ -71,9 +76,12 @@
                 <div class="form-group">
                     <div class="col-sm-12">
                         <button type="button" id="startcitybutton" class="btn btn-success btn-sm">出发地</button>
-                        <input type="text" name="start" class="form-control" id="startcity"  placeholder="请输入">
+                        <input type="text" name="start" class="form-control" id="startcity" placeholder="请输入">
                     </div>
                 </div>
+                <center>
+                <svg t="1498056093656" class="icon" id="changecity" style="width: 1.5em; height: 1.5em;    margin-top: -11px;    margin-bottom: 3px;vertical-align: middle;fill: currentColor;overflow: hidden;" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="5737"><path d="M819.2 915.2l32-153.6-96-19.2c57.6-64 89.6-140.8 89.6-230.4 0-38.4-6.4-70.4-19.2-108.8l12.8 6.4-64-230.4 89.6-25.6C966.4 243.2 1024 371.2 1024 512 1024 678.4 947.2 825.6 819.2 915.2L819.2 915.2zM691.2 224C640 192 576 172.8 512 172.8 345.6 172.8 204.8 288 172.8 448L83.2 537.6 0 454.4C25.6 198.4 243.2 0 512 0c96 0 185.6 25.6 268.8 76.8l-115.2 32L691.2 224 691.2 224zM179.2 588.8c32 153.6 172.8 262.4 332.8 262.4 44.8 0 89.6-6.4 134.4-25.6l89.6 19.2-32 140.8C640 1011.2 576 1024 512 1024c-249.6 0-460.8-179.2-505.6-416l76.8 76.8L179.2 588.8 179.2 588.8zM179.2 588.8" p-id="5738" fill="#d4237a"></path></svg>
+                </center>
                 <div class="form-group">
                     <div class="col-sm-12">
                         <button type="button" id="endcitybutton" class="btn btn-success btn-sm">目的地</button>
@@ -83,59 +91,67 @@
 
                 <div class="form-group">
                     <div class="col-sm-12">
-                        <button type="button" id="timebutoon" style="margin-left: 12px" class="btn btn-success btn-sm">时间</button>
+                        <button type="button" id="timebutoon" style="margin-left: 12px" class="btn btn-success btn-sm">
+                            时间
+                        </button>
                         <input type="text" name="time" class="form-control" id="time" placeholder="请输入">
                     </div>
                 </div>
 
-<center>
-    <div  class="row" style="margin-bottom: 10px">
-                <button type="button" data-fangan="0" style="padding: 2px" class="btn btn-info btn-sm fangan">时间最短</button>
-                <button type="button" data-fangan="9" style="padding: 2px" class="btn btn-info btn-sm fangan" >不走高速</button>
-                <button type="button" data-fangan="2" style="padding: 2px" class="btn btn-info btn-sm fangan">距离最短</button>
-    </div>
-</center>
+                <center>
+                    <div class="row" style="margin-bottom: 10px">
+                        <button type="button" data-fangan="0" style="padding: 2px" class="btn btn-info btn-sm fangan">
+                            时间最短
+                        </button>
+                        <button type="button" data-fangan="9" style="padding: 2px" class="btn btn-info btn-sm fangan">
+                            不走高速
+                        </button>
+                        <button type="button" data-fangan="2" style="padding: 2px" class="btn btn-info btn-sm fangan">
+                            距离最短
+                        </button>
+                    </div>
+                </center>
                 <div class="form-group">
                     <div class="col-sm-12">
-                    <label for="line" class="control-label">路线:</label>
-                    <textarea  class="form-control" name="road" id="line" placeholder="请输入"></textarea>
+                        <label for="line" class="control-label">路线:</label>
+                        <textarea class="form-control" name="road" id="line" placeholder="请输入"></textarea>
                     </div>
 
                 </div>
                 <input type="hidden" name="distance" id="distance">
 
                 <div class="col-sm-12">
-                    <p >路线不对?您可以直接修改 也可以<button type="button"  style="padding: 2px" class="btn btn-danger btn-sm">点我</button>重置</p>
+                    <p>路线不对?您可以直接修改 也可以
+                        <button type="button" style="padding: 2px" class="btn btn-danger btn-sm">点我</button>
+                        重置
+                    </p>
                 </div>
                 <div class="form-group">
                     <div class="col-sm-12">
-                        <button type="button"  style="margin-left: 12px" class="btn btn-default btn-sm">费用</button>
-                        <input type="text" name="money" class="form-control"  placeholder="请输入">
+                        <button type="button" style="margin-left: 12px" class="btn btn-default btn-sm">费用</button>
+                        <input type="text" name="money" id="money" class="form-control" placeholder="请输入">
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="col-sm-12">
-                        <button type="button"  style="margin-left: 12px" class="btn btn-default btn-sm">车型</button>
-                        <input type="text" name="car" class="form-control"  placeholder="请输入">
+                        <button type="button" style="margin-left: 12px" class="btn btn-default btn-sm">车型</button>
+                        <input type="text" id="car" name="car" class="form-control" placeholder="请输入">
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="col-sm-12">
-                        <button type="button"  style="margin-left: 12px" class="btn btn-default btn-sm">余座</button>
-                        <input type="text" name="seat"   id="seatinput" class="form-control" placeholder="请输入">
+                        <button type="button" style="margin-left: 12px" class="btn btn-default btn-sm">余座</button>
+                        <input type="text" name="seat" id="seatinput" class="form-control" placeholder="请输入">
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="col-sm-12">
                         <button type="button" id="" style="margin-left: 12px" class="btn btn-default btn-sm">备注</button>
-                        <input type="text" name="remark" class="form-control"  placeholder="请输入">
+                        <input type="text" id="remark" name="remark" class="form-control" placeholder="请输入">
                     </div>
                 </div>
                 <input type="hidden" name="startcity" id="fromstartcity">
                 <input type="hidden" name="endcity" id="fromendcity">
-
-
-
 
 
             </div>
@@ -144,10 +160,11 @@
                 <button type="button" class="btn btn-default">取消</button>
                 <button type="button" id="tijiao" class="btn btn-info pull-right">提交</button>
             </div>
+            <input hidden name="startline" id="startline">
+            <input hidden name="endline" id="endline">
             <!-- /.box-footer -->
         </form>
-        <input hidden id="startline" >
-        <input hidden id="endline" >
+
 
         <button type="hidden" id="modal" data-toggle="modal" data-target="#modal-default">
         </button>
@@ -180,7 +197,7 @@
                 </div>
                 <div class="modal-footer">
 
-                    <button type="button" class="btn btn-primary"  data-dismiss="modal">确定</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">确定</button>
                 </div>
             </div>
             <!-- /.modal-content -->
@@ -188,404 +205,456 @@
         <!-- /.modal-dialog -->
     </div>
 
-    <script type="text/javascript" src="https://webapi.amap.com/maps?v=1.3&key=39ae003202ac27530ab1fb87d244af6d"></script>
+    <script type="text/javascript"
+            src="https://webapi.amap.com/maps?v=1.3&key=39ae003202ac27530ab1fb87d244af6d"></script>
     <script src="/public/static/select/MultiPicker/city.js"></script>
     <script src="/public/static/select/MultiPicker/time.js"></script>
     <script src="/public/static/select/MultiPicker/site.js"></script>
     <script src="/public/static/select/MultiPicker/MultiPicker.js"></script>
 
-<script>
-    //选择座位
-    new MultiPicker({
-        input: 'seatinput',//点击触发插件的input框的id
-        container: 'targetContainer8',//插件插入的容器id
-        jsonData: $site,
-        success: function (arr) {
-            console.log(arr)
+    <script>
+        //选择座位
+        new MultiPicker({
+            input: 'seatinput',//点击触发插件的input框的id
+            container: 'targetContainer8',//插件插入的容器id
+            jsonData: $site,
+            success: function (arr) {
+                console.log(arr)
 
-          $("#seatinput").val(arr[0].value)
-
-
-        }
-        //回调
-    });
+                $("#seatinput").val(arr[0].value)
 
 
-//选择时间按钮
-
-    new MultiPicker({
-        input: 'time',//点击触发插件的input框的id
-        container: 'targetContainer5',//插件插入的容器id
-        jsonData: $time,
-        success: function (arr) {
-         console.log(arr)
-
-           deltime(arr)
-
-
-        }//回调
-    });
-//选择时间
-
-    new MultiPicker({
-        input: 'timebutoon',//点击触发插件的input框的id
-        container: 'targetContainer6',//插件插入的容器id
-        jsonData: $time,
-        success: function (arr) {
-            deltime(arr)
-
-
-        }//回调
-    });
-
-//处理时间函数
-    function deltime(arr) {
-        var temp="";
-        for(var i=0;i<arr.length;i++){
-            if(arr[i].value=="今天"){
-                arr[i].value=GetDateStr(0)
             }
-            if(arr[i].value=="明天"){
-                arr[i].value= GetDateStr(1)
+            //回调
+        });
+        //选择时间按钮
+        new MultiPicker({
+            input: 'time',//点击触发插件的input框的id
+            container: 'targetContainer5',//插件插入的容器id
+            jsonData: $time,
+            success: function (arr) {
+                console.log(arr)
+
+                deltime(arr)
+
+
+            }//回调
+        });
+        //选择时间
+        new MultiPicker({
+            input: 'timebutoon',//点击触发插件的input框的id
+            container: 'targetContainer6',//插件插入的容器id
+            jsonData: $time,
+            success: function (arr) {
+                deltime(arr)
+
+
+            }//回调
+        });
+        //处理时间函数
+        function deltime(arr) {
+            var temp = "";
+            for (var i = 0; i < arr.length; i++) {
+                if (arr[i].value == "今天") {
+                    arr[i].value = GetDateStr(0)
+                }
+                if (arr[i].value == "明天") {
+                    arr[i].value = GetDateStr(1)
+                }
+                if (arr[i].value == "后天") {
+                    arr[i].value = GetDateStr(2)
+                }
+
+                temp += arr[i].value + "-"
             }
-            if(arr[i].value=="后天"){
-                arr[i].value= GetDateStr(2)
-            }
+            temp = temp.substr(0, temp.length - 1);
 
-            temp+=arr[i].value +"-"
+
+            $("#time").val(temp)
         }
-        temp=temp.substr(0, temp.length - 1);
-
-
-        $("#time").val(temp)
-    }
-
-
-//获得日期
-    function GetDateStr(AddDayCount) {
-        var dd = new Date();
-        dd.setDate(dd.getDate()+AddDayCount);//获取AddDayCount天后的日期
-        var y = dd.getFullYear();
-        var m = dd.getMonth()+1;//获取当前月份的日期
-        var d = dd.getDate();
-        return y+"-"+m+"-"+d+"日";
-    }
-
-
-//开始城市按钮
-    new MultiPicker({
-        input: 'startcitybutton',//点击触发插件的input框的id
-        container: 'targetContainer',//插件插入的容器id
-        jsonData: $city,
-        success: function (arr) {
-
-       var temp=delarr(arr,"startcity")
-
-
-        }//回调
-    });
-    //---------------------函数调用结束---------------------
-//结束城市按钮
-    new MultiPicker({
-        input: 'endcitybutton',//点击触发插件的input框的id
-        container: 'targetContainer2',//插件插入的容器id
-        jsonData: $city,
-        success: function (arr) {
-            var temp=delarr(arr,"endcity")
-
-
-        }//回调
-    });
-
-
-
-//处理地址
-
-
-    function delarr(arr,buttonid) {
-        var temp="";
-        var num=arr.length
-
-        if(num==3){
-           var p=["省","市",""]
-        }else{
-            var p=["市",""]
+        //获得日期
+        function GetDateStr(AddDayCount) {
+            var dd = new Date();
+            dd.setDate(dd.getDate() + AddDayCount);//获取AddDayCount天后的日期
+            var y = dd.getFullYear();
+            var m = dd.getMonth() + 1;//获取当前月份的日期
+            var d = dd.getDate();
+            return y + "-" + m + "-" + d + "日";
         }
+        //开始城市按钮
+        new MultiPicker({
+            input: 'startcitybutton',//点击触发插件的input框的id
+            container: 'targetContainer',//插件插入的容器id
+            jsonData: $city,
+            success: function (arr) {
 
-        for(x in arr){
+                var temp = delarr(arr, "startcity")
 
 
-            if(arr[x].value!="请选择"){
-                temp+=arr[x].value+p[x]+"-"
+            }//回调
+        });
+        //---------------------函数调用结束---------------------
+        //结束城市按钮
+        new MultiPicker({
+            input: 'endcitybutton',//点击触发插件的input框的id
+            container: 'targetContainer2',//插件插入的容器id
+            jsonData: $city,
+            success: function (arr) {
+                var temp = delarr(arr, "endcity")
+
+
+            }//回调
+        });
+        //处理地址
+        function delarr(arr, buttonid) {
+            var temp = "";
+            var num = arr.length
+
+            if (num == 3) {
+                var p = ["省", "市", ""]
+            } else {
+                var p = ["市", ""]
             }
 
-        }
-
-        temp=temp.substr(0, temp.length - 1);
-
-        document.getElementById(buttonid).value = temp
-        if(buttonid=="startcity"){
-            $("#fromstartcity").val(temp)
-        }
-        else if(buttonid=="endcity"){
-
-            $("#fromendcity").val(temp)
-        }
+            for (x in arr) {
 
 
-      var start=  $("#startcity").val()
-      var end=  $("#endcity").val()
+                if (arr[x].value != "请选择") {
+                    temp += arr[x].value + p[x] + "-"
+                }
+
+            }
+
+            temp = temp.substr(0, temp.length - 1);
+
+            document.getElementById(buttonid).value = temp
+            if (buttonid == "startcity") {
+                $("#fromstartcity").val(temp)
+            }
+            else if (buttonid == "endcity") {
+
+                $("#fromendcity").val(temp)
+            }
 
 
+            var start = $("#startcity").val()
+            var end = $("#endcity").val()
 
 
-
-
-
-        if(start&&end){
-            start= start.split("-")
-            end= end.split("-")
+            if (start && end) {
+                start = start.split("-")
+                end = end.split("-")
 //            console.log(start)
 //            console.log(end)
-            var startnum=start.length
-            var endnum=start.length
+                var startnum = start.length
+                var endnum = start.length
 
 
-          if(startnum==3){
-                startnum=0
-              start=start[2]
-          }else {
-              startnum=0
-              start=start[1]
-          }
+                if (startnum == 3) {
+                    startnum = 0
+                    start = start[2]
+                } else {
+                    startnum = 0
+                    start = start[1]
+                }
 
-            if(endnum==3){
-                endnum=0
-                end=end[2]
-            }else {
-                endnum=0
-                end=end[1]
+                if (endnum == 3) {
+                    endnum = 0
+                    end = end[2]
+                } else {
+                    endnum = 0
+                    end = end[1]
+                }
+
+
+                $.ajax({
+                    async: false,
+                    type: "GET",
+                    url: "http://restapi.amap.com/v3/config/district?keywords=" + start + "&subdistrict=" + startnum + "&key=1491272c53955352d608aff9136780c4",
+                    complete: function (data) {
+
+                    },
+                    success: function (data) {
+
+                        start = data.districts[0].center
+                    }
+                });
+
+                $.ajax({
+                    async: false,
+                    type: "GET",
+                    url: "http://restapi.amap.com/v3/config/district?keywords=" + end + "&subdistrict=" + endnum + "&key=1491272c53955352d608aff9136780c4",
+                    complete: function (data) {
+
+                    },
+                    success: function (data) {
+
+                        end = data.districts[0].center
+                    }
+                });
+
+
+                $("#startline").val(start)
+                $("#endline").val(end)
+
+                getline(start, end)
+
+
             }
 
 
-
-            $.ajax({
-                async: false,
-                type : "GET",
-                url :"http://restapi.amap.com/v3/config/district?keywords="+start+"&subdistrict="+startnum+"&key=1491272c53955352d608aff9136780c4",
-                complete: function(data){
-
-                },
-                success : function(data) {
-
-                    start=data.districts[0].center
-                }
-            });
-
-            $.ajax({
-                async: false,
-                type : "GET",
-                url :"http://restapi.amap.com/v3/config/district?keywords="+end+"&subdistrict="+endnum+"&key=1491272c53955352d608aff9136780c4",
-                complete: function(data){
-
-                },
-                success : function(data) {
-
-                    end=data.districts[0].center
-                }
-            });
-
-        console.log(start)
-        console.log(end)
-        $("#startline").val(start)
-        $("#endline").val(end)
-
-            getline(start,end)
-
-
-
-
-
-
-
         }
+        var startcity = ""
+        var endcity = ""
+        var map = new AMap.Map("mapContainer", {
+            resizeEnable: true,
 
-
-
-
-    }
-
-    var startcity=""
-    var endcity=""
-
-    var map = new AMap.Map("mapContainer", {
-        resizeEnable: true,
-
-        zoom: 13,//地图显示的缩放级别
-        keyboardEnable: false
-    });
-
-
-
-    AMap.plugin(['AMap.Autocomplete','AMap.PlaceSearch'],function(){
-        var autoOptions = {
-            city: "", //城市，默认全国
-            input: "startcity"//使用联想输入的input的id
-        };
-        autocomplete= new AMap.Autocomplete(autoOptions);
-        AMap.event.addListener(autocomplete, "select", function(e){
-            //TODO 针对选中的poi实现自己的功能
-            var temp= e.poi.district
-            $("#fromstartcity").val(temp)
-
-            startcity=e.poi.location.J+","+e.poi.location.N
-           $("#startline").val(startcity)
-//            console.log( $("#startline").val())
-            getlineforward()
-
+            zoom: 13,//地图显示的缩放级别
+            keyboardEnable: false
         });
-    });
+        AMap.plugin(['AMap.Autocomplete', 'AMap.PlaceSearch'], function () {
+            var autoOptions = {
+                city: "", //城市，默认全国
+                input: "startcity"//使用联想输入的input的id
+            };
+            autocomplete = new AMap.Autocomplete(autoOptions);
+            AMap.event.addListener(autocomplete, "select", function (e) {
+                //TODO 针对选中的poi实现自己的功能
+                var temp = e.poi.district
+                $("#fromstartcity").val(temp)
 
+                startcity = e.poi.location.lng + "," + e.poi.location.lat
+//                console.log(e)
+//                console.log(startcity)
+                $("#startline").val(startcity)
+                getlineforward()
 
-    AMap.plugin(['AMap.Autocomplete','AMap.PlaceSearch'],function(){
-        var auto = {
-            city: "", //城市，默认全国
-            input: "endcity"//使用联想输入的input的id
-        };
-        autocomplete= new AMap.Autocomplete(auto);
+            });
+        });
+        AMap.plugin(['AMap.Autocomplete', 'AMap.PlaceSearch'], function () {
+            var auto = {
+                city: "", //城市，默认全国
+                input: "endcity"//使用联想输入的input的id
+            };
+            autocomplete = new AMap.Autocomplete(auto);
 
-        AMap.event.addListener(autocomplete, "select", function(e){
-            //TODO 针对选中的poi实现自己的功能
+            AMap.event.addListener(autocomplete, "select", function (e) {
+                //TODO 针对选中的poi实现自己的功能
 
-            var temp= e.poi.district
-            $("#fromendcity").val(temp)
-            endcity=e.poi.location.J+","+e.poi.location.N
-            $("#endline").val(endcity)
+                var temp = e.poi.district
+                $("#fromendcity").val(temp)
+                endcity = e.poi.location.lng + "," + e.poi.location.lat
+//                console.log(endcity)
+                $("#endline").val(endcity)
 //            console.log(endcity)
 
-            getlineforward()
+                getlineforward()
+            });
+
         });
+        $("#endcity").change(function () {
+            getlineforward()
+        })
+        $("#startline").change(function () {
+            getlineforward()
+        })
 
-    });
+        function getlineforward() {
+            var start = $("#startline").val()
+            var end = $("#endline").val()
 
 
-    $("#endcity").change(function () {
-        getlineforward()
-    })
-    $("#startline").change(function () {
-        getlineforward()
-    })
+            if (start != "" && end != "") {
 
+                getline(start, end, 0)
+            }
 
-    function getlineforward() {
-        var start=$("#startline").val()
-        var end=$("#endline").val()
-
-        if(start!=""&&end!=""){
-            getline(start,end,0)
         }
 
-    }
+        $(".fangan").click(function () {
+            var strategy = $(this).data("fangan")
 
-    $(".fangan").click(function () {
-     var  strategy=$(this).data("fangan")
+            var start = $("#startline").val()
+            var end = $("#endline").val()
 
-        var start=$("#startline").val()
-        var end=$("#endline").val()
+            if (start != "" && end != "") {
+                getline(start, end, strategy)
+            }
 
-        if(start!=""&&end!=""){
-            getline(start,end,strategy)
+        })
+
+
+        function getline(start, end, strategy) {
+
+            var startword = $("#fromstartcity").val()
+            var endword = $("#fromendcity").val()
+
+            var res = gethasline(2, [startword, endword],start,end,strategy)
+
+
+
+
+
+
+
+
+
         }
 
-    })
+        $(".btn-danger").click(function () {
+            $("#line").val("")
+        })
+
+        $("#tijiao").click(function () {
 
 
-    function getline(start,end,strategy) {
-
-        $.get("http://restapi.amap.com/v3/direction/driving?key=1491272c53955352d608aff9136780c4&origin="+start+"&destination="+end+"&extensions=base&strategy="+strategy,
-            function (data) {
-                console.log(data)
-
-                var temp=data.route.paths[0].steps
-
-
-
-                $("#distance").val(data.route.paths[0].distance)
-
-
-                var mark="";
-
-                var temproad="";
-                for(var i=0;i<temp.length;i++){
-                    if(temp[i].road){
-                        if(temp[i].road.indexOf("入口")>0){
-
-                        }
-                        else if(temp[i].road.indexOf("出口")>0){
-
-                        }
-                        else {
-
-                            if(mark!=temp[i].road){
-                                temproad+=temp[i].road+","
-                                mark=temp[i].road
-                            }
-
-
-
-
-                        }
-
-
+            $.ajax({
+                cache: true,
+                type: "POST",
+                url: "{:url('/index/line/creatline')}",
+                data: $('#road').serialize(),
+                async: false,
+                error: function (request) {
+                    alert("Connection error");
+                },
+                success: function (data) {
+                    if (data.status == "error") {
+                        $("#error").html(data.msg)
+                        $("#modal").click()
+                    }
+                    else {
+                        $("#error").html("提交成功")
+                        $("#modal").click()
+//                        location.href = "{:url('/index/line/creatsuccess')}"
                     }
 
 
                 }
-
-                $("#line").val(temproad)
-
+            });
 
 
         })
-    }
-
-$(".btn-danger").click(function () {
-    $("#line").val("")
-})
-
-$("#tijiao").click(function () {
 
 
+        //两种方法  type ==1 穿id  type==2 传一个数组 格式['河南省郑州市中原区','河南省平顶山市卫东区'] type==3获取最近的一次出行信息
+        function gethasline(type, datas,start,end,strategy) {
 
 
-    $.ajax({
-        cache: true,
-        type: "POST",
-        url:"{:url('/index/line/creatline')}",
-        data:$('#road').serialize(),
-        async: false,
-        error: function(request) {
-            alert("Connection error");
-        },
-        success: function(data) {
-            if(data.status=="error"){
-                $("#error").html(data.msg)
-                $("#modal").click()
-            }
-            else {
-                location.href="{:url('/index/line/creatsuccess')}"
-            }
+            $.ajax({
+                url: "{:url('/index/line/getline')}",
+                type: 'post',
+                //使用同步的方式,true为异步方式
+                async: true,
+                //这里使用json对象
+                data: {type: type, datas: datas},
+                success: function (data) {
+                    if(data==null){
+
+                        $.get("http://restapi.amap.com/v3/direction/driving?key=1491272c53955352d608aff9136780c4&origin=" + start + "&destination=" + end + "&extensions=base&strategy=" + strategy,
+                            function (data) {
+                                console.log(data)
+
+                                var temp = data.route.paths[0].steps
 
 
+                                $("#distance").val(data.route.paths[0].distance)
+
+
+                                var mark = "";
+
+                                var temproad = "";
+                                for (var i = 0; i < temp.length; i++) {
+                                    if (temp[i].road) {
+                                        if (temp[i].road.indexOf("入口") > 0) {
+
+                                        }
+                                        else if (temp[i].road.indexOf("出口") > 0) {
+
+                                        }
+                                        else {
+
+                                            if (mark != temp[i].road) {
+                                                temproad += temp[i].road + ","
+                                                mark = temp[i].road
+                                            }
+
+
+                                        }
+
+
+                                    }
+
+
+                                }
+
+                                $("#line").val(temproad)
+
+
+                            })
+                    }else {
+
+                        inputdata(data)
+
+                    }
+                },
+                fail: function () {
+
+                }
+            });
+        }
+
+
+
+        function inputdata(data) {
+
+            $("#startcity").val(data.placeofdeparture)
+            $("#endcity").val(data.destination)
+            $("#line").val(data.road)
+            $("#distance").val(data.distance)
+            $("#money").val(data.money)
+            $("#car").val(data.car)
+            $("#seatinput").val(data.seat)
+            $("#remark").val(data.remark)
+            data.startprovince ?data.startprovince+="省":""
+            var startcity=data.startprovince+data.startcity+"市"+data.startcounty
+            var endcity=data.toprovince+data.tocity+"市"+data.tocounty
+            $("#fromstartcity").val(startcity)
+            $("#fromendcity").val(endcity)
+            $("#startline").val(data.startline)
+            $("#endline").val(data.endline)
 
         }
-    });
+
+        //切换路线
+        $("#changecity").click(
+            function () {
+                var startcity=$("#startcity").val()
+                var endcity=$("#endcity").val()
+                var fromstartcity=$("#fromstartcity").val()
+                var fromendcity=$("#fromendcity").val()
+
+                var startline=$("#startline").val()
+                var endline=$("#endline").val()
 
 
-})
+                var temp=""
+                temp=startcity
+                $("#startcity").val(endcity)
+                $("#endcity").val(temp)
+                temp=fromstartcity
+                $("#fromstartcity").val(fromendcity)
+                $("#fromendcity").val(temp)
+                temp=startline
+                $("#startline").val(endline)
+                $("#endline").val(temp)
+                $("#line").val("")
 
-</script>
 
+                gethasline(2,[fromendcity,fromstartcity],endline,startline,0)
+            }
+        )
+        gethasline(3,0,0,0,0)
+    </script>
 
 
 </div>
