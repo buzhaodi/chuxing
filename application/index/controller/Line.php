@@ -77,7 +77,7 @@ class Line extends Publiccon
 
 //            $data['preson'] ="ddd";
 //            dump($data);
-
+            return json(['status' => "success", "msg" => "发布成了别","id"=>5]);
 
             $validate = validate('Schedule');
 
@@ -86,7 +86,7 @@ class Line extends Publiccon
             } else {
                 $res = db("schedule")->insert($data);
                 if ($res) {
-                    return json(['status' => "success", "msg" => "发布成了别"]);
+                    return json(['status' => "success", "msg" => "发布成了别","id"=>$res]);
                 }
             }
 
@@ -96,6 +96,40 @@ class Line extends Publiccon
 
         return $this->fetch();
     }
+
+
+    //订单详情页面
+    public function linedetail(){
+        $data=input();
+        $id=$data['id'];
+        $res=db("schedule")->find(19);
+        $res['time']= date('Y-m-d日 G点:i分',$res['time']);
+
+
+
+
+
+
+
+
+
+        $this->assign("data",$res);
+        $this->assign("id",$id);
+
+        return $this->fetch();
+    }
+
+
+    public function getduan(){
+        $url=input()['url'];
+       return creatshorta($url);
+    }
+
+
+
+
+
+
 
 
     private function chai($str)
