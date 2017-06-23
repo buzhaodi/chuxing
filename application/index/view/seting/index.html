@@ -3,6 +3,25 @@
   {include file="left" /}
 
 <style>
+    .timeline:before{
+        left: 0px;
+    }
+    .timeline>li>.timeline-item{
+        margin-left: 12px;
+        margin-right: -12px;
+    }
+    .timelinecity{
+        /*font-size: 16px;*/
+        float: left;
+        margin-left: 10px;
+
+    }
+    .citylift{
+
+    }
+    .cityright{
+
+    }
 
 </style>
 
@@ -59,92 +78,282 @@
                       <ul class="timeline timeline-inverse">
                           <!-- timeline time label -->
                           <li class="time-label">
-                        <span class="bg-red">
-                          10 Feb. 2014
-                        </span>
+                              <span class="bg-red">今天 9:20</span>
+                              <span class="bg-green">玛莎拉蒂</span>
+                              <span class="bg-green">余座:3</span>
+                              <span class="bg-green">费用:100/人</span>
                           </li>
                           <!-- /.timeline-label -->
                           <!-- timeline item -->
                           <li>
-                              <i class="fa fa-envelope bg-blue"></i>
 
                               <div class="timeline-item">
-                                  <span class="time"><i class="fa fa-clock-o"></i> 12:05</span>
+                                  <!--<span class="time"><i class="fa fa-clock-o"></i> 12:05</span>-->
 
-                                  <h3 class="timeline-header"><a href="#">路线</a>郑州 到 南阳</h3>
-
-                                  <div class="timeline-body">
-                                      Etsy doostang zoodles disqus groupon greplin oooj voxy zoodles,
-                                      weebly ning heekya handango imeem plugg dopplr jibjab, movity
-                                      jajah plickers sifteo edmodo ifttt zimbra. Babblely odeo kaboodle
-                                      quora plaxo ideeli hulu weebly balihoo...
+                                  <!--<h3 class="timeline-header"><a href="#">出发地:</a> 郑州</h3>-->
+                                  <!--<h3 class="timeline-header"><a href="#">目的地:</a> 南阳</h3>-->
+                                  <!--<h3 class="timeline-header"><a href="#">费用:</a> 南阳</h3>-->
+                                  <!--<h3 class="timeline-header"><a href="#">距离:</a> 南阳</h3>-->
+                                  <div style="margin-top: 10px; overflow: hidden">
+                                      <!--<span class="timelinecity citylift">郑州/金水区</span>-->
+                                      <!--<span><i class="fa fa-fw fa-long-arrow-right"></i>400/km</span>-->
+                                      <!--<span class="timelinecity cityright">郑州/金水区</p> </span>-->
+                                      <div class="timelinecity citylift">郑州/金水区</div>
+                                      <div class="timelinecity center">
+                                          <div style="margin-top: -5px">400/km</div>
+                                          <i class="fa fa-fw fa-long-arrow-right"></i>
+                                          <!--<div>400/km</div>-->
+                                      </div>
+                                      <div class="timelinecity cityright">郑州/金水区</p> </div>
                                   </div>
+                                  <div class="box box-warning" style="margin-bottom: 0;">
+                                      <div class="box-header with-border">
+                                          <h3 class="box-title">路线</h3>
+
+                                          <div class="box-tools pull-right">
+                                              <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                                              </button>
+                                          </div>
+                                          <!-- /.box-tools -->
+                                      </div>
+                                      <!-- /.box-header -->
+                                      <div class="box-body">
+                                          从郑州金水区出发,走中州大道,在航海路上连霍高速,耗时3小时,行程400公里,大概下午3点到达目的地河南南阳市邓州市
+                                      </div>
+                                      <div class="box-body">
+                                          备注信息
+                                      </div>
+                                      <!-- /.box-body -->
+                                  </div>
+                                  <!--<h3 class="timeline-header" >-->
+                                  <!--<a href="#">路线:</a>-->
+                                  <!--<div class="timeline-body">路线描述</div>-->
+                                  <!--</h3>-->
+
+
+
+                                  <!--<div class="timeline-body" style="position: relative ;">-->
+                                  <!--备注: 酒精发酵奥卡福就爱看啊放假卡迪夫卡打飞机卡迪夫拉开的方式结案开始打飞机两款发动机啊快递费打法就是地方啊-->
+
+                                  <!--</div>-->
                                   <div class="timeline-footer">
                                       <a class="btn btn-primary btn-xs">Read more</a>
                                       <a class="btn btn-danger btn-xs">Delete</a>
                                   </div>
                               </div>
                           </li>
-                          <!-- END timeline item -->
-                          <!-- timeline item -->
-                          <li>
-                              <i class="fa fa-user bg-aqua"></i>
-
-                              <div class="timeline-item">
-                                  <span class="time"><i class="fa fa-clock-o"></i> 5 mins ago</span>
-
-                                  <h3 class="timeline-header no-border"><a href="#">Sarah Young</a> accepted your friend request
-                                  </h3>
-                              </div>
-                          </li>
-                          <!-- END timeline item -->
-                          <!-- timeline item -->
-                          <li>
-                              <i class="fa fa-comments bg-yellow"></i>
-
-                              <div class="timeline-item">
-                                  <span class="time"><i class="fa fa-clock-o"></i> 27 mins ago</span>
-
-                                  <h3 class="timeline-header"><a href="#">Jay White</a> commented on your post</h3>
-
-                                  <div class="timeline-body">
-                                      Take me to your leader!
-                                      Switzerland is small and neutral!
-                                      We are more like Germany, ambitious and misunderstood!
-                                  </div>
-                                  <div class="timeline-footer">
-                                      <a class="btn btn-warning btn-flat btn-xs">View comment</a>
-                                  </div>
-                              </div>
-                          </li>
-                          <!-- END timeline item -->
-                          <!-- timeline time label -->
                           <li class="time-label">
-                        <span class="bg-green">
-                          3 Jan. 2014
-                        </span>
+                              <span class="bg-red">今天 9:20</span>
+                              <span class="bg-green">玛莎拉蒂</span>
+                              <span class="bg-green">余座:3</span>
+                              <span class="bg-green">费用:100/人</span>
                           </li>
                           <!-- /.timeline-label -->
                           <!-- timeline item -->
                           <li>
-                              <i class="fa fa-camera bg-purple"></i>
 
                               <div class="timeline-item">
-                                  <span class="time"><i class="fa fa-clock-o"></i> 2 days ago</span>
+                                  <!--<span class="time"><i class="fa fa-clock-o"></i> 12:05</span>-->
 
-                                  <h3 class="timeline-header"><a href="#">Mina Lee</a> uploaded new photos</h3>
+                                  <!--<h3 class="timeline-header"><a href="#">出发地:</a> 郑州</h3>-->
+                                  <!--<h3 class="timeline-header"><a href="#">目的地:</a> 南阳</h3>-->
+                                  <!--<h3 class="timeline-header"><a href="#">费用:</a> 南阳</h3>-->
+                                  <!--<h3 class="timeline-header"><a href="#">距离:</a> 南阳</h3>-->
+                                  <div style="margin-top: 10px; margin-bottom: 10px">
+                                      <span class="timelinecity citylift">郑州/金水区</span>
+                                      <span >400/km</span>
+                                      <span class="timelinecity cityright">郑州/金水区</p> </span>
+                                  </div>
+                                  <div class="box box-warning" style="margin-bottom: 0;">
+                                      <div class="box-header with-border">
+                                          <h3 class="box-title">路线</h3>
 
-                                  <div class="timeline-body">
-                                      <img src="http://placehold.it/150x100" alt="..." class="margin">
-                                      <img src="http://placehold.it/150x100" alt="..." class="margin">
-                                      <img src="http://placehold.it/150x100" alt="..." class="margin">
-                                      <img src="http://placehold.it/150x100" alt="..." class="margin">
+                                          <div class="box-tools pull-right">
+                                              <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                                              </button>
+                                          </div>
+                                          <!-- /.box-tools -->
+                                      </div>
+                                      <!-- /.box-header -->
+                                      <div class="box-body">
+                                          从郑州金水区出发,走中州大道,在航海路上连霍高速,耗时3小时,行程400公里,大概下午3点到达目的地河南南阳市邓州市
+                                      </div>
+                                      <!-- /.box-body -->
+                                  </div>
+                                  <div class="box box-warning" style="margin-bottom: 0;">
+                                      <div class="box-header with-border">
+                                          <h3 class="box-title">备注</h3>
+
+                                          <div class="box-tools pull-right">
+                                              <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                                              </button>
+                                          </div>
+                                          <!-- /.box-tools -->
+                                      </div>
+                                      <!-- /.box-header -->
+                                      <div class="box-body">
+                                          添加备注信息
+                                      </div>
+                                      <!-- /.box-body -->
+                                  </div>
+                                  <!--<h3 class="timeline-header" >-->
+                                  <!--<a href="#">路线:</a>-->
+                                  <!--<div class="timeline-body">路线描述</div>-->
+                                  <!--</h3>-->
+
+
+
+                                  <!--<div class="timeline-body" style="position: relative ;">-->
+                                  <!--备注: 酒精发酵奥卡福就爱看啊放假卡迪夫卡打飞机卡迪夫拉开的方式结案开始打飞机两款发动机啊快递费打法就是地方啊-->
+
+                                  <!--</div>-->
+                                  <div class="timeline-footer">
+                                      <a class="btn btn-primary btn-xs">Read more</a>
+                                      <a class="btn btn-danger btn-xs">Delete</a>
                                   </div>
                               </div>
                           </li>
-                          <!-- END timeline item -->
+                          <li class="time-label">
+                              <span class="bg-red">今天 9:20</span>
+                              <span class="bg-green">玛莎拉蒂</span>
+                              <span class="bg-green">余座:3</span>
+                              <span class="bg-green">费用:100/人</span>
+                          </li>
+                          <!-- /.timeline-label -->
+                          <!-- timeline item -->
                           <li>
-                              <i class="fa fa-clock-o bg-gray"></i>
+
+                              <div class="timeline-item">
+                                  <!--<span class="time"><i class="fa fa-clock-o"></i> 12:05</span>-->
+
+                                  <!--<h3 class="timeline-header"><a href="#">出发地:</a> 郑州</h3>-->
+                                  <!--<h3 class="timeline-header"><a href="#">目的地:</a> 南阳</h3>-->
+                                  <!--<h3 class="timeline-header"><a href="#">费用:</a> 南阳</h3>-->
+                                  <!--<h3 class="timeline-header"><a href="#">距离:</a> 南阳</h3>-->
+                                  <div style="margin-top: 10px; margin-bottom: 10px">
+                                      <span class="timelinecity citylift">郑州/金水区</span>
+                                      <span >400/km</span>
+                                      <span class="timelinecity cityright">郑州/金水区</p> </span>
+                                  </div>
+                                  <div class="box box-warning" style="margin-bottom: 0;">
+                                      <div class="box-header with-border">
+                                          <h3 class="box-title">路线</h3>
+
+                                          <div class="box-tools pull-right">
+                                              <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                                              </button>
+                                          </div>
+                                          <!-- /.box-tools -->
+                                      </div>
+                                      <!-- /.box-header -->
+                                      <div class="box-body">
+                                          从郑州金水区出发,走中州大道,在航海路上连霍高速,耗时3小时,行程400公里,大概下午3点到达目的地河南南阳市邓州市
+                                      </div>
+                                      <!-- /.box-body -->
+                                  </div>
+                                  <div class="box box-warning" style="margin-bottom: 0;">
+                                      <div class="box-header with-border">
+                                          <h3 class="box-title">备注</h3>
+
+                                          <div class="box-tools pull-right">
+                                              <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                                              </button>
+                                          </div>
+                                          <!-- /.box-tools -->
+                                      </div>
+                                      <!-- /.box-header -->
+                                      <div class="box-body">
+                                          添加备注信息
+                                      </div>
+                                      <!-- /.box-body -->
+                                  </div>
+                                  <!--<h3 class="timeline-header" >-->
+                                  <!--<a href="#">路线:</a>-->
+                                  <!--<div class="timeline-body">路线描述</div>-->
+                                  <!--</h3>-->
+
+
+
+                                  <!--<div class="timeline-body" style="position: relative ;">-->
+                                  <!--备注: 酒精发酵奥卡福就爱看啊放假卡迪夫卡打飞机卡迪夫拉开的方式结案开始打飞机两款发动机啊快递费打法就是地方啊-->
+
+                                  <!--</div>-->
+                                  <div class="timeline-footer">
+                                      <a class="btn btn-primary btn-xs">Read more</a>
+                                      <a class="btn btn-danger btn-xs">Delete</a>
+                                  </div>
+                              </div>
+                          </li>
+                          <li class="time-label">
+                              <span class="bg-red">今天 9:20</span>
+                              <span class="bg-green">玛莎拉蒂</span>
+                              <span class="bg-green">余座:3</span>
+                              <span class="bg-green">费用:100/人</span>
+                          </li>
+                          <!-- /.timeline-label -->
+                          <!-- timeline item -->
+                          <li>
+
+                              <div class="timeline-item">
+                                  <!--<span class="time"><i class="fa fa-clock-o"></i> 12:05</span>-->
+
+                                  <!--<h3 class="timeline-header"><a href="#">出发地:</a> 郑州</h3>-->
+                                  <!--<h3 class="timeline-header"><a href="#">目的地:</a> 南阳</h3>-->
+                                  <!--<h3 class="timeline-header"><a href="#">费用:</a> 南阳</h3>-->
+                                  <!--<h3 class="timeline-header"><a href="#">距离:</a> 南阳</h3>-->
+                                  <div style="margin-top: 10px; margin-bottom: 10px">
+                                      <span class="timelinecity citylift">郑州/金水区</span>
+                                      <span >400/km</span>
+                                      <span class="timelinecity cityright">郑州/金水区</p> </span>
+                                  </div>
+                                  <div class="box box-warning" style="margin-bottom: 0;">
+                                      <div class="box-header with-border">
+                                          <h3 class="box-title">路线</h3>
+
+                                          <div class="box-tools pull-right">
+                                              <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                                              </button>
+                                          </div>
+                                          <!-- /.box-tools -->
+                                      </div>
+                                      <!-- /.box-header -->
+                                      <div class="box-body">
+                                          从郑州金水区出发,走中州大道,在航海路上连霍高速,耗时3小时,行程400公里,大概下午3点到达目的地河南南阳市邓州市
+                                      </div>
+                                      <!-- /.box-body -->
+                                  </div>
+                                  <div class="box box-warning" style="margin-bottom: 0;">
+                                      <div class="box-header with-border">
+                                          <h3 class="box-title">备注</h3>
+
+                                          <div class="box-tools pull-right">
+                                              <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                                              </button>
+                                          </div>
+                                          <!-- /.box-tools -->
+                                      </div>
+                                      <!-- /.box-header -->
+                                      <div class="box-body">
+                                          添加备注信息
+                                      </div>
+                                      <!-- /.box-body -->
+                                  </div>
+                                  <!--<h3 class="timeline-header" >-->
+                                  <!--<a href="#">路线:</a>-->
+                                  <!--<div class="timeline-body">路线描述</div>-->
+                                  <!--</h3>-->
+
+
+
+                                  <!--<div class="timeline-body" style="position: relative ;">-->
+                                  <!--备注: 酒精发酵奥卡福就爱看啊放假卡迪夫卡打飞机卡迪夫拉开的方式结案开始打飞机两款发动机啊快递费打法就是地方啊-->
+
+                                  <!--</div>-->
+                                  <div class="timeline-footer">
+                                      <a class="btn btn-primary btn-xs">Read more</a>
+                                      <a class="btn btn-danger btn-xs">Delete</a>
+                                  </div>
+                              </div>
                           </li>
                       </ul>
                   </div>
