@@ -243,6 +243,8 @@ return [
         "appID"=>'wx21f2030593cdd398',
         "appsecret"=>'71d7e4712b5abe3a2daee08839e6e0f4'
     ],
+    //创建行程成功 微信模板 id
+    'wxcreatlinetemid'=>'Xh0UD_a8L2CFHiYG0-Q1Sq3yo6qDz04RZr6v4sjNaIo',
 
 
     //短信配置

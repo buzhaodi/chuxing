@@ -99,7 +99,7 @@ class Line extends Publiccon
 
                     $senddata=[
                         'touser'=>session("user")['openid'],
-                        'template_id'=>"Xh0UD_a8L2CFHiYG0-Q1Sq3yo6qDz04RZr6v4sjNaIo",
+                        'template_id'=>config("wxcreatlinetemid"),
                         'url'=>$_SERVER['HTTP_HOST']."/index/line/linedetail?id={$res}",
 
                         'data'=>[
@@ -157,24 +157,34 @@ class Line extends Publiccon
         $res['time']= date('Y-m-d日 G点:i分',$res['time']);
 
 
-
-
-
-
-
-
-
         $this->assign("data",$res);
         $this->assign("id",$id);
 
         return $this->fetch();
     }
 
+    //预定详情页面
+    public function reserve($id){
+        $res=db("schedule")->find($id);
+        $res['time']= date('Y-m-d日 G点:i分',$res['time']);
 
+
+
+        $this->assign("data",$res);
+        return $this->fetch();
+    }
+
+
+
+
+
+    //生成短连接
     public function getduan(){
         $url=input()['url'];
        return creatshorta($url);
     }
+
+
 
 
 
