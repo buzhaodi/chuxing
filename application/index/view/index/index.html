@@ -17,6 +17,13 @@
     margin: 0;
     padding: 0;
   }
+  .btn-success{
+    height: 51px;
+    font-size: 2em;
+  }
+  .btn-warning{
+    font-size: 1.5em;
+  }
 </style>
 
   <!-- Content Wrapper. Contains page content -->
@@ -29,24 +36,41 @@
       </h1>
 
     </section>
-    <form>
+
       <div class="box-body">
         <div class="form-group">
 
         </div>
         <center>
-        <div class="form-group">
+
+        <div class="form-group" >
+          <form action="{:url('index/line/creatline')}">
           <div class="col-sm-12 changcity">
             <button type="button" id="startcitybutton" class="btn btn-success btn-sm">出发地</button>
 
             <input type="text"  style="display: none" class="form-control" id="startcity"  placeholder="请选择">
-            <p style="display: inline-block ;margin: 0;padding: 0">到</p>
+            <svg t="1497624366591" class="icon" style="width: 2em; height: 2em;vertical-align: middle;fill: currentColor;margin-top: -12px;overflow: hidden;" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2510"><path d="M392.704 325.12L326.656 399.872h505.344c17.92 0 31.744 14.336 31.744 31.744 0 17.92-14.336 31.744-31.744 31.744H170.496c-10.24 0-14.336-13.312-5.632-18.944l214.528-135.68c9.728-5.632 20.992 7.168 13.312 16.384zM631.296 698.88l65.536-74.752H192c-17.92 0-31.744-14.336-31.744-31.744 0-17.92 14.336-31.744 31.744-31.744h661.504c10.24 0 14.336 13.312 5.632 18.944l-214.528 135.68c-9.728 5.632-20.992-7.168-13.312-16.384z" fill="#1296db" p-id="2511"></path></svg>
+
+
+
             <button type="button" id="endcitybutton" class="btn btn-success btn-sm">目的地</button>
             <input type="text" style="display: none" class="form-control" id="endcity" placeholder="请选择">
           </div>
+            <center>
+          <span style="position: relative;font-size: 0.1em;   top: -14px;">切换</span>
+            </center>
+          <div class="col-sm-12" >
+
+            <button type="submit"  class="btn btn-block btn-warning btn-sm" style="margin-top:20px;width: 40%">查询路线</button>
+
+          </div>
+          </form>
+
+
         </div>
+
         </center>
-    </form>
+
 
 
     <!-- Main content -->
@@ -137,6 +161,9 @@
         jsonData: $city,
         success: function (arr) {
          var temp=  delarr(arr,"startcity")
+            temp=temp.split("-")
+            console.log(temp)
+            temp=temp[temp.length-1]
             $("#startcitybutton").html(temp)
 
 
@@ -150,6 +177,8 @@
         jsonData: $city,
         success: function (arr) {
             var temp= delarr(arr,"endcity")
+            temp=temp.split("-")
+            temp=temp[temp.length-1]
             $("#endcitybutton").html(temp)
 
         }//回调

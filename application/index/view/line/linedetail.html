@@ -1,0 +1,129 @@
+{include file="top" /}
+<!-- Left side column. contains the logo and sidebar -->
+  {include file="left" /}
+
+<style>
+
+</style>
+
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+
+      <div class="col-md-4">
+          <!-- Widget: user widget style 1 -->
+          <div class="box box-widget widget-user">
+              <!-- Add the bg color to the header using any of the bg-* classes -->
+              <div class="widget-user-header bg-black" style="background: url('../dist/img/photo1.png') center center; width: 100%;">
+                  <h3 class="widget-user-username">{$Think.session.user.nickname}</h3>
+                  <h5 class="widget-user-desc">{$Think.session.user.sex}</h5>
+              </div>
+              <div class="widget-user-image">
+                  <img class="img-circle" src="{$Think.session.user.headimgurl}" alt="User Avatar">
+              </div>
+              <div class="box-footer">
+                  <div class="row">
+                      <div class="col-sm-4 border-right">
+                          <div class="description-block">
+                              <h5 class="description-header">8000/km</h5>
+                              <!--<span class="description-text">SALES</span>-->
+                          </div>
+                          <!-- /.description-block -->
+                      </div>
+                      <!-- /.col -->
+                      <div class="col-sm-4 border-right">
+                          <div class="description-block">
+                              <h5 class="description-header">{$Think.session.user.tel}</h5>
+                              <!--<span class="description-text">FOLLOWERS</span>-->
+                          </div>
+                          <!-- /.description-block -->
+                      </div>
+                      <!-- /.col -->
+                  </div>
+                  <!-- /.row -->
+              </div>
+          </div>
+          <!-- /.widget-user -->
+      </div>
+      <div class="col-md-9">
+
+              <div class="box box-primary">
+                  <div class="box-header with-border">
+                      <h3 class="box-title">路线详情</h3>
+
+                  </div><!-- /.box-header -->
+                  <div class="box-body" id="linedel">
+
+
+                      <p>
+                          【车找人】{$data.startcity}市{$data.startcounty}  -> {$data.tocity}市{$data.tocounty}
+                      </p>
+                      <p>
+                          【时间】{$data.time}
+                      </p>
+                      <p>
+                          【路线】{$data.road}
+                      </p>
+                      <p>
+                          【座位】{$data.seat}
+                      </p>
+                      <p>
+                          【预定】<span id="linea">http://{$_SERVER.HTTP_HOST}{:url('/index/line/linedetail',"id=$id")}</span>
+                      </p>
+                      <p>
+                          【A费】{$data.money}
+                      </p>
+                      <p>
+                          【备注】{$data.remark}
+                      </p>
+
+
+
+
+
+
+                  </div><!-- /.box-body -->
+              </div><!-- /.box -->
+          <b>信息已经在我要拼车列表展现,您也可以长按路线详情以复制到您要发布的QQ群</b>
+        <center>
+          <a style="margin-top:5px " href="#" class="btn btn-primary" onclick="WeixinJSBridge.call('closeWindow');"><i class="fa fa-download"></i> 关闭当前页</a>
+        </center>
+          <!-- /.nav-tabs-custom -->
+      </div>
+  </div>
+
+
+
+
+
+
+
+
+
+
+<script>
+
+
+      var url=$("#linea").html()
+
+        $.post("{:url('index/line/getduan')}",
+            {
+                url:url
+            },function (data) {
+                if(!data.error){
+                    $("#linea").html(data.url)
+                }
+            })
+
+
+
+
+ 
+
+
+
+</script>
+
+
+
+<!-- /.content-wrapper -->
+{include file="footer" /}

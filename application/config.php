@@ -234,4 +234,34 @@ return [
         'var_page'  => 'page',
         'list_rows' => 15,
     ],
+    //
+    'appname'=>"出行小怪兽",
+
+    //微信token配置
+    'TOKEN'=>"weixin",
+    'weixintoken'=>[
+        "appID"=>'wx21f2030593cdd398',
+        "appsecret"=>'71d7e4712b5abe3a2daee08839e6e0f4'
+    ],
+    //创建行程成功 微信模板 id
+    'wxcreatlinetemid'=>'Xh0UD_a8L2CFHiYG0-Q1Sq3yo6qDz04RZr6v4sjNaIo',
+
+
+    //短信配置
+    'ronglian'=>[
+        //主账号
+        'accountSid'=>'8a48b5514ebe1674014ec84f786f0ab7',
+        //主账号token
+        'accountToken'=>'6eaf6295db5b424c90a0b660a50833c5',
+        //应用Id
+        'appId'=>'8a48b55151a86b280151a9063ec501f2',
+        //请求地址，格式如下，不需要写https://
+        'serverIP'=>'app.cloopen.com',
+        //请求端口
+        'serverPort'=>'8883',
+        //REST版本号
+        'softVersion'=>'2013-12-26'
+
+]
+
 ];
