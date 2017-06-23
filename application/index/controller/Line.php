@@ -16,8 +16,16 @@ class Line extends Publiccon
         $data = input();
 
 
+
         if (!empty($data)) {
+            $userid= session("user")['id'] ;
             $data = array_filter($data);
+         $creattime=db("schedule")->where("preson={$userid}")->field("creattime")->order("creattime DESC")->find();
+        //$creattime=156156156;
+         if(time()-$creattime['creattime']<2400){
+             return json(['status' => "error", "msg" => "亲 40分钟以内只能只能发布一个订单,您可以到 个人中心->我的订单中修改 "]);
+         }
+
 
             if (!empty($data['startcity'])) {
                 $data['startcity'] = str_replace("-", "", $data['startcity']);
@@ -50,6 +58,9 @@ class Line extends Publiccon
 
             //修改时间
             if (!empty($data['time'])) {
+                $oldtime=$data['time'];
+
+
                 $temp = explode("日", $data['time']);
                 $temp[1] = str_replace("-", "", $temp[1]);
                 $temp[1] = str_replace("点", ":", $temp[1]);
@@ -75,17 +86,57 @@ class Line extends Publiccon
 
             $data['creattime'] = time();
 
-//            $data['preson'] ="ddd";
+     //       $data['preson'] ="ddd";
 //            dump($data);
-            return json(['status' => "success", "msg" => "发布成了别","id"=>5]);
 
             $validate = validate('Schedule');
 
             if (!$validate->check($data)) {
                 return json(['status' => "error", "msg" => $validate->getError()]);
             } else {
-                $res = db("schedule")->insert($data);
+                $res = db("schedule")->insertGetId($data);
                 if ($res) {
+
+                    $senddata=[
+                        'touser'=>session("user")['openid'],
+                        'template_id'=>"Xh0UD_a8L2CFHiYG0-Q1Sq3yo6qDz04RZr6v4sjNaIo",
+                        'url'=>$_SERVER['HTTP_HOST']."/index/line/linedetail?id={$res}",
+
+                        'data'=>[
+                            'name' => array(
+                                'value' => session("user")['nickname'].' 您好！',
+                                'color' => '#FF0000'
+                            ),
+
+                            'start' => array(
+                                'value' => $data['placeofdeparture'],
+                                'color' => '#FF0000'
+                            ),
+
+                            'end' => array(
+                                'value' =>  $data['destination'],
+                                'color' => '#FF0000'
+                            ),
+
+                            'tel' => array(
+                                'value' =>session("user")['tel'],
+                                'color' => '#FF0000'
+                            ),
+
+                            'time' => array(
+                                'value' => $oldtime,
+                                'color' => '#FF0000'
+                            ),
+
+
+
+
+                        ],
+
+                    ];
+
+                           sendpost($senddata);
+
                     return json(['status' => "success", "msg" => "发布成了别","id"=>$res]);
                 }
             }
@@ -102,7 +153,7 @@ class Line extends Publiccon
     public function linedetail(){
         $data=input();
         $id=$data['id'];
-        $res=db("schedule")->find(19);
+        $res=db("schedule")->find($id);
         $res['time']= date('Y-m-d日 G点:i分',$res['time']);
 
 

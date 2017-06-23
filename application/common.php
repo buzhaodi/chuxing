@@ -54,6 +54,7 @@ function getaccess_token(){
             db("weixintoken")->update($data);
         }
         else{
+
             $access_token=$token['token'];
         }
     }
@@ -118,5 +119,67 @@ function createRandomStr($length){
     $str = str_shuffle($str);
     return substr($str,0,$length);
 }
+
+
+//发送post请求
+function send_post($url, $post_data) {
+
+    $postdata = http_build_query($post_data);
+    $options = array(
+        'http' => array(
+            'method' => 'POST',
+            'header' => 'Content-type:application/x-www-form-urlencoded',
+            'content' => $postdata,
+            'timeout' => 15 * 60 // 超时时间（单位:s）
+        )
+    );
+    $context = stream_context_create($options);
+    $result = file_get_contents($url, false, $context);
+
+    return $result;
+}
+
+
+//发送微信模板消息
+
+function curl_post_send_information( $token,$vars,$second=120,$aHeader=array())
+{
+    $ch = curl_init();
+    //超时时间
+    curl_setopt($ch,CURLOPT_TIMEOUT,$second);
+    curl_setopt($ch,CURLOPT_RETURNTRANSFER, 1);
+    //这里设置代理，如果有的话
+    curl_setopt($ch,CURLOPT_URL,'https://api.weixin.qq.com/cgi-bin/message/template/send?access_token='.$token);
+    curl_setopt($ch,CURLOPT_SSL_VERIFYPEER,false);
+    curl_setopt($ch,CURLOPT_SSL_VERIFYHOST,false);
+    if( count($aHeader) >= 1 ){
+        curl_setopt($ch, CURLOPT_HTTPHEADER, $aHeader);
+    }
+    curl_setopt($ch,CURLOPT_POST, 1);
+    curl_setopt($ch,CURLOPT_POSTFIELDS,$vars);
+    $data = curl_exec($ch);
+    if($data){
+        curl_close($ch);
+        return $data;
+    }
+    else {
+        $error = curl_errno($ch);
+        curl_close($ch);
+        return $error;
+    }
+}
+
+
+function sendpost($data){
+
+    $token=getaccess_token();
+
+    $result =curl_post_send_information($token,json_encode($data));
+
+   return $result;
+
+
+}
+
 
 

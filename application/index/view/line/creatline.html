@@ -157,7 +157,7 @@
             </div>
             <!-- /.box-body -->
             <div class="box-footer">
-                <button type="button" class="btn btn-default">取消</button>
+                <button type="button" onclick="WeixinJSBridge.call('closeWindow');" class="btn btn-default">取消</button>
                 <button type="button" id="tijiao" class="btn btn-info pull-right">提交</button>
             </div>
             <input hidden name="startline" id="startline">
@@ -523,8 +523,10 @@
                         $("#modal").click()
                     }
                     else {
-                        $("#error").html("提交成功")
+                       $("#error").html(data.msg)
                         $("#modal").click()
+
+
                         location.href = "{:url('/index/line/linedetail')}?id="+data.id
                     }
 
@@ -616,8 +618,10 @@
             $("#seatinput").val(data.seat)
             $("#remark").val(data.remark)
             data.startprovince ?data.startprovince+="省":""
+            data.toprovince ?data.toprovince+="省":""
             var startcity=data.startprovince+data.startcity+"市"+data.startcounty
             var endcity=data.toprovince+data.tocity+"市"+data.tocounty
+
             $("#fromstartcity").val(startcity)
             $("#fromendcity").val(endcity)
             $("#startline").val(data.startline)

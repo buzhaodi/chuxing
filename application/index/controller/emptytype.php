@@ -9,5 +9,18 @@ class Emptytype extends \think\Controller
 		    	return $this->fetch();
 		    }
 
-		
+
+
+
+
+
+
+
+
+
 }
+
+
+
+
+
