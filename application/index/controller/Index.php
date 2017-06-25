@@ -14,7 +14,15 @@ class Index extends Publiccon
 //
 //                sendTemplateSMS("13393758290",$datas,"183859");
 
+            $jssdk=new \wechat\phpsdk\jssdk();
 
+            $signPackage= $jssdk->GetSignPackage();
+
+
+
+
+
+            $this->assign("signPackage",$signPackage);
 
 
 		    	return $this->fetch();

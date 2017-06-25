@@ -370,7 +370,7 @@
                 $.ajax({
                     async: false,
                     type: "GET",
-                    url: "http://restapi.amap.com/v3/config/district?keywords=" + start + "&subdistrict=" + startnum + "&key=1491272c53955352d608aff9136780c4",
+                    url: "http://restapi.amap.com/v3/config/district?keywords=" + start + "&subdistrict=" + startnum + "&key={:config('gaodekey')}",
                     complete: function (data) {
 
                     },
@@ -383,7 +383,7 @@
                 $.ajax({
                     async: false,
                     type: "GET",
-                    url: "http://restapi.amap.com/v3/config/district?keywords=" + end + "&subdistrict=" + endnum + "&key=1491272c53955352d608aff9136780c4",
+                    url: "http://restapi.amap.com/v3/config/district?keywords=" + end + "&subdistrict=" + endnum + "&key={:config('gaodekey')}",
                     complete: function (data) {
 
                     },
@@ -552,7 +552,7 @@
                 success: function (data) {
                     if(data==null){
 
-                        $.get("http://restapi.amap.com/v3/direction/driving?key=1491272c53955352d608aff9136780c4&origin=" + start + "&destination=" + end + "&extensions=base&strategy=" + strategy,
+                        $.get("http://restapi.amap.com/v3/direction/driving?key={:config('gaodekey')}&origin=" + start + "&destination=" + end + "&extensions=base&strategy=" + strategy,
                             function (data) {
                                 console.log(data)
 

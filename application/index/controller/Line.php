@@ -82,10 +82,12 @@ class Line extends Publiccon
                 }
 
             }
+            //哪个人发布的
             $data['preson'] = session("user")['id'] ? session("user")['id'] : "";
-
+            //创建时间
             $data['creattime'] = time();
-
+            //设置余座
+            $data['block']=$data['seat'];
      //       $data['preson'] ="ddd";
 //            dump($data);
 

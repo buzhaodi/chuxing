@@ -44,21 +44,19 @@
         <center>
 
         <div class="form-group" >
-          <form action="{:url('index/line/creatline')}">
+          <form action="{:url('index/travel/')}" method="get">
           <div class="col-sm-12 changcity">
             <button type="button" id="startcitybutton" class="btn btn-success btn-sm">出发地</button>
 
-            <input type="text"  style="display: none" class="form-control" id="startcity"  placeholder="请选择">
+            <input type="text"  name="start" style="display: none" class="form-control" id="startcity"  placeholder="">
+            <div style="display: inline-flex" id="changecity">
             <svg t="1497624366591" class="icon" style="width: 2em; height: 2em;vertical-align: middle;fill: currentColor;margin-top: -12px;overflow: hidden;" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2510"><path d="M392.704 325.12L326.656 399.872h505.344c17.92 0 31.744 14.336 31.744 31.744 0 17.92-14.336 31.744-31.744 31.744H170.496c-10.24 0-14.336-13.312-5.632-18.944l214.528-135.68c9.728-5.632 20.992 7.168 13.312 16.384zM631.296 698.88l65.536-74.752H192c-17.92 0-31.744-14.336-31.744-31.744 0-17.92 14.336-31.744 31.744-31.744h661.504c10.24 0 14.336 13.312 5.632 18.944l-214.528 135.68c-9.728 5.632-20.992-7.168-13.312-16.384z" fill="#1296db" p-id="2511"></path></svg>
-
-
-
-            <button type="button" id="endcitybutton" class="btn btn-success btn-sm">目的地</button>
-            <input type="text" style="display: none" class="form-control" id="endcity" placeholder="请选择">
+            <span style="position: relative;left: -26px;    top: 12px;">切换</span>
+            </div>
+            <button type="button" style="margin-left: -24px" id="endcitybutton" class="btn btn-success btn-sm">目的地</button>
+            <input type="text" name="end" style="display: none" class="form-control" id="endcity" placeholder="">
           </div>
-            <center>
-          <span style="position: relative;font-size: 0.1em;   top: -14px;">切换</span>
-            </center>
+
           <div class="col-sm-12" >
 
             <button type="submit"  class="btn btn-block btn-warning btn-sm" style="margin-top:20px;width: 40%">查询路线</button>
@@ -137,6 +135,185 @@
           </div>
         </div>
         <!-- ./col -->
+
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-aqua">
+            <div class="inner">
+              <h4>平顶山</h4>
+              <p class="boxp">到</p>
+              <h4>郑州</h4>
+            </div>
+            <div class="icon">
+              <i class="ion ion-bag"></i>
+            </div>
+            <a href="#" class="small-box-footer">详细信息 <i class="fa fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-green">
+            <div class="inner">
+              <h4>郑州</h4>
+              <p class="boxp">到</p>
+              <h4>平顶山</h4>
+            </div>
+            <div class="icon">
+              <i class="ion ion-stats-bars"></i>
+            </div>
+            <a href="#" class="small-box-footer">详细信息 <i class="fa fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-yellow">
+            <div class="inner">
+              <h4>南阳</h4>
+              <p class="boxp">到</p>
+              <h4>郑州</h4>
+            </div>
+            <div class="icon">
+              <i class="ion ion-person-add"></i>
+            </div>
+            <a href="#" class="small-box-footer">详细信息 <i class="fa fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-red">
+            <div class="inner">
+              <h4>郑州</h4>
+              <p class="boxp">到</p>
+              <h4>南阳</h4>
+            </div>
+            <div class="icon">
+              <i class="ion ion-pie-graph"></i>
+            </div>
+            <a href="#" class="small-box-footer">详细信息 <i class="fa fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-aqua">
+            <div class="inner">
+              <h4>平顶山</h4>
+              <p class="boxp">到</p>
+              <h4>郑州</h4>
+            </div>
+            <div class="icon">
+              <i class="ion ion-bag"></i>
+            </div>
+            <a href="#" class="small-box-footer">详细信息 <i class="fa fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-green">
+            <div class="inner">
+              <h4>郑州</h4>
+              <p class="boxp">到</p>
+              <h4>平顶山</h4>
+            </div>
+            <div class="icon">
+              <i class="ion ion-stats-bars"></i>
+            </div>
+            <a href="#" class="small-box-footer">详细信息 <i class="fa fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-yellow">
+            <div class="inner">
+              <h4>南阳</h4>
+              <p class="boxp">到</p>
+              <h4>郑州</h4>
+            </div>
+            <div class="icon">
+              <i class="ion ion-person-add"></i>
+            </div>
+            <a href="#" class="small-box-footer">详细信息 <i class="fa fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-red">
+            <div class="inner">
+              <h4>郑州</h4>
+              <p class="boxp">到</p>
+              <h4>南阳</h4>
+            </div>
+            <div class="icon">
+              <i class="ion ion-pie-graph"></i>
+            </div>
+            <a href="#" class="small-box-footer">详细信息 <i class="fa fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-aqua">
+            <div class="inner">
+              <h4>平顶山</h4>
+              <p class="boxp">到</p>
+              <h4>郑州</h4>
+            </div>
+            <div class="icon">
+              <i class="ion ion-bag"></i>
+            </div>
+            <a href="#" class="small-box-footer">详细信息 <i class="fa fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-green">
+            <div class="inner">
+              <h4>郑州</h4>
+              <p class="boxp">到</p>
+              <h4>平顶山</h4>
+            </div>
+            <div class="icon">
+              <i class="ion ion-stats-bars"></i>
+            </div>
+            <a href="#" class="small-box-footer">详细信息 <i class="fa fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-yellow">
+            <div class="inner">
+              <h4>南阳</h4>
+              <p class="boxp">到</p>
+              <h4>郑州</h4>
+            </div>
+            <div class="icon">
+              <i class="ion ion-person-add"></i>
+            </div>
+            <a href="#" class="small-box-footer">详细信息 <i class="fa fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-red">
+            <div class="inner">
+              <h4>郑州</h4>
+              <p class="boxp">到</p>
+              <h4>南阳</h4>
+            </div>
+            <div class="icon">
+              <i class="ion ion-pie-graph"></i>
+            </div>
+            <a href="#" class="small-box-footer">详细信息 <i class="fa fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+
       </div>
       <!-- /.row -->
       <!-- Main row -->
@@ -151,8 +328,74 @@
 <script src="/public/static/select/MultiPicker/city.js"></script>
 <script src="/public/static/select/MultiPicker/time.js"></script>
 <script src="/public/static/select/MultiPicker/MultiPicker.js"></script>
+<script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
 
 <script>
+
+
+    wx.config({
+        debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+        appId: "{$signPackage['appId']}", // 必填，公众号的唯一标识
+        timestamp:"{$signPackage['timestamp']}" , // 必填，生成签名的时间戳
+        nonceStr: "{$signPackage['nonceStr']}", // 必填，生成签名的随机串
+        signature: "{$signPackage['signature']}",// 必填，签名，见附录1
+        jsApiList: ['getLocation'] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
+    });
+    wx.ready(function () {
+
+
+        wx.getLocation({
+            type: 'wgs84', // 默认为wgs84的gps坐标，如果要返回直接给openLocation用的火星坐标，可传入'gcj02'
+            success: function (res) {
+
+                var latitude = res.latitude; // 纬度，浮点数，范围为90 ~ -90
+                var longitude = res.longitude; // 经度，浮点数，范围为180 ~ -180。
+                var speed = res.speed; // 速度，以米/每秒计
+                var accuracy = res.accuracy; // 位置精度
+
+                $.get("http://restapi.amap.com/v3/geocode/regeo?key={:config('gaodekey')}&location="+longitude+","+latitude,function (data) {
+                    if(data.info=="OK"){
+                        var p=  data.regeocode.addressComponent.province;
+                        var c=  data.regeocode.addressComponent.city;
+                        var county=  data.regeocode.addressComponent.district;
+                        $("#startcitybutton").html(county)
+                        $("#startcity").val(p+c+county)
+                    }
+                })
+
+
+
+            }
+        });
+
+
+    });
+
+
+
+
+
+
+
+
+
+
+
+  $("#changecity").click(
+      function () {
+          var temp="";
+         temp=  $("#startcitybutton").html()
+          $("#startcitybutton").html($("#endcitybutton").html())
+          $("#endcitybutton").html(temp)
+
+          temp=$("#startcity").val()
+          $("#startcity").val( $("#endcity").val())
+
+          $("#endcity").val(temp)
+
+
+      }
+  )
 
     //开始城市按钮
     new MultiPicker({
@@ -161,6 +404,10 @@
         jsonData: $city,
         success: function (arr) {
          var temp=  delarr(arr,"startcity")
+
+            $("#startcity").val(temp)
+            $("#startcity").val()
+
             temp=temp.split("-")
             console.log(temp)
             temp=temp[temp.length-1]
@@ -177,6 +424,8 @@
         jsonData: $city,
         success: function (arr) {
             var temp= delarr(arr,"endcity")
+
+            $("#endcity").val(temp)
             temp=temp.split("-")
             temp=temp[temp.length-1]
             $("#endcitybutton").html(temp)

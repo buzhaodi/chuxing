@@ -7,6 +7,84 @@ use think\Validate;
 class Travel extends Publiccon
 {
     public function index(){
+
+        $data=input();
+        if(array_key_exists("start",$data)){
+            empty($data['start'])? $start=$data['start']:$start=chai($data['start']);
+        }else{
+            $start="";
+        }
+
+        if(array_key_exists("end",$data)){
+            empty($data['end'])? $end=$data['end']:$end=chai($data['end']);
+        }else{
+            $end="";
+        }
+
+
+
+       if( is_array($start)&&is_array($end) ){
+
+           $lines=db("schedule")->where("startcity='{$start["city"]}' AND tocity='{$end['city']}' ")->order("(startcounty='{$start['county']}') DESC ,(tocounty='{$end['county']}') DESC,creattime DESC ")->select();
+
+       }
+       else if(is_array($start)&&!is_array($end)){
+
+           $lines=db("schedule")->where("startcity='{$start["city"]}' ")->order("(startcounty='{$start['county']}') DESC,creattime DESC ")->select();
+       }
+       else if(!is_array($start)&&!is_array($end)){
+
+           $lines=db("schedule")->where("tocity='{$end["city"]}' ")->order("(tocounty='{$end['county']}') DESC ) DESC,creattime DESC ")->select();
+       }
+       else if(!is_array($start)&&is_array($end)){
+           $lines=db("schedule")->where("startcity='{$end["city"]}' ")->order("(startcounty='{$end['county']}')  DESC,creattime DESC ")->select();
+       }
+
+
+//时间戳变今天明天后天
+        foreach ($lines as $k=>$v){
+            $tempday=date("Y-m-d",$lines[$k]['time']);
+            $temphoues=date("H:i",$lines[$k]['time']);
+
+            $tempday=strtotime($tempday);
+            $tody=$tempday-strtotime("now");
+            switch ($tody){
+                case $tody<0;
+                $tody="今天 "."$temphoues";
+
+                break;
+                case $tody>0&&$tody<60*60*24;
+                    $tody="明天 "."$temphoues";
+                    break;
+                case $tody>60*60*24&&$tody<60*60*24*2;
+
+                    $tody="后天 "."$temphoues";
+                    break;
+            }
+            $lines[$k]['distance']=round( $lines[$k]['distance']/1000,1);
+           $lines[$k]['time']=$tody;
+        }
+
+
+
+        $this->assign("start",$start);
+        $this->assign("end",$end);
+        if(array_key_exists("end",$data)){
+            $this->assign("endcity",$data['end']);
+        }
+        else{
+            $this->assign("endcity","");
+        }
+        if(array_key_exists("start",$data)){
+            $this->assign("startcity",$data['start']);
+        }else{
+            $this->assign("startcity","");
+        }
+
+
+
+
+        $this->assign("lines",$lines);
         return $this->fetch();
     }
 
