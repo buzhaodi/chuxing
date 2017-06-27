@@ -24,23 +24,24 @@ class Travel extends Publiccon
 
 
        if( is_array($start)&&is_array($end) ){
-
-           $lines=db("schedule")->where("startcity='{$start["city"]}' AND tocity='{$end['city']}' ")->order("(startcounty='{$start['county']}') DESC ,(tocounty='{$end['county']}') DESC,creattime DESC ")->select();
+//            echo 1;
+           $lines=db("schedule")->where("startcity='{$start["city"]}' AND tocity='{$end['city']}' AND block>0 AND time>".time())->order("(startcounty='{$start['county']}') DESC ,(tocounty='{$end['county']}') DESC,creattime DESC ")->select();
 
        }
        else if(is_array($start)&&!is_array($end)){
-
-           $lines=db("schedule")->where("startcity='{$start["city"]}' ")->order("(startcounty='{$start['county']}') DESC,creattime DESC ")->select();
+//           echo 2;
+           $lines=db("schedule")->where("startcity='{$start["city"]}' AND block>0 AND time>".time())->order("(startcounty='{$start['county']}') DESC,creattime DESC ")->select();
        }
        else if(!is_array($start)&&!is_array($end)){
-
-           $lines=db("schedule")->where("tocity='{$end["city"]}' ")->order("(tocounty='{$end['county']}') DESC ) DESC,creattime DESC ")->select();
+//           echo 3;
+           $lines=db("schedule")->where("time>".time())->order("creattime DESC ")->select();
        }
        else if(!is_array($start)&&is_array($end)){
-           $lines=db("schedule")->where("startcity='{$end["city"]}' ")->order("(startcounty='{$end['county']}')  DESC,creattime DESC ")->select();
+//           echo 4;
+           $lines=db("schedule")->where("startcity='{$end["city"]}' AND block>0 AND time>".time())->order("(startcounty='{$end['county']}')  DESC,creattime DESC ")->select();
        }
 
-
+//        echo db()->getLastSql();
 //时间戳变今天明天后天
         foreach ($lines as $k=>$v){
             $tempday=date("Y-m-d",$lines[$k]['time']);
