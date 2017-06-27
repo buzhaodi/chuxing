@@ -45,6 +45,8 @@
 
 
     }
+
+
 </style>
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
@@ -157,7 +159,7 @@
                   <span class="" style="width: 6px;    height: 6px;    margin-left: -3px;background-color: rgb(0, 115, 183);"></span>
                   <span class="bg-purple">{$line.time}</span>
                   <span class="bg-orange">{$line.car}</span>
-                  <span class="bg-orange">余座:{$line.block}</span>
+                  <span class="bg-orange seat" >余座:<span>{$line.block}</span></span>
                   <span class="bg-blue">费用:{$line.money}/人</span>
               </li>
               <li>
@@ -198,7 +200,7 @@
 
                       <div class="timeline-footer">
                           <a class="btn btn-success btn-sm shouqi">收起</a>
-                          <a class="btn btn-primary btn-sm pull-right">预定</a>
+                          <a class="btn btn-primary btn-sm pull-right reserve" data-id="{$line.id}">预定</a>
                       </div>
                   </div>
               </li>
@@ -224,7 +226,92 @@
 
           </ul>
       </div>
+      <form method="post" action="{:url('index/travel/creatreserve')}">
+      <div class="modal fade" id="modal-default" style="display: none;">
+          <div class="modal-dialog">
+
+              <div class="modal-content">
+                  <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">×</span></button>
+                      <h4 class="modal-title">预定提醒</h4>
+                  </div>
+
+                  <div class="modal-body">
+
+
+                        <input type="hidden" name="lineid" id="resid" >
+                      <div class="box-body">
+                          <div class="form-group">
+                              <label for="tel" class="col-xs-4 control-label">手机号:</label>
+
+                              <div class="col-xs-8">
+                                  <input type="number" name="tel" id="tel" class="form-control" value="{$Think.session.user.tel}" placeholder="">
+                              </div>
+                          </div>
+                          <div class="form-group">
+                              <label for="preson" class="col-xs-4 control-label">预定人数:</label>
+                              <div class="col-xs-8">
+                              <select id="preson" name="seat" class="form-control">
+
+                              </select>
+                              </div>
+                          </div>
+
+
+                          <div class="form-group">
+                              <label for="forwordlocation" class="col-xs-4 control-label" >选择地点:</label>
+                              <div class="col-xs-8">
+                                  <select id="forwordlocation"  name="location" class="form-control">
+                                      <option>123123</option>
+                                  </select>
+                              </div>
+                          </div>
+
+
+
+
+
+                          <div class="form-group">
+                              <label for="remark" class="col-xs-4 control-label">备注:</label>
+
+                              <div class="col-xs-8">
+
+                                  <textarea id="remark" class="form-control" placeholder="请输入上车地点 或选择您之前5次出行的上车点"></textarea>
+
+                              </div>
+                          </div>
+
+
+
+
+                      </div>
+
+
+
+
+
+
+
+
+
+
+                  </div>
+                  <div class="modal-footer">
+
+                      <button type="button" class="btn btn-default pull-left" data-dismiss="modal">取消</button>
+                      <button type="submit" id="submitres" class="btn btn-primary" >确定</button>
+
+                  </div>
+              </div>
+
+              <!-- /.modal-content -->
+          </div>
+          <!-- /.modal-dialog -->
+      </div>
+      </form>
   </div>
+    <button type="hidden" id="modal" data-toggle="modal" data-target="#modal-default">
 
 
 
@@ -236,6 +323,28 @@
 
 
 <script>
+
+    $(".reserve").click(
+        function () {
+          var seat=  $(this).parents().prev(). find(".seat").find("span").html()
+
+            for(var i=1;i<=seat;i++){
+              $("#preson").append(" <option value='"+i+"'>"+i+"</option>")
+
+
+            }
+           var id= $(this).data("id")
+            $("#resid").val(id)
+
+
+
+            $("#modal").click()
+        }
+    )
+
+
+
+
     $(".shouqi").click(function () {
         $(this).parent().prev().find("button").click()
     })

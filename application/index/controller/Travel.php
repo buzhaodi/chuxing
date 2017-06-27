@@ -90,6 +90,37 @@ class Travel extends Publiccon
     }
 
 
+    public function creatreserve(){
+        $data=input();
+        $model=db("reserve");
+        $data['userid']=session("user")['id'];
+
+
+
+        $res=$model->insert($data);
+        if($res){
+          $res=  db("schedule")->where('id',$data['lineid'])->setDec('block',$data['seat']);
+            if($res){
+
+
+
+
+
+
+            }
+
+
+
+        }else{
+            echo "预定失败";
+            die;
+            }
+
+
+
+    }
+
+
 
 
 

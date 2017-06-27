@@ -358,8 +358,15 @@
                         var p=  data.regeocode.addressComponent.province;
                         var c=  data.regeocode.addressComponent.city;
                         var county=  data.regeocode.addressComponent.district;
-                        $("#startcitybutton").html(county)
-                        $("#startcity").val(p+c+county)
+
+                       var res= confirm("当前发现您定位在 "+c+ "是否切换出发?")
+
+                        if(res){
+                            $("#startcitybutton").html(county)
+                            $("#startcity").val(p+c+county)
+                        }
+
+
                     }
                 })
 
