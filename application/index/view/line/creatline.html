@@ -58,15 +58,11 @@
                 <!-- /.box-tools -->
             </div>
             <!-- /.box-header -->
-            <div class="box-body">
-                郑州-平顶山
+            {foreach $lines as $v}
+            <div class="box-body getotherline" data-id="{$v.id}">
+               {$v.placeofdeparture}-{$v.destination}
             </div>
-            <div class="box-body">
-                郑州-平顶山
-            </div>
-            <div class="box-body">
-                郑州-平顶山
-            </div>
+            {/foreach}
 
         </div>
 
@@ -537,6 +533,14 @@
 
         })
 
+
+        $(".getotherline").click(
+            function () {
+              var id=$(this).data('id')
+
+                gethasline(1,id,0,0,0)
+            }
+        )
 
         //两种方法  type ==1 穿id  type==2 传一个数组 格式['河南省郑州市中原区','河南省平顶山市卫东区'] type==3获取最近的一次出行信息
         function gethasline(type, datas,start,end,strategy) {

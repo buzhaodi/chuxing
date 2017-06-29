@@ -49,7 +49,7 @@
       </div>
       <div class="col-md-9">
 
-
+          {if condition="$datas[0]['nickname']"}
 
           {foreach name="datas" item="data" key="k" }
 
@@ -66,7 +66,7 @@
 
 
                       <div class="col-xs-1" style="padding-top: 5%">
-                        {$k+1}、
+                          {$k+1}、
                       </div>
 
                       <div class="col-xs-2" style="padding: 0">
@@ -75,7 +75,7 @@
                       <div class="col-xs-8">
 
 
-                          {$data.nickname}：<a href="tel://{$data.tel}">{$data.tel}</a>
+                          {$data.nickname}：<a href="tel:{$data.tel}">{$data.tel}</a>
                           <div>
                               预定：{$data.seat}人
                           </div>
@@ -90,7 +90,13 @@
 
           </div><!-- /.box -->
 
-           {/foreach}
+          {/foreach}
+
+
+          {else /} 该行程无人预定
+          {/if}
+
+
 
 
         <center>

@@ -146,6 +146,10 @@ class Travel extends Publiccon
                         ),
 
                         'tel' => array(
+                            'value' =>  $data['tel'],
+                            'color' => '#FF0000'
+                        ),
+                        'location' => array(
                             'value' =>  $data['location'],
                             'color' => '#FF0000'
                         )
@@ -175,7 +179,7 @@ class Travel extends Publiccon
                         ),
 
                         'tel' => array(
-                            'value' =>  $data['location'],
+                            'value' =>  $reres['tel'],
                             'color' => '#FF0000'
                         )
                     ],

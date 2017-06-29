@@ -147,6 +147,17 @@ class Line extends Publiccon
             exit();
         }
 
+
+
+
+
+
+        $lines=db("schedule")->where("preson",session("user")['id'])->order("creattime DESC")->limit("0","5")->select();
+
+
+
+        $this->assign("lines",$lines);
+
         return $this->fetch();
     }
 
