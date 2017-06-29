@@ -673,7 +673,7 @@ class Query
      * @param string $type      JOIN类型
      * @return $this
      */
-    public function join($join, $condition = null, $type = 'INNER')
+    public function join($join, $condition = null, $type = 'LEFT')
     {
         if (empty($condition)) {
             // 如果为组数，则循环调用join

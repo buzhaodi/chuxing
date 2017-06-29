@@ -245,6 +245,11 @@ return [
     ],
     //创建行程成功 微信模板 id
     'wxcreatlinetemid'=>'Xh0UD_a8L2CFHiYG0-Q1Sq3yo6qDz04RZr6v4sjNaIo',
+    //预定行程成功 车主端 微信模板 id
+    'wxyudingchezhulinetemid'=>'xMZVDEf2NmatLGrZgG4PhEeRjdr9iQSG9I8UbrWHtXs',
+
+    //预定行程成功 乘客端 微信模板 id
+    'wxyudingchengkelinetemid'=>'RIetZpr_He0GV0FA2YeGoXyc5bY2lhnjoqerOJPEiS0',
 
 
     //短信配置

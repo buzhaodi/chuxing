@@ -262,8 +262,10 @@
                           <div class="form-group">
                               <label for="forwordlocation" class="col-xs-4 control-label" >选择地点:</label>
                               <div class="col-xs-8">
-                                  <select id="forwordlocation"  name="location" class="form-control">
-                                      <option>123123</option>
+                                  <select id="forwordlocation" onchange="getlocal(this)" name="" class="form-control">
+                                      {foreach $location as $key}
+                                      <option value="{$key.location}">{$key.location}</option>
+                                      {/foreach}
                                   </select>
                               </div>
                           </div>
@@ -277,7 +279,7 @@
 
                               <div class="col-xs-8">
 
-                                  <textarea id="remark" class="form-control" placeholder="请输入上车地点 或选择您之前5次出行的上车点"></textarea>
+                                  <textarea id="remark" class="form-control" name="location" placeholder="请输入上车地点 或选择您之前5次出行的上车点"></textarea>
 
                               </div>
                           </div>
@@ -343,6 +345,10 @@
     )
 
 
+   function getlocal(obj) {
+       var tempval=$(obj).val();
+       $("#remark").val(tempval)
+   }
 
 
     $(".shouqi").click(function () {

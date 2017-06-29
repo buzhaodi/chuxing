@@ -7,7 +7,7 @@ use think\Validate;
 class Line extends Publiccon
 {
 
-
+//创建行程
     public function creatline()
     {
 
@@ -167,17 +167,45 @@ class Line extends Publiccon
 
     //预定详情页面
     public function reserve($id){
-        $res=db("schedule")->find($id);
-        $res['time']= date('Y-m-d日 G点:i分',$res['time']);
+        $res=db("schedule")
+            ->field("s.time,s.seat,s.block,r.tel,r.location,u.nickname,u.headimgurl,r.seat")
+            ->alias('s')
+            ->join("chuxing_reserve r","s.id=r.lineid")
+            ->join("chuxing_user u","u.id=r.userid")
+            ->where("s.id={$id}")
+            ->select();
 
 
 
-        $this->assign("data",$res);
+
+        foreach ( $res as $k=>$v){
+            $res[$k]['time']= date('Y-m-d日 G点:i分',$res[$k]['time']);
+        }
+        $msg=db("schedule")->find($id);
+
+
+
+        $this->assign("msg",$msg);
+        $this->assign("datas",$res);
         return $this->fetch();
     }
 
+//预定详情乘客页
+    public function reservepassenger($id){
+//       echo $id;
+        $data=db("user")->alias('a')
+            ->field('a.nickname,a.tel,a.sex,r.seat,a.headimgurl')
+            ->join('chuxing_schedule s','a.id = s.preson')
+            ->join('chuxing_reserve r','s.id = r.lineid')
+            ->where("r.id={$id}")
+            ->find();
+
+//       echo db("user")->getLastSql();
 
 
+        $this->assign("data",$data);
+        return $this->fetch();
+    }
 
 
     //生成短连接
@@ -193,7 +221,7 @@ class Line extends Publiccon
 
 
 
-
+//拆分字符串 省市区
 
     private function chai($str)
     {
@@ -218,7 +246,7 @@ class Line extends Publiccon
 
     }
 
-
+//获得路线
     public function getline()
     {
 

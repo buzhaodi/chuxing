@@ -34,7 +34,7 @@ class Travel extends Publiccon
        }
        else if(!is_array($start)&&!is_array($end)){
 //           echo 3;
-           $lines=db("schedule")->where("time>".time())->order("creattime DESC ")->select();
+           $lines=db("schedule")->where(" block>0 AND time>".time())->order("creattime DESC ")->select();
        }
        else if(!is_array($start)&&is_array($end)){
 //           echo 4;
@@ -83,28 +83,124 @@ class Travel extends Publiccon
         }
 
 
+        $location=db("reserve")->order("time DESC")->limit("0","5")->select();
 
 
+        $this->assign("location",$location);
         $this->assign("lines",$lines);
         return $this->fetch();
     }
 
-
+//创建预定订单
     public function creatreserve(){
         $data=input();
         $model=db("reserve");
         $data['userid']=session("user")['id'];
 
+        $validate = new Validate([
+            'lineid'  => 'require|max:25',
+            'userid' => 'require',
+            'tel'=>'require|/^1[3-8]{1}[0-9]{9}$/',
+            'seat'=>'require',
+            'location'=>'require|min:10'
+        ],[
+            'lineid.require' => '出错了请联系管理员',
+            'userid.require'     => '请登录',
+            'tel.require'   => '联系电话必填',
+            'tel./^1[3-8]{1}[0-9]{9}$/'   => '请输入正确的手机号码',
+            'age.seat'  => '座位数必填',
+            'location.require'        => '上车地点必填,请必须超过10个数子',
+            'location.min'        => '上车地点必填,请必须超过10个数子!',
+        ]);
 
 
-        $res=$model->insert($data);
+        if (!$validate->check($data)) {
+           echo "<script> alert('".$validate->getError()."');history.go(-1)</script>";
+            die();
+        }
+
+
+
+
+
+        $res=$model->insertGetId($data);
         if($res){
-          $res=  db("schedule")->where('id',$data['lineid'])->setDec('block',$data['seat']);
-            if($res){
+          $ress=  db("schedule")->where('id',$data['lineid'])->setDec('block',$data['seat']);
+            if($ress){
+                $reres=db("user")->alias("u")->join("schedule s","u.id=s.preson")->where("s.id={$data['lineid']}")->find();
+
+                $senddata=[
+                    'touser'=>session("user")['openid'],
+                    'template_id'=>config("wxyudingchezhulinetemid"),
+                    'url'=>$_SERVER['HTTP_HOST']."/index/line/reserve?id={$data['lineid']}",
+
+                    'data'=>[
+                        'name' => array(
+                            'value' => ' 您好！',
+                            'color' => '#FF0000'
+                        ),
+
+                        'chengkename' => array(
+                            'value' => session("user")['nickname'],
+                            'color' => '#FF0000'
+                        ),
+
+                        'tel' => array(
+                            'value' =>  $data['location'],
+                            'color' => '#FF0000'
+                        )
+                    ],
+
+                ];
+
+                sendpost($senddata);
 
 
 
 
+                $senddata=[
+                    'touser'=>$reres['openid'],
+                    'template_id'=>config("wxyudingchengkelinetemid"),
+                    'url'=>$_SERVER['HTTP_HOST']."/index/line/reservepassenger?id={$res}",
+
+                    'data'=>[
+                        'name' => array(
+                            'value' => session("user")['nickname'].' 您好！',
+                            'color' => '#FF0000'
+                        ),
+
+                        'chezhuname' => array(
+                            'value' => $reres['nickname'],
+                            'color' => '#FF0000'
+                        ),
+
+                        'tel' => array(
+                            'value' =>  $data['location'],
+                            'color' => '#FF0000'
+                        )
+                    ],
+
+                ];
+
+                sendpost($senddata);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            $this->redirect("/index/line/reservepassenger/id/{$res}");
 
 
             }
@@ -112,7 +208,7 @@ class Travel extends Publiccon
 
 
         }else{
-            echo "预定失败";
+            echo "<script> alert('预定失败!');history.go(-1)</script>";
             die;
             }
 
