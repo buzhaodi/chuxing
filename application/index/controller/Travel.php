@@ -119,7 +119,7 @@ class Travel extends Publiccon
             die();
         }
 
-
+            $data['time']=time();
 
 
 
