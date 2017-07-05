@@ -18,8 +18,10 @@ class Index extends Publiccon
 
             $signPackage= $jssdk->GetSignPackage();
 
+            $ulines=db("schedule")->alias("s")->join("chuxing_reserve r","s.id=r.lineid")->where("r.userid=".session("user")['id'])->select();
 
-
+        
+                echo  db("schedule")->getLastSql();
 
 
             $this->assign("signPackage",$signPackage);
