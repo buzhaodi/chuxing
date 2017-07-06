@@ -10,7 +10,12 @@ class Line extends Publiccon
 //创建行程
     public function creatline()
     {
-
+        $re=db("user")->where("id",session("user")['id'])->find();
+        $status=$re['status'];
+        if($status!=3){
+            $this->redirect("index/seting/auth");
+            exit();
+        }
 
 
         $data = input();

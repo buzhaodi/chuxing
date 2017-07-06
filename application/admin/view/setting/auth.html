@@ -1,0 +1,139 @@
+{include file="top" /}
+<!-- Left side column. contains the logo and sidebar -->
+<link rel="stylesheet" type="text/css" href="/public/static/select/MultiPicker/MultiPicker.css?rev=@@hash"/>
+<style>
+  h4{
+    margin: 0;
+  }
+  p{
+    margin: 0;
+  }
+  .form-control{
+    display: inline-block;
+    width: 40%;
+  }
+  .changcity{
+
+    margin: 0;
+    padding: 0;
+  }
+  .btn-success{
+    height: 51px;
+    font-size: 2em;
+  }
+  .btn-warning{
+    font-size: 1.5em;
+  }
+  .btn{
+    margin-top: 10px;
+  }
+
+</style>
+
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <h1>
+        {:config("appname")}
+        <small>管理后台:车主信息审核</small>
+      </h1>
+
+    </section>
+
+      <div class="box-body">
+        <div class="form-group">
+
+        </div>
+        <center>
+
+          {foreach $users as $user}
+          <div class="col-sm-12">
+            <div class="box box-solid">
+              <div class="box-body">
+                <h4 style="background-color:#f7f7f7; font-size: 18px; text-align: center; padding: 7px 10px; margin-top: 0;">
+                  {$user.name}:{$user.cardid}
+                </h4>
+                <div class="media">
+                  <div class="media-left">
+
+                      <img src="{$user.zhengcardurl}" alt="Edura" class="media-object" style="width: 150px;height: auto;border-radius: 4px;box-shadow: 0 1px 3px rgba(0,0,0,.15);">
+
+                    <a href="https://themequarry.com/theme/edura-multipurpose-website-template-ASFEDA84" class="btn btn-success btn-xs">
+                      审核通过
+                    </a>
+                  </div>
+                  <div class="media-body">
+                    <div class="clearfix">
+                      <p class="pull-right">
+
+                          <img src="{$user.fancardurl}" alt="Edura" class="media-object" style="width: 150px;height: auto;border-radius: 4px;box-shadow: 0 1px 3px rgba(0,0,0,.15);">
+
+                      </p>
+
+                        <a href="https://themequarry.com/theme/edura-multipurpose-website-template-ASFEDA84" class="btn btn-success btn-xs">
+                          拒绝认证
+                        </a>
+
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          {/foreach}
+
+        </center>
+
+
+
+  </div>
+
+
+
+
+
+
+
+
+
+    <button type="button" id="modal" style="display: none" class="btn btn-default" data-toggle="modal" data-target="#modal-default">
+
+    </button>
+    <div class="modal fade in" id="modal-default" style="display: none; padding-right: 17px;">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">×</span></button>
+            <h4 class="modal-title">图片详情</h4>
+          </div>
+          <div class="modal-body">
+            <img id="headurl" style="width: 100%">
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default pull-left" data-dismiss="modal">关闭</button>
+            <button type="button" class="btn btn-primary">Save changes</button>
+          </div>
+        </div>
+        <!-- /.modal-content -->
+      </div>
+      <!-- /.modal-dialog -->
+    </div>
+
+
+<script>
+$(".media-object").click(function () {
+    var url=$(this).attr("src")
+    $("#headurl").attr("src",url)
+
+
+    $("#modal").click();
+})
+
+
+</script>
+  <!-- /.content-wrapper -->
+  {include file="footer" /}
+

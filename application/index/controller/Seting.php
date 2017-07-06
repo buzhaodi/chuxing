@@ -64,9 +64,50 @@ class Seting extends Publiccon
                 }
             }
 
+    public function getcardimg(){
+        $file = request()->file('headimg');
+        // 移动到框架应用根目录/public/uploads/ 目录下
+        $info = $file->move(ROOT_PATH . 'public' . DS . 'uploads/card');
+        if($info){
+            // 成功上传后 获取上传信息
+            // 输出 jpg
 
+            $src="/public/uploads/card/".$info->getSaveName();
+            $src=str_replace("\\","/",$src);
+            return json(array("status"=>'success','url'=>$src));
+
+
+
+        }else{
+            // 上传失败获取错误信息
+
+            return json(array("status"=>'error','msg'=>$file->getError()));
+        }
+    }
 
         public function auth(){
+                $data=input();
+                if($data){
+                    $data=array_filter($data);
+
+                    if(count($data)!=4){
+                        return $this->error("所有选项必填.包括身份证正/反面照片,姓名和身份证号");
+                    }else{
+                        $data['status']=2;
+                      $res=  db("user")->where("id",session("user")['id'])->update($data);
+                        if($res){
+                            session::clear();
+                            return $this->success("已经上传成功,等待管理员审核",url("/index/seting/index"));
+                        }
+
+                    }
+
+                    exit();
+                }
+
+
+
+
             return $this->fetch();
         }
 }

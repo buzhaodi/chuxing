@@ -1,0 +1,96 @@
+{include file="top" /}
+<!-- Left side column. contains the logo and sidebar -->
+<link rel="stylesheet" type="text/css" href="/public/static/select/MultiPicker/MultiPicker.css?rev=@@hash"/>
+<style>
+  h4{
+    margin: 0;
+  }
+  p{
+    margin: 0;
+  }
+  .form-control{
+    display: inline-block;
+    width: 40%;
+  }
+  .changcity{
+
+    margin: 0;
+    padding: 0;
+  }
+  .btn-success{
+    height: 51px;
+    font-size: 2em;
+  }
+  .btn-warning{
+    font-size: 1.5em;
+  }
+
+</style>
+
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <h1>
+        {:config("appname")}
+        <small>管理后台</small>
+      </h1>
+
+    </section>
+
+      <div class="box-body">
+        <div class="form-group">
+
+        </div>
+        <center>
+
+          <div class="small-box bg-aqua">
+            <div class="inner">
+              <h3>认证审核</h3>
+
+              <p>用来审核车主信息</p>
+            </div>
+            <div class="icon">
+              <i class="fa fa-shopping-cart"></i>
+            </div>
+            <a href="{:url('/admin/setting/auth')}" class="small-box-footer">
+              More info <i class="fa fa-arrow-circle-right"></i>
+            </a>
+          </div>
+
+          <div class="small-box bg-aqua">
+            <div class="inner">
+              <h3>用户管理</h3>
+
+              <p>禁用/解封账户</p>
+            </div>
+            <div class="icon">
+              <i class="fa fa-shopping-cart"></i>
+            </div>
+            <a href="{:url('/admin/setting/usermanger')}" class="small-box-footer">
+              More info <i class="fa fa-arrow-circle-right"></i>
+            </a>
+          </div>
+
+
+        </center>
+
+
+
+  </div>
+<div id="targetContainer"></div>
+<div id="targetContainer2"></div>
+
+<script src="/public/static/select/MultiPicker/city.js"></script>
+<script src="/public/static/select/MultiPicker/time.js"></script>
+<script src="/public/static/select/MultiPicker/MultiPicker.js"></script>
+<script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
+
+<script>
+
+
+
+</script>
+  <!-- /.content-wrapper -->
+  {include file="footer" /}
+

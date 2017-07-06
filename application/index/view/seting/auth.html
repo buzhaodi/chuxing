@@ -27,7 +27,7 @@
     border-top-color: #FFFFFF;
   }
   .collapsed-box{
-    margin: ;
+
   }
 
 </style>
@@ -45,6 +45,7 @@
 
       <div class="box-header with-border">
         <div class="col-xs-4"><h3 class="box-title">发布认证</h3></div>
+        <div class="col-xs-8">您还未实名认证,暂不能发布行程,请先进行实名认证</div>
 
         <!-- /.box-tools -->
       </div>
@@ -53,31 +54,49 @@
     </div>
 
 
-    <form class="form-horizontal">
+    <form class="form-horizontal" action="" method="post">
       <div class="form-group">
         <div class="col-sm-12">
           <button type="button"  style="margin-left: 12px" class="btn btn-default btn-sm">真实姓名</button>
-          <input type="text" class="form-control"  placeholder="请输入">
+          <input type="text" name="name" class="form-control"  placeholder="请输入">
         </div>
       </div>
 
         <div class="form-group">
           <div class="col-sm-12">
             <button type="button"  style="margin-left: 12px" class="btn btn-default btn-sm">身份证号</button>
-            <input type="text" class="form-control"  placeholder="请输入">
+            <input type="text" name="cardid" class="form-control"  placeholder="请输入">
           </div>
         </div>
+      <div class="form-group">
+        <div class="col-sm-12">
+          <button type="button"  style="margin-left: 12px" class="btn btn-default btn-sm">身份证正面照</button>
+          <img style="width: 4em;height: 4em" class="uploadimg" alt="点击上传">
+          <input type="file" class="form-control upimgimg" style="display: none" >
+          <input name="zhengcardurl" style="display: none" id="zhengcardurl" >
+
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-sm-12">
+          <button type="button"  style="margin-left: 12px" class="btn btn-default btn-sm">身份证反面照</button>
+          <img style="width: 4em;height: 4em" class="uploadimg" alt="点击上传">
+          <input type="file" class="form-control upimgimg" style="display: none" >
+          <input name="fancardurl" style="display: none" id="fancardurl" >
+
+        </div>
+      </div>
     <center>
-    <input type="checkbox"><span>我已经同意<a href="http://www.baidu.com">出行小怪兽拼车声明</a>,保证录入信息真实性</span>
+    <input type="checkbox" required><span>我已经同意<a href="http://www.baidu.com">出行小怪兽拼车声明</a>,保证录入信息真实性</span>
     </center>
 
 
       <div class="box-footer">
-        <button type="submit" class="btn btn-default">Cancel</button>
-        <button type="submit" class="btn btn-info pull-right">Sign in</button>
+        <button type="submit" class="btn btn-default">取消</button>
+        <button type="submit" class="btn btn-info pull-right">确定</button>
       </div>
 
-      </div>
+
       <!-- /.box-body -->
 
       <!-- /.box-footer -->
@@ -90,6 +109,43 @@
 
   <script>
       //选择时间按钮
+      $(".uploadimg").click(function () {
+          $(this).next().click();
+      })
+
+
+    $(".upimgimg").change(function () {
+        var formData = new FormData();
+        formData.append("headimg", this.files[0]);
+        var that=this
+        $.ajax({
+            url: "{:url('/index/seting/getcardimg')}",
+            type: "POST",
+            data: formData,
+
+            contentType: false,
+
+            processData: false,
+            success: function (data) {
+
+
+                if (data.status == "success") {
+                    $(that).prev().attr("src",data.url)
+                    $(that).next().val(data.url)
+
+                }
+                if (data.status == "error") {
+                    alert(data.msg);
+                }
+
+            },
+            error: function () {
+                alert("上传失败！");
+                $("#imgWait").hide();
+            }
+        });
+    })
+
 
 
 
