@@ -24,6 +24,7 @@
   .btn-warning{
     font-size: 1.5em;
   }
+
 </style>
 
   <!-- Content Wrapper. Contains page content -->
@@ -68,7 +69,10 @@
         </div>
 
         </center>
+        <h1 style="    margin: 0;    margin-bottom: 9px;">
 
+          <small>常用路线</small>
+        </h1>
 
 
     <!-- Main content -->
@@ -77,67 +81,25 @@
       <div class="row">
 
 
-
-        <div class="col-lg-3 col-xs-6">
+        {foreach $ulines as $uline}
+        <div class="col-lg-3 col-xs-6" onclick="totravel(this)" data-url="{:url('/index/travel/index/start/'.$uline['startcity'].'市'.$uline['startcounty'].'/end/'.$uline['tocity'].'市'.$uline['tocounty'])}  ">
           <!-- small box -->
           <div class="small-box bg-aqua">
             <div class="inner">
-              <h4>平顶山</h4>
+              <h4>{$uline.startcounty}</h4>
                 <p class="boxp">到</p>
-              <h4>郑州</h4>
+              <h4>{$uline.tocounty}</h4>
             </div>
             <div class="icon">
               <i class="ion ion-bag"></i>
             </div>
             <a href="#" class="small-box-footer">详细信息 <i class="fa fa-arrow-circle-right"></i></a>
           </div>
+
         </div>
+
         <!-- ./col -->
-        <div class="col-lg-3 col-xs-6">
-          <!-- small box -->
-          <div class="small-box bg-green">
-            <div class="inner">
-              <h4>郑州</h4>
-              <p class="boxp">到</p>
-              <h4>平顶山</h4>
-            </div>
-            <div class="icon">
-              <i class="ion ion-stats-bars"></i>
-            </div>
-            <a href="#" class="small-box-footer">详细信息 <i class="fa fa-arrow-circle-right"></i></a>
-          </div>
-        </div>
-        <!-- ./col -->
-        <div class="col-lg-3 col-xs-6">
-          <!-- small box -->
-          <div class="small-box bg-yellow">
-            <div class="inner">
-              <h4>南阳</h4>
-              <p class="boxp">到</p>
-              <h4>郑州</h4>
-            </div>
-            <div class="icon">
-              <i class="ion ion-person-add"></i>
-            </div>
-            <a href="#" class="small-box-footer">详细信息 <i class="fa fa-arrow-circle-right"></i></a>
-          </div>
-        </div>
-        <!-- ./col -->
-        <div class="col-lg-3 col-xs-6">
-          <!-- small box -->
-          <div class="small-box bg-red">
-            <div class="inner">
-              <h4>郑州</h4>
-              <p class="boxp">到</p>
-              <h4>南阳</h4>
-            </div>
-            <div class="icon">
-              <i class="ion ion-pie-graph"></i>
-            </div>
-            <a href="#" class="small-box-footer">详细信息 <i class="fa fa-arrow-circle-right"></i></a>
-          </div>
-        </div>
-        <!-- ./col -->
+        {/foreach}
 
 
 
@@ -158,6 +120,10 @@
 <script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
 
 <script>
+
+  function totravel(obj) {
+      location.href=$(obj).data("url")
+  }
 
 
     wx.config({
