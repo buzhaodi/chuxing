@@ -45,7 +45,11 @@ class Wechat extends \think\Controller
     //发送验证码方法  第一个参数 电话号 第二个参数 oppenid
     public function sendsms($tel,$oppenid){
 
+           $ttt= db("user")->where("tel",$tel)->find();
 
+           if($ttt){
+               return "该手机号已经注册,请换个手机号再注册吧";
+           }
 
             $test=db("validate")->where("oppenid='{$oppenid}'")->find();
 

@@ -52,8 +52,11 @@ class Setting extends Publiccon
 
 
 
+    public function complain(){
 
 
+        return $this->fetch();
+    }
 
 
 

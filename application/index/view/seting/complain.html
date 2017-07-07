@@ -72,13 +72,15 @@
                   </div>
                   <!-- /.box-header -->
                   <!-- form start -->
-                  <form role="form" action="{:url('/index/seting/')}">
+                  <form role="form" action="{:url('/index/seting/delcomplain')}">
                       <div class="box-body">
                           <div class="form-group">
                               <label for="exampleInputEmail1">投诉原因</label>
                               <input type="text" class="form-control" name="content" id="exampleInputEmail1" placeholder="请输入您的投诉理由">
-                              <input type="text" class="form-control" name="complainid" value="{$id}" style="display: none" >
-                              <input type="text" class="form-control" name="complainided" value="{$oid}"  style="display: none" >
+                              <input type="text" class="form-control" name="complainid" value="{:session('user')['id']}" style="display: none" >
+
+                              <input type="text" class="form-control" name="complainided" value="{$id}"  style="display: none" >
+                              <input type="text" class="form-control" name="orderid" value="{$oid}"  style="display: none" >
                           </div>
 
 
