@@ -12,11 +12,14 @@ class Line extends Publiccon
     {
         $re=db("user")->where("id",session("user")['id'])->find();
         $status=$re['status'];
-        if($status!=3){
+        if($status==1){
             $this->redirect("index/seting/auth");
             exit();
         }
-
+        if($status==2){
+            $this->redirect("index/seting/inreview");
+            exit();
+        }
 
         $data = input();
 

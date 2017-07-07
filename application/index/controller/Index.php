@@ -31,7 +31,17 @@ class Index extends Publiccon
 //               echo  db("schedule")->getLastSql();
 
 
+            $todaylines=db("schedule")
+                ->field("startcounty, tocounty,startcity,tocity,count(tocounty) as toto")
+                ->where("time>".time())
+                ->group("startcity,tocity")
+                ->select();
 
+
+
+
+
+            $this->assign("todaylines",$todaylines);
             $this->assign("ulines",$ulines);
             $this->assign("signPackage",$signPackage);
 

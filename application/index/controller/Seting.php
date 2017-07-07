@@ -110,4 +110,8 @@ class Seting extends Publiccon
 
             return $this->fetch();
         }
+
+        public function inreview(){
+            return $this->fetch();
+        }
 }

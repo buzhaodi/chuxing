@@ -59,7 +59,7 @@
 
                       <img src="{$user.zhengcardurl}" alt="Edura" class="media-object" style="width: 150px;height: auto;border-radius: 4px;box-shadow: 0 1px 3px rgba(0,0,0,.15);">
 
-                    <a href="https://themequarry.com/theme/edura-multipurpose-website-template-ASFEDA84" class="btn btn-success btn-xs">
+                    <a href="{:url('/admin/setting/auth/id/'.$user.id)}" class="btn btn-success btn-xs">
                       审核通过
                     </a>
                   </div>
@@ -71,7 +71,7 @@
 
                       </p>
 
-                        <a href="https://themequarry.com/theme/edura-multipurpose-website-template-ASFEDA84" class="btn btn-success btn-xs">
+                        <a href="#" class="btn btn-success btn-xs ju"  data-toggle="modal" data-id="{$user.id}" data-target="#modal-ju">
                           拒绝认证
                         </a>
 
@@ -122,7 +122,30 @@
       <!-- /.modal-dialog -->
     </div>
 
-
+    <div class="modal fade in" id="modal-ju" style="display: none; padding-right: 17px;">
+      <div class="modal-dialog" style="    margin-top: 16em;">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">×</span></button>
+            <h4 class="modal-title">拒绝通过</h4>
+          </div>
+          <form action="{:url('admin/setting/authrefuse')}">
+          <div class="modal-body">
+          拒绝理由:
+            <input style="display: none" id="juid" name="id">
+            <textarea name="refuse"></textarea>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default pull-left" data-dismiss="modal">关闭</button>
+            <button type="submit" class="btn btn-default ">提交</button>
+          </div>
+          </form>
+        </div>
+        <!-- /.modal-content -->
+      </div>
+      <!-- /.modal-dialog -->
+    </div>
 <script>
 $(".media-object").click(function () {
     var url=$(this).attr("src")
@@ -132,6 +155,9 @@ $(".media-object").click(function () {
     $("#modal").click();
 })
 
+  $(".ju").click(function () {
+     $("#juid").val( $(this).data("id"))
+  })
 
 </script>
   <!-- /.content-wrapper -->
