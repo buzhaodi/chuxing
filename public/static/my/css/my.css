@@ -1,0 +1,17 @@
+.bg-aqua, .callout.callout-info, .alert-info, .label-info, .modal-info .modal-body {
+    background-color: #b0c100 !important;
+}
+.btn-success {
+    background-color: #9dae46;
+    border-color: #9dae46;
+}
+.btn-warning {
+    background-color: #9e91a5;
+    border-color: #9e91a5;
+}
+.skin-blue .main-header .navbar {
+    background-color: #728794;
+}
+.skin-blue .main-header li.user-header {
+    background-color: #728794;
+}

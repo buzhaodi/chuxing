@@ -1,5 +1,5 @@
 <?php
-namespace app\index\controller;
+namespace app\admin\controller;
 use think\Session;
 
 class Publiccon extends \think\Controller
@@ -13,7 +13,12 @@ class Publiccon extends \think\Controller
 
 
 	       $this->redirect($url);
+       }else{
+	       if(session("user")['isadmin']!=2){
+                return $this->error("管理员才能进哟");
+           }
        }
+
 
     }
 		

@@ -62,6 +62,12 @@ function getaccess_token(){
     return $access_token;
 }
 
+//获得jsapi_ticket
+
+
+
+
+
 //获取用户详情
 function getweixinuser($openid){
 
@@ -90,7 +96,7 @@ function getoppenid($code){
     return $url;
 }
 
-
+//创建短连接
 function creatshorta($url){
     $url ="http://50r.cn/urls/add.json?url=".$url;
 
@@ -170,6 +176,8 @@ function curl_post_send_information( $token,$vars,$second=120,$aHeader=array())
 }
 
 
+
+//发送模板消息简单版
 function sendpost($data){
 
     $token=getaccess_token();
@@ -181,5 +189,28 @@ function sendpost($data){
 
 }
 
+//拆分省市县
+function chai($str)
+{
+    $str=str_replace("-","",$str);
+    $temp = explode("省", $str);
+    if (!empty($temp[1])) {
+        $province = $temp[0];
+        $temp = explode("市", $temp[1]);
+
+        $city = $temp[0];
+        $county = $temp[1];
+        return ['province' => $province, 'city' => $city, 'county' => $county];
+    } else {
+
+        $temp = explode("市", $temp[0]);
+
+        $city = $temp[0];
+        $county = $temp[1];
+        return ['province' => "", 'city' => $city, 'county' => $county];
+    }
+
+
+}
 
 

@@ -2,7 +2,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>AdminLTE 2 | Dashboard</title>
+    <title>{:config("appname")}</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.6 -->
@@ -39,12 +39,14 @@
 </head>
 <style>
     .headerspan{
-       color: black;
+       color: white;
         font-weight: bold;
         font-size: 1.5em;
 
 
     }
+
+
 </style>
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
@@ -53,16 +55,22 @@
 
         <!-- Header Navbar: style can be found in header.less -->
 
-            <div class="container" style="background-color:rgb(57, 155, 199);;padding-top: 5px;padding-bottom: 5px">
+            <div class="container" style="background-color:#728794;padding-top: 5px;padding-bottom: 5px">
                 <div class="col-xs-1">
+                    <a href="{:url('/index/seting')}">
                     <svg class="icon" style=" color: white;   margin-left: -1.5em; width: 1.8em; height: 1.8em;vertical-align: middle;fill: currentColor;overflow: hidden;" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2999"><path d="M660.312309 532.671809c64.350177-47.370891 106.355548-123.384122 106.355548-209.238488 0-143.348825-116.633033-259.978103-259.988755-259.978103S246.690346 180.084495 246.690346 323.434344c0 86.900186 43.014392 163.770947 108.706178 210.989365-153.870624 60.617589-263.214348 210.381521-263.214348 385.513214 0 21.524223 17.454226 38.977733 38.97933 38.977733 21.526128 0 38.978307-17.453511 38.978307-38.977733 0-185.562253 150.969432-336.543919 336.539288-336.543919 1.60768 0 3.149866-0.209778 4.748335-0.246617 0.809468 0.056282 1.570839 0.246617 2.389518 0.246617 185.569856 0 336.537242 150.981666 336.537242 336.543919 0 21.524223 17.454226 38.977733 38.980354 38.977733 21.525105 0 38.97933-17.453511 38.97933-38.977733C928.312857 743.015468 816.674786 592.033801 660.312309 532.671809zM324.647983 323.434344c0-100.375082 81.660111-182.021613 182.030095-182.021613s182.030095 81.647555 182.030095 182.021613c0 100.356662-81.660111 182.003194-182.030095 182.003194S324.647983 423.789982 324.647983 323.434344z" p-id="3000"></path></svg>
+                    </a>
                 </div>
                 <div class="col-xs-2">
                 </div>
                 <div class="col-xs-7">
-                   <span class="headerspan">郑州</span>
-                    <svg t="1498223492482" class="icon" style="color: white;margin-top: -10px;width: 1.5em; height: 1.5em;vertical-align: middle;fill: currentColor;overflow: hidden;" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2539"><path d="M89.844 429.155h846.16c46.687 0 84.616-37.886 84.616-84.615 0-46.728-37.93-84.615-84.616-84.615H295.413l105.379-105.397c34.127-34.129 34.127-89.452 0-123.578-34.128-34.086-89.41-34.086-123.536 0L30.101 278.104c-20.838 20.862-28.897 49.675-24.228 76.72 5.084 41.875 40.765 74.331 83.97 74.331z m857.29 169.98a87.237 87.237 0 0 0-26.734-0.749H89.844c-46.688 0-84.615 37.64-84.615 84.081 0 46.437 37.928 84.08 84.615 84.08H727.3l-104.89 105.52c-34.043 34.333-34.043 90.026 0 124.362 34.127 34.333 89.408 34.333 123.62 0L993.1 747.746a87.653 87.653 0 0 0 18.673-27.869 83.231 83.231 0 0 0 8.847-37.41c0-42.685-32.051-77.911-73.486-83.332z"  p-id="2540"></path></svg>
-                   <span  class="headerspan">平顶山</span>
+                   <span class="headerspan" >{$start['city']?$start['city']:""}</span>
+                    {if condition="!empty($start['city']) OR !empty($end['city'])"}
+                    <svg t="1498223492482" class="icon changecity" style="color: #70eaa5;margin-top: -10px;width: 1.5em; height: 1.5em;vertical-align: middle;fill: currentColor;overflow: hidden;" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2539"><path d="M89.844 429.155h846.16c46.687 0 84.616-37.886 84.616-84.615 0-46.728-37.93-84.615-84.616-84.615H295.413l105.379-105.397c34.127-34.129 34.127-89.452 0-123.578-34.128-34.086-89.41-34.086-123.536 0L30.101 278.104c-20.838 20.862-28.897 49.675-24.228 76.72 5.084 41.875 40.765 74.331 83.97 74.331z m857.29 169.98a87.237 87.237 0 0 0-26.734-0.749H89.844c-46.688 0-84.615 37.64-84.615 84.081 0 46.437 37.928 84.08 84.615 84.08H727.3l-104.89 105.52c-34.043 34.333-34.043 90.026 0 124.362 34.127 34.333 89.408 34.333 123.62 0L993.1 747.746a87.653 87.653 0 0 0 18.673-27.869 83.231 83.231 0 0 0 8.847-37.41c0-42.685-32.051-77.911-73.486-83.332z" p-id="2540"></path></svg>
+                    {else/}
+                    <span class="headerspan" style="margin-left: 20px">所有路线</span>
+                    {/if}
+                   <span  class="headerspan" >{$end['city']?$end['city']:""}</span>
                 </div>
                 <div class="col-xs-1">
                     <a href="#" class="sidebar-toggle" data-toggle="control-sidebar" style="    margin: 0;    padding: 0;    color: white;    font-size: 1.4em;"></a>
@@ -74,7 +82,7 @@
 
     </header>
 <!-- Left side column. contains the logo and sidebar -->
-  {include file="left" /}
+
 
 <style>
 .jumbotron{
@@ -85,6 +93,52 @@
     background-color: #FFF;
     padding-left: 21px;
 }
+.timeline-inverse{
+        padding-top: 30px;
+    }
+.time-label{
+    margin-top: 36px;
+}
+.timeline:before{
+    left: 0px;
+}
+.timeline>li>.timeline-item{
+    margin-left: 12px;
+    margin-right: -12px;
+}
+.timelinecity{
+    /*font-size: 16px;*/
+    float: left;
+    margin-left: 10px;
+
+}
+.content-wrapper{
+    padding-left: 10px;
+    padding-right: 10px;
+}
+.shouqiall{
+        position: fixed;
+        right: 7px;
+        top: 64px;
+        width: 55px;
+        font-size: 0.3em;
+        padding-left: 0;
+        padding-right: 0;
+        z-index: 99999;
+
+    }
+.topanddown{
+    position: absolute;
+    top:28px;
+
+
+
+
+}
+
+
+
+
 </style>
 
   <!-- Content Wrapper. Contains page content -->
@@ -92,8 +146,180 @@
   <div class="content-wrapper">
 
 
-      
+      <div class=" " id="">
+          <!-- The timeline -->
+
+          <ul class="timeline timeline-inverse">
+              <button type="hidden" id="modal" data-toggle="modal" data-target="#modal-default">
+              <button class="btn btn-success pull-right shouqiall">收起所有</button>
+
+
+
+
+
+
+              {foreach $lines as $line}
+
+
+              <li class="time-label">
+                  <span class="" style="width: 6px;    height: 6px;    margin-left: -3px;background-color: rgb(0, 115, 183);"></span>
+                  <span class="bg-purple">{$line.time}</span>
+                  <span class="bg-orange">{$line.car}</span>
+                  <span class="bg-orange seat" >余座:<span>{$line.block}</span></span>
+                  <span class="bg-blue">费用:{$line.money}/人</span>
+              </li>
+              <li>
+
+                  <div class="timeline-item">
+
+                      <div style="margin-top: 10px; overflow: hidden">
+
+                          <div class="timelinecity citylift">{$line.startcounty}/{$line.placeofdeparture}</div>
+                          <div class="timelinecity center topanddown ">
+
+                              <svg class="icon" style="width: 2em; height: 2em;color: #399BC7;vertical-align: middle;fill: currentColor;overflow: hidden;" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1853"><path d="M830.503 130.7h-636.187c-35.135 0-63.618 28.483-63.618 63.618v636.187c0 35.14 28.483 63.618 63.618 63.618h636.187c35.135 0 63.618-28.477 63.618-63.618v-636.187c0-35.135-28.483-63.618-63.618-63.618v0zM301.83 545.403h115.234v-60.804h39.229v60.804h112.292v36.286h-112.292v86.303c38.574-4.902 78.292-10.132 119.156-15.691 0 11.444 0.652 24.193 1.962 38.247-92.516 11.438-185.519 24.029-279.013 37.758l-11.28-41.189c41.681-4.253 84.993-9.070 129.945-14.467v-90.962h-115.234v-36.286zM503.858 358.086c26.149 38.577 50.668 78.786 73.553 120.627-12.423 5.884-25.009 12.422-37.758 19.614-5.722-12.095-11.607-24.029-17.652-35.796-70.45 6.865-137.299 13.568-200.556 20.105l-17.652-40.701c18.959-10.134 35.306-26.314 49.036-48.547 12.583-18.959 24.924-40.209 37.022-63.746h-91.451v-36.286h281.463v36.286h-143.674c-24.356 41.355-49.036 78.948-74.045 112.781 46.585-3.434 93.984-7.681 142.203-12.749-10.788-18.795-22.066-37.102-33.836-54.921l33.347-16.671zM606.341 316.897h39.719v312.356h-39.719v-312.356zM712.749 263.938h40.701v414.841c0 40.861-19.778 61.296-59.334 61.296-13.404 0-37.267-0.165-71.593-0.492-1.962-13.404-4.414-28.115-7.356-44.132 28.765 2.613 50.996 3.922 66.687 3.922 20.595 0.325 30.893-10.298 30.893-31.874v-403.562z" p-id="1854"></path></svg>
+                              <div style="margin-top: -3px;z-index: 999;display: inline-block">{$line.distance}km</div>
+                          </div>
+                          <div class="timelinecity cityright" style="margin-top: 25px">{$line.tocounty}/{$line.destination}</p> </div>
+                      </div>
+                      <div class="box box-warning" style="margin-bottom: 0;">
+                          <div class="box-header with-border">
+                              <h3 class="box-title">路线</h3>
+
+                              <div class="box-tools pull-right">
+                                  <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                                  </button>
+                              </div>
+
+                          </div>
+
+                          <div class="box-body">
+                              {$line.road}
+                          </div>
+                          <div class="box-body">
+                              备注信息:{$line.remark}
+                          </div>
+                          <!-- /.box-body -->
+                      </div>
+
+
+
+                      <div class="timeline-footer">
+                          <a class="btn btn-success btn-sm shouqi">收起</a>
+                          <a class="btn btn-primary btn-sm pull-right reserve" data-id="{$line.id}">预定</a>
+                      </div>
+                  </div>
+              </li>
+
+
+
+
+              {/foreach}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+          </ul>
+      </div>
+      <form method="post" action="{:url('index/travel/creatreserve')}">
+      <div class="modal fade" id="modal-default" style="display: none;">
+          <div class="modal-dialog">
+
+              <div class="modal-content">
+                  <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">×</span></button>
+                      <h4 class="modal-title">预定提醒</h4>
+                  </div>
+
+                  <div class="modal-body">
+
+
+                        <input type="hidden" name="lineid" id="resid" >
+                      <div class="box-body">
+                          <div class="form-group">
+                              <label for="tel" class="col-xs-4 control-label">手机号:</label>
+
+                              <div class="col-xs-8">
+                                  <input type="number" name="tel" id="tel" class="form-control" value="{$Think.session.user.tel}" placeholder="">
+                              </div>
+                          </div>
+                          <div class="form-group">
+                              <label for="preson" class="col-xs-4 control-label">预定人数:</label>
+                              <div class="col-xs-8">
+                              <select id="preson" name="seat" class="form-control">
+
+                              </select>
+                              </div>
+                          </div>
+
+
+                          <div class="form-group">
+                              <label for="forwordlocation" class="col-xs-4 control-label" >选择地点:</label>
+                              <div class="col-xs-8">
+                                  <select id="forwordlocation" onchange="getlocal(this)" name="" class="form-control">
+                                      {foreach $location as $key}
+                                      <option value="{$key.location}">{$key.location}</option>
+                                      {/foreach}
+                                  </select>
+                              </div>
+                          </div>
+
+
+
+
+
+                          <div class="form-group">
+                              <label for="remark" class="col-xs-4 control-label">备注:</label>
+
+                              <div class="col-xs-8">
+
+                                  <textarea id="remark" class="form-control" name="location" placeholder="请输入上车地点 或选择您之前5次出行的上车点"></textarea>
+
+                              </div>
+                          </div>
+
+
+
+
+                      </div>
+
+
+
+
+
+
+
+
+
+
+                  </div>
+                  <div class="modal-footer">
+
+                      <button type="button" class="btn btn-default pull-left" data-dismiss="modal">取消</button>
+                      <button type="submit" id="submitres" class="btn btn-primary" >确定</button>
+
+                  </div>
+              </div>
+
+              <!-- /.modal-content -->
+          </div>
+          <!-- /.modal-dialog -->
+      </div>
+      </form>
   </div>
+
 
 
 
@@ -106,23 +332,45 @@
 
 <script>
 
+    $(".reserve").click(
+        function () {
+          var seat=  $(this).parents().prev(). find(".seat").find("span").html()
 
-      var url=$("#linea").html()
-
-        $.post("{:url('index/line/getduan')}",
-            {
-                url:url
-            },function (data) {
-                if(!data.error){
-                    $("#linea").html(data.url)
-                }
-            })
+            for(var i=1;i<=seat;i++){
+              $("#preson").append(" <option value='"+i+"'>"+i+"</option>")
 
 
+            }
+           var id= $(this).data("id")
+            $("#resid").val(id)
 
 
- 
 
+            $("#modal").click()
+        }
+    )
+
+
+   function getlocal(obj) {
+       var tempval=$(obj).val();
+       $("#remark").val(tempval)
+   }
+
+
+    $(".shouqi").click(function () {
+        $(this).parent().prev().find("button").click()
+    })
+
+    $(".shouqiall").click(function () {
+        $(".btn-box-tool").each(function () {
+            $(this).click()
+        })
+    })
+
+
+    $(".changecity").click(function () {
+        window.location.href="{:url('/index/travel/index',"start=$endcity&end=$startcity");}"
+    })
 
 
 </script>

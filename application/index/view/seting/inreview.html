@@ -1,0 +1,85 @@
+{include file="top" /}
+<!-- Left side column. contains the logo and sidebar -->
+
+
+<!-- Content Wrapper. Contains page content -->
+<style>
+  .form-control{
+    display: inline-block;
+    width: 70%;
+  }
+  .btn{
+    margin-top: -3px;
+  }
+  label{
+    position: relative;
+    top: -48px;
+    margin-right: 1.1em;
+    margin-left: 0.7em;
+  }
+  #line{
+    height: 100px;
+  }
+  p{
+    font-size: 1.1em;
+  }
+  .box.box-default {
+    border-top-color: #FFFFFF;
+  }
+  .collapsed-box{
+
+  }
+
+</style>
+<link rel="stylesheet" type="text/css" href="/public/static/select/MultiPicker/MultiPicker.css?rev=@@hash"/>
+
+
+
+<div class="content-wrapper">
+
+  <div class="box box-info">
+
+    <!-- /.box-header -->
+    <!-- form start -->
+    <div class="box box-default collapsed-box">
+
+      <div class="box-header with-border">
+        <div class="col-xs-4"><h3 class="box-title">发布认证</h3></div>
+        <div class="col-xs-8">您提交的实名认证正在审核中.</div>
+
+        <!-- /.box-tools -->
+      </div>
+
+
+    </div>
+
+      您提交的实名认证正在审核中,我们会尽快处理.给您带来的不变 尽请见谅.
+
+      您可以:
+    <div class="col-12-xs" style="padding-bottom: 10px">
+      <center>
+        <a style="margin-top:5px " href="{:url('/index/index')}" class="btn btn-primary"><i class="fa fa-download"></i> 去拼车</a>
+        或
+        <a style="margin-top:5px " href="#" class="btn btn-primary" onclick="WeixinJSBridge.call('closeWindow');"><i class="fa fa-download"></i> 关闭当前页</a>
+      </center>
+
+    </div>
+
+  </div>
+
+
+
+  <script>
+      //选择时间按钮
+
+
+
+
+
+  </script>
+
+
+
+</div>
+<!-- /.content-wrapper -->
+{include file="footer" /}

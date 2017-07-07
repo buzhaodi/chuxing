@@ -58,15 +58,11 @@
                 <!-- /.box-tools -->
             </div>
             <!-- /.box-header -->
-            <div class="box-body">
-                郑州-平顶山
+            {foreach $lines as $v}
+            <div class="box-body getotherline" data-id="{$v.id}">
+               {$v.placeofdeparture}-{$v.destination}
             </div>
-            <div class="box-body">
-                郑州-平顶山
-            </div>
-            <div class="box-body">
-                郑州-平顶山
-            </div>
+            {/foreach}
 
         </div>
 
@@ -370,7 +366,7 @@
                 $.ajax({
                     async: false,
                     type: "GET",
-                    url: "http://restapi.amap.com/v3/config/district?keywords=" + start + "&subdistrict=" + startnum + "&key=1491272c53955352d608aff9136780c4",
+                    url: "http://restapi.amap.com/v3/config/district?keywords=" + start + "&subdistrict=" + startnum + "&key={:config('gaodekey')}",
                     complete: function (data) {
 
                     },
@@ -383,7 +379,7 @@
                 $.ajax({
                     async: false,
                     type: "GET",
-                    url: "http://restapi.amap.com/v3/config/district?keywords=" + end + "&subdistrict=" + endnum + "&key=1491272c53955352d608aff9136780c4",
+                    url: "http://restapi.amap.com/v3/config/district?keywords=" + end + "&subdistrict=" + endnum + "&key={:config('gaodekey')}",
                     complete: function (data) {
 
                     },
@@ -538,6 +534,14 @@
         })
 
 
+        $(".getotherline").click(
+            function () {
+              var id=$(this).data('id')
+
+                gethasline(1,id,0,0,0)
+            }
+        )
+
         //两种方法  type ==1 穿id  type==2 传一个数组 格式['河南省郑州市中原区','河南省平顶山市卫东区'] type==3获取最近的一次出行信息
         function gethasline(type, datas,start,end,strategy) {
 
@@ -552,7 +556,7 @@
                 success: function (data) {
                     if(data==null){
 
-                        $.get("http://restapi.amap.com/v3/direction/driving?key=1491272c53955352d608aff9136780c4&origin=" + start + "&destination=" + end + "&extensions=base&strategy=" + strategy,
+                        $.get("http://restapi.amap.com/v3/direction/driving?key={:config('gaodekey')}&origin=" + start + "&destination=" + end + "&extensions=base&strategy=" + strategy,
                             function (data) {
                                 console.log(data)
 

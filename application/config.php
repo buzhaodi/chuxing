@@ -17,7 +17,7 @@ return [
     // 应用调试模式
     'app_debug'              => true,
     // 应用Trace
-    'app_trace'              => false,
+    'app_trace'              => true,
     // 应用模式状态
     'app_status'             => '',
     // 是否支持多模块
@@ -245,6 +245,11 @@ return [
     ],
     //创建行程成功 微信模板 id
     'wxcreatlinetemid'=>'Xh0UD_a8L2CFHiYG0-Q1Sq3yo6qDz04RZr6v4sjNaIo',
+    //预定行程成功 车主端 微信模板 id
+    'wxyudingchezhulinetemid'=>'xMZVDEf2NmatLGrZgG4PhEeRjdr9iQSG9I8UbrWHtXs',
+
+    //预定行程成功 乘客端 微信模板 id
+    'wxyudingchengkelinetemid'=>'RIetZpr_He0GV0FA2YeGoXyc5bY2lhnjoqerOJPEiS0',
 
 
     //短信配置
@@ -262,6 +267,10 @@ return [
         //REST版本号
         'softVersion'=>'2013-12-26'
 
-]
+],
 
+
+
+    //高德地图key
+    'gaodekey'=>'1491272c53955352d608aff9136780c4',
 ];
