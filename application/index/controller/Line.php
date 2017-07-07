@@ -213,7 +213,7 @@ class Line extends Publiccon
     public function reservepassenger($id){
 //       echo $id;
         $data=db("user")->alias('a')
-            ->field('a.nickname,a.tel,a.sex,r.seat,a.headimgurl')
+            ->field('a.nickname,a.tel,a.sex,r.seat,a.headimgurl,a.id,s.id as oid')
             ->join('chuxing_schedule s','a.id = s.preson')
             ->join('chuxing_reserve r','s.id = r.lineid')
             ->where("r.id={$id}")

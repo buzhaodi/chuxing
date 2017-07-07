@@ -38,7 +38,7 @@ class Travel extends Publiccon
        }
        else if(!is_array($start)&&is_array($end)){
 //           echo 4;
-           $lines=db("schedule")->where("startcity='{$end["city"]}' AND block>0 AND time>".time())->order("(startcounty='{$end['county']}')  DESC,creattime DESC ")->select();
+           $lines=db("schedule")->where("tocity='{$end["city"]}' AND block>0 AND time>".time())->order("(startcounty='{$end['county']}')  DESC,creattime DESC ")->select();
        }
 
 //        echo db()->getLastSql();

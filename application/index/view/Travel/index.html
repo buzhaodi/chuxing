@@ -57,13 +57,19 @@
 
             <div class="container" style="background-color:#728794;padding-top: 5px;padding-bottom: 5px">
                 <div class="col-xs-1">
+                    <a href="{:url('/index/seting')}">
                     <svg class="icon" style=" color: white;   margin-left: -1.5em; width: 1.8em; height: 1.8em;vertical-align: middle;fill: currentColor;overflow: hidden;" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2999"><path d="M660.312309 532.671809c64.350177-47.370891 106.355548-123.384122 106.355548-209.238488 0-143.348825-116.633033-259.978103-259.988755-259.978103S246.690346 180.084495 246.690346 323.434344c0 86.900186 43.014392 163.770947 108.706178 210.989365-153.870624 60.617589-263.214348 210.381521-263.214348 385.513214 0 21.524223 17.454226 38.977733 38.97933 38.977733 21.526128 0 38.978307-17.453511 38.978307-38.977733 0-185.562253 150.969432-336.543919 336.539288-336.543919 1.60768 0 3.149866-0.209778 4.748335-0.246617 0.809468 0.056282 1.570839 0.246617 2.389518 0.246617 185.569856 0 336.537242 150.981666 336.537242 336.543919 0 21.524223 17.454226 38.977733 38.980354 38.977733 21.525105 0 38.97933-17.453511 38.97933-38.977733C928.312857 743.015468 816.674786 592.033801 660.312309 532.671809zM324.647983 323.434344c0-100.375082 81.660111-182.021613 182.030095-182.021613s182.030095 81.647555 182.030095 182.021613c0 100.356662-81.660111 182.003194-182.030095 182.003194S324.647983 423.789982 324.647983 323.434344z" p-id="3000"></path></svg>
+                    </a>
                 </div>
                 <div class="col-xs-2">
                 </div>
                 <div class="col-xs-7">
                    <span class="headerspan" >{$start['city']?$start['city']:""}</span>
+                    {if condition="!empty($start['city']) OR !empty($end['city'])"}
                     <svg t="1498223492482" class="icon changecity" style="color: #70eaa5;margin-top: -10px;width: 1.5em; height: 1.5em;vertical-align: middle;fill: currentColor;overflow: hidden;" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2539"><path d="M89.844 429.155h846.16c46.687 0 84.616-37.886 84.616-84.615 0-46.728-37.93-84.615-84.616-84.615H295.413l105.379-105.397c34.127-34.129 34.127-89.452 0-123.578-34.128-34.086-89.41-34.086-123.536 0L30.101 278.104c-20.838 20.862-28.897 49.675-24.228 76.72 5.084 41.875 40.765 74.331 83.97 74.331z m857.29 169.98a87.237 87.237 0 0 0-26.734-0.749H89.844c-46.688 0-84.615 37.64-84.615 84.081 0 46.437 37.928 84.08 84.615 84.08H727.3l-104.89 105.52c-34.043 34.333-34.043 90.026 0 124.362 34.127 34.333 89.408 34.333 123.62 0L993.1 747.746a87.653 87.653 0 0 0 18.673-27.869 83.231 83.231 0 0 0 8.847-37.41c0-42.685-32.051-77.911-73.486-83.332z" p-id="2540"></path></svg>
+                    {else/}
+                    <span class="headerspan" style="margin-left: 20px">所有路线</span>
+                    {/if}
                    <span  class="headerspan" >{$end['city']?$end['city']:""}</span>
                 </div>
                 <div class="col-xs-1">
@@ -144,7 +150,7 @@
           <!-- The timeline -->
 
           <ul class="timeline timeline-inverse">
-
+              <button type="hidden" id="modal" data-toggle="modal" data-target="#modal-default">
               <button class="btn btn-success pull-right shouqiall">收起所有</button>
 
 
@@ -313,7 +319,7 @@
       </div>
       </form>
   </div>
-    <button type="hidden" id="modal" data-toggle="modal" data-target="#modal-default">
+
 
 
 

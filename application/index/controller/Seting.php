@@ -114,4 +114,24 @@ class Seting extends Publiccon
         public function inreview(){
             return $this->fetch();
         }
+
+
+
+    public function complain($id,$oid){
+
+
+        $this->assign("id",$id);
+        $this->assign("oid",$oid);
+        return $this->fetch();
+    }
+
+
+    public function delcomplain($complainid,$complainided,$content){
+
+
+
+        
+    }
+
+
 }
