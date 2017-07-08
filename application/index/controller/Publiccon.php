@@ -14,6 +14,14 @@ class Publiccon extends \think\Controller
 
 	       $this->redirect($url);
        }
+       else{
+
+	       if(session::get('user')['ftime']>time()){
+
+
+               $this->redirect(url('/index/emptytype/feng'));
+           }
+       }
 
     }
 		

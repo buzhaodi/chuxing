@@ -82,7 +82,9 @@
                           <div>
                               留言：{$data.location}
                           </div>
-
+                          {if condition="$iscom eq 1"}
+                          <h5 class="description-header" style="margin-top: 8px">  <a class="btn btn-danger btn-sm" href="/index/seting/complain/id/{$data.id}/oid/{$data.oid}">投诉乘客</a></h5>
+                          {/if}
                       </div>
                   </div>
 

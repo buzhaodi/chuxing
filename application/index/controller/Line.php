@@ -187,7 +187,7 @@ class Line extends Publiccon
     //预定详情页面
     public function reserve($id){
         $res=db("schedule")
-            ->field("s.time,s.seat,s.block,r.tel,r.location,u.nickname,u.headimgurl,r.seat")
+            ->field("s.time,s.seat,s.block,r.tel,r.location,u.nickname,u.headimgurl,r.seat,u.id,r.id as oid")
             ->alias('s')
             ->join("chuxing_reserve r","s.id=r.lineid")
             ->join("chuxing_user u","u.id=r.userid")
@@ -200,6 +200,11 @@ class Line extends Publiccon
         foreach ( $res as $k=>$v){
             $res[$k]['time']= date('Y-m-d日 G点:i分',$res[$k]['time']);
         }
+
+        input("iscom")?$iscom= input("iscom"):$iscom=0  ;
+
+        $this->assign("iscom",$iscom);
+
         $msg=db("schedule")->find($id);
 
 
@@ -222,6 +227,9 @@ class Line extends Publiccon
 //       echo db("user")->getLastSql();
 
 
+        input("iscom")?$iscom= input("iscom"):$iscom=0  ;
+
+        $this->assign("iscom",$iscom);
         $this->assign("data",$data);
         return $this->fetch();
     }

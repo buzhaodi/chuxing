@@ -47,32 +47,34 @@
         </div>
         <center>
 
-
+          {foreach $coms as $com}
           <div class="col-sm-12">
             <div class="box box-solid">
               <div class="box-body">
                 <h4 style="background-color:#f7f7f7; font-size: 18px; text-align: center; padding: 7px 10px; margin-top: 0;">
-                  申诉理由:111
+                  投诉原因:{$com.content}
                 </h4>
                 <div class="media">
                   <div class="media-left">
+                        投诉人:{$com.complainername}
+                        联系电话:<a href="tel:{$com.complainertel}">{$com.complainertel}</a>
+                      <img src="{$com.complainercard}" alt="暂无图片" class="media-object" style="width: 150px;height: auto;border-radius: 4px;box-shadow: 0 1px 3px rgba(0,0,0,.15);">
 
-                      <img src="{$user.zhengcardurl}" alt="Edura" class="media-object" style="width: 150px;height: auto;border-radius: 4px;box-shadow: 0 1px 3px rgba(0,0,0,.15);">
-
-                    <a href="{:url('/admin/setting/auth/id/'.$user.id)}" class="btn btn-success btn-xs">
-                      审核通过
+                    <a href="{:url('/admin/complain/nodetail/id/'.$com.id)}" class="btn btn-success btn-xs">
+                      投诉无效
                     </a>
                   </div>
                   <div class="media-body">
                     <div class="clearfix">
                       <p class="pull-right">
-
-                          <img src="{$user.fancardurl}" alt="Edura" class="media-object" style="width: 150px;height: auto;border-radius: 4px;box-shadow: 0 1px 3px rgba(0,0,0,.15);">
+                        被投诉人:{$com.complainedname}
+                        联系电话:<a href="tel:{$com.complainedtel}">{$com.complainedtel}</a>
+                          <img src="{$com.complainedcard}" alt="暂无图片" class="media-object" style="width: 150px;height: auto;border-radius: 4px;box-shadow: 0 1px 3px rgba(0,0,0,.15);">
 
                       </p>
 
-                        <a href="#" class="btn btn-success btn-xs ju"  data-toggle="modal" data-id="{$user.id}" data-target="#modal-ju">
-                          拒绝认证
+                        <a href="#" class="btn btn-success btn-xs ju"  data-toggle="modal" data-id="{$com.id}" data-target="#modal-ju">
+                          选择处罚
                         </a>
 
 
@@ -82,7 +84,7 @@
               </div>
             </div>
           </div>
-
+          {/foreach}
 
         </center>
 
@@ -128,13 +130,21 @@
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">×</span></button>
-            <h4 class="modal-title">拒绝通过</h4>
+            <h4 class="modal-title">选择处罚</h4>
           </div>
-          <form action="{:url('admin/setting/authrefuse')}">
+          <form action="{:url('admin/complain/docomplain')}">
           <div class="modal-body">
-          拒绝理由:
+
             <input style="display: none" id="juid" name="id">
-            <textarea name="refuse"></textarea>
+            <div class="form-group">
+
+              <select required name="fengtime" class="form-control">
+                <option value="10">封号10天</option>
+                <option value="30">封号30天</option>
+                <option value="1000">永久封号</option>
+
+              </select>
+            </div>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-default pull-left" data-dismiss="modal">关闭</button>

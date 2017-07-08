@@ -35,8 +35,9 @@
                           <div class="description-block">
                               <h5 class="description-header">已预订：{$data.seat} </h5>
                               <!--<span class="description-text">FOLLOWERS</span>-->
+                                {if condition="$iscom eq 1"}
                               <h5 class="description-header" style="margin-top: 8px">  <a class="btn btn-danger btn-sm" href="/index/seting/complain/id/{$data.id}/oid/{$data.oid}">投诉车主</a></h5>
-
+                              {/if}
                           </div>
                           <!-- /.description-block -->
                       </div>

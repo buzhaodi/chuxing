@@ -54,7 +54,14 @@ class Setting extends Publiccon
 
     public function complain(){
 
+        $com=db("complain")->field("c.id,u.name as complainername,u.zhengcardurl as complainercard,u.tel as complainertel,u.id as complainerid,u1.name as complainedname,u1.tel as complainedtel,u1.zhengcardurl as complainedcard,u1.id as complainedid,c.content,c.time,c.orderid")
+            ->alias('c')
+            ->join("chuxing_user u","c.complainid=u.id")
+            ->join("chuxing_user u1","c.complainided=u1.id")
+            ->where("chuxing_complain.status",1)
+            ->select();
 
+        $this->assign("coms",$com);
         return $this->fetch();
     }
 

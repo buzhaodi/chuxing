@@ -33,11 +33,11 @@
           <div class="box box-widget widget-user">
               <!-- Add the bg color to the header using any of the bg-* classes -->
               <div class="widget-user-header bg-black" style=" width: 100%;">
-                  <h3 class="widget-user-username">{$Think.session.user.nickname}</h3>
-                  <h5 class="widget-user-desc">{$Think.session.user.sex}</h5>
+                  <h3 class="widget-user-username">{$user.nickname}</h3>
+                  <h5 class="widget-user-desc">{$user.sex}</h5>
               </div>
               <div class="widget-user-image">
-                  <img class="img-circle" src="{$Think.session.user.headimgurl}" alt="User Avatar">
+                  <img class="img-circle" src="{$user.headimgurl}" alt="User Avatar">
               </div>
               <div class="box-footer">
                   <div class="row">
@@ -52,7 +52,7 @@
                       <!-- /.col -->
                       <div class="col-sm-4 border-right">
                           <div class="description-block">
-                              <h5 class="description-header">{$Think.session.user.tel}</h5>
+                              <h5 class="description-header">{$user.tel}</h5>
                               <!--<span class="description-text">FOLLOWERS</span>-->
                           </div>
                           <!-- /.description-block -->
