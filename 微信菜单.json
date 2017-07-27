@@ -2,30 +2,30 @@
     "button": [
         {
             "type": "view", 
-            "name": "ÎÒÒªÆ´³µ", 
-            "url": "http://xiaoguaishou.yunshanjs.com/"
+            "name": "æˆ‘è¦æ‹¼è½¦",
+            "url": "http://weixin.zhenyangyang.com/"
         }, 
         {
             "type": "view", 
-            "name": "³µÖ÷·¢²¼", 
-            "url": "http://xiaoguaishou.yunshanjs.com/index/line/creatline"
+            "name": "è½¦ä¸»å‘å¸ƒ",
+            "url": "http://weixin.zhenyangyang.com/index/line/creatline"
         }, 
         {
-            "name": "¸öÈËÖĞĞÄ", 
+            "name": "ä¸ªäººä¸­å¿ƒ",
             "sub_button": [
                 {
                     "type": "view", 
-                    "name": "¸öÈËÖĞĞÄ", 
-                    "url": "http://xiaoguaishou.yunshanjs.com/index/seting"
+                    "name": "ä¸ªäººä¸­å¿ƒ",
+                    "url": "http://weixin.zhenyangyang.com/index/seting"
                 }, 
                 {
                     "type": "view", 
-                    "name": "×¢²áÒ³Ãæ", 
-                    "url": "http://xiaoguaishou.yunshanjs.com/index/wechat/reg"
+                    "name": "æ³¨å†Œé¡µé¢",
+                    "url": "http://weixin.zhenyangyang.com/index/wechat/reg"
                 }, 
                 {
                     "type": "click", 
-                    "name": "ÔŞÒ»ÏÂÎÒÃÇ", 
+                    "name": "èµæˆ‘ä»¬ä¸€ä¸‹",
                     "key": "V1001_GOOD"
                 }
             ]

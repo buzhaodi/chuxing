@@ -153,6 +153,7 @@ class Wechat extends \think\Controller
        $url= getoppenid($code);
         $res = file_get_contents($url); //获取文件内容或获取网络请求的内容
         $result = json_decode($res, true); //接受一个 JSON 格式的字符串并且把它转换为 PHP 变量
+
        $openid=$result['openid'];
 
       $data= db("user")->where("openid='{$openid}'")->find();

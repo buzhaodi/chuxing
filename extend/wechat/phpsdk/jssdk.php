@@ -19,7 +19,7 @@ class jssdk {
         $string = "jsapi_ticket=$jsapiTicket&noncestr=$nonceStr&timestamp=$timestamp&url=$url";
 
         $signature = sha1($string);
-
+   
         $signPackage = array(
             "appId"     => $this->appId,
             "nonceStr"  => $nonceStr,

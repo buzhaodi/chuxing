@@ -216,7 +216,7 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1>
-                出行小怪兽        <small>管理后台:车主信息审核</small>
+                出行小怪兽
             </h1>
 
         </section>
